@@ -2,7 +2,7 @@ name: Test Flutter Web App
 on:
   push:
     branches: [ main ]
-  pull_requests:
+  pull_request:
 
 jobs:
   drive:
