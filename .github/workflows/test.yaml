@@ -10,9 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-          cache-key: flutter
-          cache-path: ${{ runner.tool_cache }}/flutter
+      with:
+        channel: stable
+        cache: true
+        cache-key: flutter
+        cache-path: ${{ runner.tool_cache }}/flutter
     - run: flutter test
