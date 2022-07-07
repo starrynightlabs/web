@@ -31,14 +31,17 @@ class MyHomePage extends StatelessWidget {
         fontSize: 16.0,
         fontWeight: FontWeight.w400,
       ),
-      child: Column(
-        children: [
-          getBody(context),
-          const SizedBox(height: 18.0),
-          contactEmail,
-          const SizedBox(height: 8.0),
-          copyright,
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            getBody(context),
+            const SizedBox(height: 18.0),
+            contactEmail,
+            const SizedBox(height: 8.0),
+            copyright,
+            const SizedBox(height: 30.0),
+          ],
+        ),
       ),
     );
   }
