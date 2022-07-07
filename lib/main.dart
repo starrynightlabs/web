@@ -33,58 +33,69 @@ class MyHomePage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 640,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: Image.asset('images/bg.jpeg').image,
-                fit: BoxFit.cover,
-                colorFilter:
-                    const ColorFilter.mode(Colors.black26, BlendMode.darken),
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Coming soon!',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 18.0),
-                Text(
-                  'We are a leading website and mobile software development company based in Singapore.',
-                ),
-                SizedBox(height: 6.0),
-                Text('The rest of the homepage is coming soon.'),
-                SizedBox(height: 6.0),
-                Text('Stay tuned!'),
-              ],
-            ),
-          ),
+          getBody(context),
           const SizedBox(height: 18.0),
-          Linkify(
-            text: "contact@starrynightlabs.io",
-            textScaleFactor: 1.2,
-            linkStyle: const TextStyle(
-              decoration: TextDecoration.none,
-            ),
-            onOpen: (link) async {
-              final Uri uri = Uri.parse(link.url);
-              if (!await launchUrl(uri)) throw 'Could not launch $uri';
-            },
-          ),
+          contactEmail,
           const SizedBox(height: 8.0),
-          const Text(
-            'Copyright © 2022 Starry Night Labs Pte. Ltd.',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
-            ),
-          ),
+          copyright,
         ],
       ),
     );
   }
+
+  Widget getBody(context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 640,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: Image.asset('images/bg.jpeg').image,
+          fit: BoxFit.cover,
+          colorFilter: const ColorFilter.mode(Colors.black26, BlendMode.darken),
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text(
+            'Coming soon!',
+            style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
+          ),
+          SizedBox(height: 18.0),
+          Text(
+            'We are a leading website and mobile software development company based in Singapore.',
+          ),
+          SizedBox(height: 6.0),
+          Text('The rest of the homepage is coming soon.'),
+          SizedBox(height: 6.0),
+          Text('Stay tuned!'),
+        ],
+      ),
+    );
+  }
+
+  Widget get contactEmail {
+    return Linkify(
+      text: "contact@starrynightlabs.io",
+      textScaleFactor: 1.2,
+      linkStyle: const TextStyle(
+        decoration: TextDecoration.none,
+      ),
+      onOpen: (link) async {
+        final Uri uri = Uri.parse(link.url);
+        if (!await launchUrl(uri)) throw 'Could not launch $uri';
+      },
+    );
+  }
+}
+
+Widget get copyright {
+  return const Text(
+    'Copyright © 2022 Starry Night Labs Pte. Ltd.',
+    style: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: Colors.black,
+    ),
+  );
 }
