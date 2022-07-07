@@ -1,11 +1,11 @@
-name: Test Flutter Web App
+name: web
 on:
   push:
     branches: [ main ]
   pull_request:
 
 jobs:
-  drive:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
