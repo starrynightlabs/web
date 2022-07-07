@@ -15,4 +15,5 @@ jobs:
         cache: true
         cache-key: flutter
         cache-path: ${{ runner.tool_cache }}/flutter
+    - run: flutter config --no-analytics
     - run: flutter test
