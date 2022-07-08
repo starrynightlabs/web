@@ -57,22 +57,28 @@ class MyHomePage extends StatelessWidget {
           colorFilter: const ColorFilter.mode(Colors.black26, BlendMode.darken),
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text(
-            'Coming soon!',
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
-          ),
-          SizedBox(height: 18.0),
-          Text(
-            'We are a leading website and mobile software development company based in Singapore.',
-          ),
-          SizedBox(height: 6.0),
-          Text('The rest of the homepage is coming soon.'),
-          SizedBox(height: 6.0),
-          Text('Stay tuned!'),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              'Coming soon!',
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(height: 18.0),
+            Text(
+              'We are a leading website and mobile software development company based in Singapore.',
+              overflow: TextOverflow.clip,
+              textAlign: TextAlign.center,
+              style: TextStyle(height: 1.6),
+            ),
+            SizedBox(height: 6.0),
+            Text('The rest of the homepage is coming soon.'),
+            SizedBox(height: 6.0),
+            Text('Stay tuned!'),
+          ],
+        ),
       ),
     );
   }
