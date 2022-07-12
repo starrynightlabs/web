@@ -7,6 +7,7 @@ function handler(event) {
   //  /assets/**
   //  /canvaskit/**
   //  /icons/**
+  //  /images/**
   //  /<any regular file in root directory with a dot in it>
   if (!(uri.startsWith('/assets/') || uri.startsWith('/canvaskit/') || uri.startsWith('/icons/') || uri.startsWith('/images/')
         || /^\/[^\/]*\.[^\/]*$/.test(uri))) {
