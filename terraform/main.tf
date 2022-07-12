@@ -4,7 +4,8 @@ provider "aws" {
 }
 
 locals {
-  name_with_env = "web_test"
+  # only lowercase alphanumeric characters and hyphens allowed for bucket name
+  name_with_env = "web-test"
 }
 
 resource "aws_route53_zone" "primary" {
