@@ -2,8 +2,6 @@ name: deploy
 on:
   push:
     branches: [ main ]
-  # TODO: delete
-  pull_request:
 
   workflow_run:
     # wait for test completion

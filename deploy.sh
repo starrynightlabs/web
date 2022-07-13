@@ -8,14 +8,8 @@ cd "$base_dir"
 flutter clean
 flutter build web --release --web-renderer canvaskit
 
-echo "dist_id: $WEB_CLOUDFRONT_DIST_ID"
-echo "aws key: $AWS_ACCESS_KEY_ID"
-echo "aws secret key: $AWS_ACCESS_KEY_ID"
-aws --version
-aws s3 ls
-
 # check if logged in
-if aws sts get-caller-identity && [[ $WEB_CLOUDFRONT_DIST_ID != "" ]]
+if aws sts get-caller-identity > /dev/null && [[ $WEB_CLOUDFRONT_DIST_ID != "" ]]
 then
   # sync
   aws s3 sync build/web/ s3://starrynight-web --delete
