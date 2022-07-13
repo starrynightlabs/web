@@ -1,17 +1,20 @@
 #!/bin/bash
 
-# TODO: check working directory
+base_dir="$(dirname $(realpath $0))"
+
+# change directory to base directory
+cd "$base_dir"
+
 rm -rf build/web
 flutter pub get
-flutter build web --release --web-renderer canvaskit
+flutter build web --release
 
-# TODO: bucket name
-dist_bucket=<your-bucket-name>
+dist_bucket="starrynight-web"
 
-# Clean out the bucket
-aws s3 rm s3://${dist_bucket} --recursive
-# Upload everything fresh
-aws s3 cp build/web/ s3://${dist_bucket} --recursive
+# Sync
+aws s3 sync build/web/ s3://${dist_bucket} --delete
+
+exit
 
 # TODO: distribution id
 # Invalidate cloudfront to flush the edge node caches
