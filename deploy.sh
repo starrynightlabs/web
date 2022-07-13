@@ -11,7 +11,7 @@ flutter build web --release --web-renderer canvaskit
 echo "dist_id: $WEB_CLOUDFRONT_DIST_ID"
 echo "aws key: $AWS_ACCESS_KEY_ID"
 echo "aws secret key: $AWS_ACCESS_KEY_ID"
-aws sts get-caller-identity
+aws s3 ls
 
 # check if logged in
 if aws sts get-caller-identity && [[ $WEB_CLOUDFRONT_DIST_ID != "" ]]
