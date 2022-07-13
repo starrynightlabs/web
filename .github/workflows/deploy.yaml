@@ -22,6 +22,7 @@ jobs:
         cache: true
         cache-key: flutter
         cache-path: ${{ runner.tool_cache }}/flutter
+    - uses: chrislennon/action-aws-cli@v1.1
     - run: flutter config --no-analytics
     - run: bash deploy.sh
       env:
