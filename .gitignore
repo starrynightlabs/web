@@ -50,3 +50,4 @@ app.*.map.json
 .terraform
 .terraform.lock.hcl
 terraform.tfstate
+terraform.tfstate.*

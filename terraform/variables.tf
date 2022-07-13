@@ -1,4 +1,4 @@
-variable "domain_name" {
+variable "acm_arn" {
     type = string
-    default = "starrynight.world"
+    description = "arn of starrynight.world in us-east-1"
 }
