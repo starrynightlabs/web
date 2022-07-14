@@ -3,10 +3,8 @@ on:
   workflow_run:
     # wait for test completion
     workflows: [test]
-    branches:
-      - main
-      - 220714_fix_waiting_test
-    types: completed
+    branches: [main, 220714_fix_waiting_test]
+    types: [completed]
 
 jobs:
   deploy:
