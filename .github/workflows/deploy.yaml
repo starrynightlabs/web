@@ -1,16 +1,14 @@
 name: deploy
 on:
-  push:
-    branches: [ main ]
-
   workflow_run:
     # wait for test completion
     workflows: [test]
-    types:
-      - completed
+    branches: [main]
+    types: [completed]
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
