@@ -1,3 +1,6 @@
+![test](https://github.com/starrynightlabs/web/actions/workflows/test.yaml/badge.svg?branch=main)
+![deploy](https://github.com/starrynightlabs/web/actions/workflows/deploy.yaml/badge.svg)
+
 # web
 
 A new Flutter project.
