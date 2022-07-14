@@ -3,7 +3,7 @@
 
 # web
 
-A new Flutter project.
+A Flutter project for starrynight.world
 
 ## Getting Started
 
