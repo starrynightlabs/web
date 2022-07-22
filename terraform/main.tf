@@ -1,14 +1,14 @@
 provider "aws" {
     region = "ap-southeast-1"
 }
-module "cdn" {
+module "nyxs-cdn" {
   source = "terraform-aws-modules/cloudfront/aws"
   version = "2.9.3"
 
-  aliases = ["starrynight.world"]
+  aliases = ["nyxs.io"]
   # manual job: should add an A record in route53
 
-  comment             = "starrynight web by flutter"
+  comment             = "NYXS web by flutter"
   enabled             = true
   is_ipv6_enabled     = true
   price_class         = "PriceClass_All"
@@ -18,12 +18,12 @@ module "cdn" {
 
   create_origin_access_identity = true
   origin_access_identities = {
-    flutter_web_s3_bucket = "Access for starrynight-web"
+    flutter_web_s3_bucket = "Access for NYXS web"
   }
 
   origin = {
     flutter_web_s3 = {
-      domain_name = "starrynight-web.s3.ap-southeast-1.amazonaws.com"
+      domain_name = "nyxs-web.s3.ap-southeast-1.amazonaws.com"
       s3_origin_config = {
         origin_access_identity = "flutter_web_s3_bucket"
 

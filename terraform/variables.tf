@@ -1,4 +1,4 @@
 variable "acm_arn" {
     type = string
-    description = "arn of starrynight.world in us-east-1"
+    description = "arn of nyxs.io in us-east-1"
 }
