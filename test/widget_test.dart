@@ -14,7 +14,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('Coming soon!'), findsOneWidget);
-    expect(find.text('contact@starrynightlabs.io'), findsOneWidget);
+    expect(find.text('Launching soon ⚡'), findsOneWidget);
+    expect(find.text('contact@snlabs.io'), findsOneWidget);
   });
 }
