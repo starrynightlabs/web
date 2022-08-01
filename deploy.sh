@@ -6,7 +6,7 @@ base_dir="$(dirname $(realpath $0))"
 cd "$base_dir"
 
 flutter clean
-flutter build web --release --web-renderer canvaskit
+flutter build web --release
 
 # check if logged in
 if aws sts get-caller-identity > /dev/null && [[ $WEB_CLOUDFRONT_DIST_ID != "" ]]
