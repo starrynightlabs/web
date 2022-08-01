@@ -32,6 +32,7 @@ class MyHomePage extends StatelessWidget {
         color: Color.fromRGBO(255, 255, 255, 1.0),
         fontSize: 16.0,
         fontWeight: FontWeight.w400,
+        fontFamily: '-apple-system',
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -79,6 +80,7 @@ class MyHomePage extends StatelessWidget {
       textScaleFactor: 1.2,
       linkStyle: const TextStyle(
         decoration: TextDecoration.none,
+        fontFamily: '-apple-system',
       ),
       onOpen: (link) async {
         final Uri uri = Uri.parse(link.url);
@@ -90,7 +92,7 @@ class MyHomePage extends StatelessWidget {
 
 Widget get copyright {
   return const Text(
-    'Copyright © 2022 Starry Night Labs Pte. Ltd.',
+    '© 2022 Starry Night Labs Pte. Ltd.',
     style: TextStyle(fontSize: 14),
   );
 }
