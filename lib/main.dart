@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Starry Night',
+      title: 'NYXS / Starry Night Labs',
       home: MyHomePage(),
     );
   }
@@ -37,11 +37,6 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           children: [
             getBody(context),
-            const SizedBox(height: 18.0),
-            contactEmail,
-            const SizedBox(height: 8.0),
-            copyright,
-            const SizedBox(height: 30.0),
           ],
         ),
       ),
@@ -54,31 +49,24 @@ class MyHomePage extends StatelessWidget {
       height: 640,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: Image.asset('images/bg.jpeg').image,
+          image: Image.asset('images/bg.png').image,
           fit: BoxFit.cover,
-          colorFilter: const ColorFilter.mode(Colors.black26, BlendMode.darken),
         ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'Coming soon!',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const Text(
+              'Launching soon ⚡',
+              style: TextStyle(fontSize: 30),
             ),
-            SizedBox(height: 18.0),
-            Text(
-              'We are a leading website and mobile software development company based in Singapore.',
-              overflow: TextOverflow.clip,
-              textAlign: TextAlign.center,
-              style: TextStyle(height: 1.6),
-            ),
-            SizedBox(height: 6.0),
-            Text('The rest of the homepage is coming soon.'),
-            SizedBox(height: 6.0),
-            Text('Stay tuned!'),
+            const SizedBox(height: 18.0),
+            contactEmail,
+            const SizedBox(height: 8.0),
+            copyright,
+            const SizedBox(height: 18.0),
           ],
         ),
       ),
@@ -87,7 +75,7 @@ class MyHomePage extends StatelessWidget {
 
   Widget get contactEmail {
     return Linkify(
-      text: "contact@starrynightlabs.io",
+      text: "contact@snlabs.io",
       textScaleFactor: 1.2,
       linkStyle: const TextStyle(
         decoration: TextDecoration.none,
@@ -103,10 +91,6 @@ class MyHomePage extends StatelessWidget {
 Widget get copyright {
   return const Text(
     'Copyright © 2022 Starry Night Labs Pte. Ltd.',
-    style: TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w500,
-      color: Colors.black,
-    ),
+    style: TextStyle(fontSize: 16),
   );
 }
