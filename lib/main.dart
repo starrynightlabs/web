@@ -91,6 +91,6 @@ class MyHomePage extends StatelessWidget {
 Widget get copyright {
   return const Text(
     'Copyright © 2022 Starry Night Labs Pte. Ltd.',
-    style: TextStyle(fontSize: 16),
+    style: TextStyle(fontSize: 14),
   );
 }
