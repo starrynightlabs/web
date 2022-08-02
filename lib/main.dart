@@ -49,9 +49,10 @@ class MyHomePage extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 640,
       decoration: BoxDecoration(
+        color: const Color(0xff07071c),
         image: DecorationImage(
           image: Image.asset('images/bg.png').image,
-          fit: BoxFit.cover,
+          fit: BoxFit.none,
         ),
       ),
       child: Padding(
