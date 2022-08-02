@@ -44,15 +44,43 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
+  Size getLogoContainerSize(context) {
+    var screenSize = MediaQuery.of(context).size;
+
+    // Logo image size: 3840 x 2160
+    var imageSize = const Size(3840, 2160);
+
+    // width of actual logo part in logo image
+    var logoWidth = 1440;
+
+    var logicalWidth =
+        screenSize.width * screenSize.aspectRatio / imageSize.aspectRatio;
+    var actualWidth = logicalWidth * (imageSize.width / screenSize.width);
+    var diffWidth = logoWidth - actualWidth;
+
+    if (diffWidth > 0) {
+      var height = screenSize.height;
+
+      // decrease height to show logo part
+      // 0.05 means 5% margin before and after logo part
+      height *= 1 - diffWidth / logoWidth - 0.05;
+
+      screenSize = Size(screenSize.width, height);
+    }
+
+    return screenSize;
+  }
+
   Widget getBody(context) {
+    var size = getLogoContainerSize(context);
+
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 640,
+      width: size.width,
+      height: size.height,
       decoration: BoxDecoration(
-        color: const Color(0xff07071c),
         image: DecorationImage(
           image: Image.asset('images/bg.png').image,
-          fit: BoxFit.none,
+          fit: BoxFit.cover,
         ),
       ),
       child: Padding(
