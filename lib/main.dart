@@ -33,7 +33,8 @@ class MyHomePage extends StatelessWidget {
         leadingWidth: 86.0,
         leading: Padding(
           padding: const EdgeInsets.only(left: 16.0),
-          child: Image.asset('images/logo.png'),
+          child:
+              Image.asset('images/logo.png', filterQuality: FilterQuality.high),
         ),
       ),
       body: DefaultTextStyle.merge(
