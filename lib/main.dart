@@ -26,19 +26,31 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle.merge(
-      style: const TextStyle(
-        decoration: TextDecoration.none,
-        color: Color.fromRGBO(255, 255, 255, 1.0),
-        fontSize: 16.0,
-        fontWeight: FontWeight.w400,
-        fontFamily: '-apple-system',
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xff040724),
+        toolbarHeight: 72.0,
+        leadingWidth: 86.0,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child:
+              Image.asset('images/logo.png', filterQuality: FilterQuality.high),
+        ),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            getBody(context),
-          ],
+      body: DefaultTextStyle.merge(
+        style: const TextStyle(
+          decoration: TextDecoration.none,
+          color: Color.fromRGBO(255, 255, 255, 1.0),
+          fontSize: 16.0,
+          fontWeight: FontWeight.w400,
+          fontFamily: '-apple-system',
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              getBody(context),
+            ],
+          ),
         ),
       ),
     );
