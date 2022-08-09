@@ -49,6 +49,7 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             children: [
               getBody(context),
+              getFooter(),
             ],
           ),
         ),
@@ -106,10 +107,30 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 18.0),
             contactEmail,
             const SizedBox(height: 8.0),
-            copyright,
             const SizedBox(height: 18.0),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget getFooter() {
+    return Container(
+      color: const Color(0xff000000),
+      padding: const EdgeInsets.fromLTRB(16.0, 80.0, 0.0, 64.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset('images/large_logo_white.png', width: 127, height: 43),
+          const SizedBox(height: 16.0),
+          const Text('Launching soon to\nApple Store & Google Play Store.',
+              style: TextStyle(height: 1.62)),
+          const SizedBox(height: 18.0),
+          const Divider(color: Color(0xff838383), height: 24.0, thickness: 1.0),
+          const SizedBox(height: 46.0),
+          const SizedBox(height: 46.0),
+          copyright,
+        ],
       ),
     );
   }
