@@ -128,6 +128,7 @@ class MyHomePage extends StatelessWidget {
           const SizedBox(height: 18.0),
           const Divider(color: Color(0xff838383), height: 24.0, thickness: 1.0),
           const SizedBox(height: 46.0),
+          socialMediaButtons,
           const SizedBox(height: 46.0),
           copyright,
         ],
@@ -149,6 +150,34 @@ class MyHomePage extends StatelessWidget {
       },
     );
   }
+}
+
+Widget get socialMediaButtons {
+  return Row(
+    children: [
+      getSocialMediaButton('images/twitter.png'),
+      const SizedBox(width: 10.0),
+      getSocialMediaButton('images/telegram.png'),
+      const SizedBox(width: 10.0),
+      getSocialMediaButton('images/discord.png'),
+      const SizedBox(width: 16.0),
+      getSocialMediaButton('images/medium.png'),
+      const SizedBox(width: 10.0),
+      getSocialMediaButton('images/mail.png')
+    ],
+  );
+}
+
+Widget getSocialMediaButton(title) {
+  return SizedBox(
+    height: 48,
+    width: 48,
+    child: IconButton(
+      padding: const EdgeInsets.all(0.0),
+      icon: Image.asset(title),
+      onPressed: () {},
+    ),
+  );
 }
 
 Widget get copyright {
