@@ -66,7 +66,7 @@ class MyHomePage extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0),
+          padding: const EdgeInsets.only(top: 72.0, bottom: 16.0),
           child: DefaultTextStyle(
             style: const TextStyle(
               color: Color(0xffFFFFFF),
@@ -98,7 +98,7 @@ class MyHomePage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: Image.asset(
                     'images/we_make_stars.png',
                     height: 555,
@@ -182,7 +182,7 @@ class MyHomePage extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: const Color(0xff000000),
-      padding: const EdgeInsets.fromLTRB(55.0, 96.0, 54.0, 64.0),
+      padding: const EdgeInsets.only(top: 96.0, bottom: 64.0),
       child: const Text(
         'Launching soon.',
         textAlign: TextAlign.center,
