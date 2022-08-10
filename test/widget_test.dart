@@ -26,6 +26,10 @@ void main() {
       ),
       findsOneWidget,
     );
+    expect(
+      find.text('Make a special experience\nwith your athletes!'),
+      findsOneWidget,
+    );
     expect(find.text('Launching soon.'), findsOneWidget);
   });
 }
