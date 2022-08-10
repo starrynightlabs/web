@@ -52,6 +52,7 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             children: [
               getWeMakeStarsPart(),
+              getWhatIsNyxsPart(),
               getLaunchingMessage(),
               getFooter(),
             ],
@@ -125,6 +126,55 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  Widget getWhatIsNyxsPart() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 120.0, bottom: 110.0),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromRGBO(0, 0, 0, 0.8),
+            Color.fromRGBO(0, 0, 0, 0),
+          ],
+        ),
+      ),
+      child: Column(
+        children: [
+          const Text.rich(
+            TextSpan(
+              text: 'What is ',
+              children: [
+                TextSpan(
+                  text: 'NYXS',
+                  style: TextStyle(color: Color(0xff28E7C5)),
+                )
+              ],
+            ),
+            style: TextStyle(
+              color: Color(0xffffffff),
+              fontWeight: FontWeight.w700,
+              fontSize: 28.0,
+              height: 1.07,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            'A new web3 sporting platform\nconnecting fans with their\nfavorite athletes.',
+            style: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 18.0,
+              height: 1.23,
+              color: const Color(0xffffffff).withOpacity(0.8),
+            ),
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 
