@@ -121,18 +121,25 @@ class MyHomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset('images/large_logo_white.png',
-              width: 127, height: 43, filterQuality: FilterQuality.high),
+          Image.asset(
+            'images/large_logo_white.png',
+            width: 127,
+            height: 43,
+            filterQuality: FilterQuality.high,
+          ),
           const SizedBox(height: 16.0),
           // TODO: create hyperlink to App Store, Play Store.
-          const Text('Launching soon to\nApple App Store & Google Play Store.',
-              style: TextStyle(height: 1.62)),
+          const Text(
+            'Launching soon to\nApple App Store & Google Play Store.',
+            style: TextStyle(height: 1.62),
+          ),
           const SizedBox(height: 18.0),
           const Divider(
-              color: Color(0xff838383),
-              height: 24.0,
-              thickness: 1.0,
-              endIndent: 16.0),
+            color: Color(0xff838383),
+            height: 24.0,
+            thickness: 1.0,
+            endIndent: 16.0,
+          ),
           const SizedBox(height: 32.0),
           socialMediaButtons,
           const SizedBox(height: 32.0),
@@ -161,7 +168,10 @@ class MyHomePage extends StatelessWidget {
 Widget get socialMediaButtons {
   return Row(
     children: [
-      getSocialMediaButton('images/twitter.png'),
+      getSocialMediaButton(
+        'images/twitter.png',
+        targetUrl: 'https://twitter.com/StarryNightFndn',
+      ),
       const SizedBox(width: 10.0),
       getSocialMediaButton('images/telegram.png'),
       const SizedBox(width: 10.0),
@@ -169,26 +179,35 @@ Widget get socialMediaButtons {
       const SizedBox(width: 16.0),
       getSocialMediaButton('images/medium.png'),
       const SizedBox(width: 10.0),
-      getSocialMediaButton('images/mail.png')
+      getSocialMediaButton(
+        'images/mail.png',
+        targetUrl: 'mailto:contact@snlabs.io',
+      )
     ],
   );
 }
 
-Widget getSocialMediaButton(imagePath) {
+Widget getSocialMediaButton(imagePath, {String? targetUrl}) {
   return SizedBox(
     height: 48,
     width: 48,
     child: IconButton(
       padding: const EdgeInsets.all(0.0),
       icon: Image.asset(imagePath),
-      onPressed: () {},
+      onPressed: () async {
+        if (targetUrl != null) {
+          final Uri uri = Uri.parse(targetUrl);
+          if (!await launchUrl(uri)) throw 'Could not launch $uri';
+        }
+      },
     ),
   );
 }
 
 Widget get copyright {
   return const Text(
-      // TODO: create hyperlink to Privacy Policy, Terms Of Use.
-      '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
-      style: TextStyle(fontSize: 12.0, height: 1.83));
+    // TODO: create hyperlink to Privacy Policy, Terms Of Use.
+    '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
+    style: TextStyle(fontSize: 12.0, height: 1.83),
+  );
 }
