@@ -161,7 +161,10 @@ class MyHomePage extends StatelessWidget {
 Widget get socialMediaButtons {
   return Row(
     children: [
-      getSocialMediaButton('images/twitter.png'),
+      getSocialMediaButton(
+        'images/twitter.png',
+        targetUrl: 'https://twitter.com/StarryNightFndn',
+      ),
       const SizedBox(width: 10.0),
       getSocialMediaButton('images/telegram.png'),
       const SizedBox(width: 10.0),
@@ -169,19 +172,27 @@ Widget get socialMediaButtons {
       const SizedBox(width: 16.0),
       getSocialMediaButton('images/medium.png'),
       const SizedBox(width: 10.0),
-      getSocialMediaButton('images/mail.png')
+      getSocialMediaButton(
+        'images/mail.png',
+        targetUrl: 'mailto:contact@snlabs.io',
+      )
     ],
   );
 }
 
-Widget getSocialMediaButton(imagePath) {
+Widget getSocialMediaButton(imagePath, {String? targetUrl}) {
   return SizedBox(
     height: 48,
     width: 48,
     child: IconButton(
       padding: const EdgeInsets.all(0.0),
       icon: Image.asset(imagePath),
-      onPressed: () {},
+      onPressed: () async {
+        if (targetUrl != null) {
+          final Uri uri = Uri.parse(targetUrl);
+          if (!await launchUrl(uri)) throw 'Could not launch $uri';
+        }
+      },
     ),
   );
 }
