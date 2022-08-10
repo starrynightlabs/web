@@ -51,12 +51,77 @@ class MyHomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              getWeMakeStarsPart(),
               getLaunchingMessage(),
               getFooter(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget getWeMakeStarsPart() {
+    return Column(
+      children: [
+        DefaultTextStyle(
+          style: const TextStyle(
+            color: Color(0xffFFFFFF),
+            fontWeight: FontWeight.w700,
+            fontSize: 36.0,
+            height: 1.06,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text.rich(
+                TextSpan(
+                  text: 'We Make ',
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Stars!',
+                      style: TextStyle(color: Color(0xff28E7C5)),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        Stack(
+          children: <Widget>[
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+                  child: Image.asset(
+                    'images/we_make_stars.png',
+                    height: 555,
+                    fit: BoxFit.fitHeight,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: const [
+                    Text(
+                      'Support your athletes\nEnjoy the missions together.',
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 26.0),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
