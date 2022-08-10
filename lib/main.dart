@@ -109,12 +109,13 @@ class MyHomePage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center,
                 child: Column(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Support your athletes\nEnjoy the missions together.',
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 26.0),
+                    const SizedBox(height: 26.0),
+                    getTag('BETA'),
                   ],
                 ),
               ),
@@ -178,6 +179,30 @@ class MyHomePage extends StatelessWidget {
           socialMediaButtons,
           const SizedBox(height: 32.0),
           copyright,
+        ],
+      ),
+    );
+  }
+
+  Widget getTag(tag) {
+    return Container(
+      height: 26.0,
+      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: const Color(0xff28E7C5)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            tag,
+            style: const TextStyle(
+              fontSize: 14.0,
+              color: Color(0xff28E7C5),
+            ),
+          ),
         ],
       ),
     );
