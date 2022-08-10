@@ -133,17 +133,17 @@ class MyHomePage extends StatelessWidget {
       width: double.infinity,
       color: const Color(0xff000000),
       padding: const EdgeInsets.fromLTRB(55.0, 96.0, 54.0, 64.0),
-      child: Text(
+      child: const Text(
         'Launching soon.',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 32.0,
           height: 1.31,
-          color: const Color(0xff28E7C5),
+          color: Color(0xff28E7C5),
           shadows: [
             BoxShadow(
-              color: const Color.fromARGB(1, 40, 231, 197).withOpacity(1.0),
+              color: Color.fromRGBO(40, 231, 197, 0.8),
               blurRadius: 20.0,
             )
           ],
