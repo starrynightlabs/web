@@ -86,13 +86,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  gradient_like_css:
-    dependency: "direct main"
-    description:
-      name: gradient_like_css
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   js:
     dependency: transitive
     description:
@@ -149,13 +142,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  quiver:
-    dependency: transitive
-    description:
-      name: quiver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -203,13 +189,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.9"
-  tuple:
-    dependency: transitive
-    description:
-      name: tuple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   url_launcher:
     dependency: "direct main"
     description:
