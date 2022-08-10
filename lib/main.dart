@@ -49,6 +49,7 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             children: [
               getBody(context),
+              getFooter(),
             ],
           ),
         ),
@@ -106,10 +107,37 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 18.0),
             contactEmail,
             const SizedBox(height: 8.0),
-            copyright,
             const SizedBox(height: 18.0),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget getFooter() {
+    return Container(
+      color: const Color(0xff000000),
+      padding: const EdgeInsets.fromLTRB(16.0, 80.0, 0.0, 64.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset('images/large_logo_white.png',
+              width: 127, height: 43, filterQuality: FilterQuality.high),
+          const SizedBox(height: 16.0),
+          // TODO: create hyperlink to App Store, Play Store.
+          const Text('Launching soon to\nApple App Store & Google Play Store.',
+              style: TextStyle(height: 1.62)),
+          const SizedBox(height: 18.0),
+          const Divider(
+              color: Color(0xff838383),
+              height: 24.0,
+              thickness: 1.0,
+              endIndent: 16.0),
+          const SizedBox(height: 32.0),
+          socialMediaButtons,
+          const SizedBox(height: 32.0),
+          copyright,
+        ],
       ),
     );
   }
@@ -130,9 +158,37 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+Widget get socialMediaButtons {
+  return Row(
+    children: [
+      getSocialMediaButton('images/twitter.png'),
+      const SizedBox(width: 10.0),
+      getSocialMediaButton('images/telegram.png'),
+      const SizedBox(width: 10.0),
+      getSocialMediaButton('images/discord.png'),
+      const SizedBox(width: 16.0),
+      getSocialMediaButton('images/medium.png'),
+      const SizedBox(width: 10.0),
+      getSocialMediaButton('images/mail.png')
+    ],
+  );
+}
+
+Widget getSocialMediaButton(imagePath) {
+  return SizedBox(
+    height: 48,
+    width: 48,
+    child: IconButton(
+      padding: const EdgeInsets.all(0.0),
+      icon: Image.asset(imagePath),
+      onPressed: () {},
+    ),
+  );
+}
+
 Widget get copyright {
   return const Text(
-    '© 2022 Starry Night Labs Pte. Ltd.',
-    style: TextStyle(fontSize: 14),
-  );
+      // TODO: create hyperlink to Privacy Policy, Terms Of Use.
+      '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
+      style: TextStyle(fontSize: 12.0, height: 1.83));
 }
