@@ -132,39 +132,40 @@ class MyHomePage extends StatelessWidget {
   Widget getSpecialExperience() {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(102.0, 120.0, 102.0, 40.0),
-          child: Image.asset(
-            'images/large_logo.png',
-            width: 156.0,
-            height: 54.0,
-            filterQuality: FilterQuality.high,
-          ),
+        const SizedBox(height: 120.0),
+        Image.asset(
+          'images/large_logo.png',
+          width: 156.0,
+          height: 54.0,
+          filterQuality: FilterQuality.high,
         ),
+        const SizedBox(height: 40.0),
         Stack(
           children: [
             Positioned(
               child: Align(
                 alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
-                  child: ShaderMask(
-                    shaderCallback: (Rect bound) {
-                      return const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Color(0xff000000)],
-                        stops: [0.7, 1.0],
-                      ).createShader(bound);
-                    },
-                    blendMode: BlendMode.darken,
-                    child: Image.asset(
-                      'images/special_experience.png',
-                      height: 450,
-                      fit: BoxFit.fitHeight,
-                      filterQuality: FilterQuality.high,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 50.0),
+                    ShaderMask(
+                      shaderCallback: (Rect bound) {
+                        return const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, Color(0xff000000)],
+                          stops: [0.7, 1.0],
+                        ).createShader(bound);
+                      },
+                      blendMode: BlendMode.darken,
+                      child: Image.asset(
+                        'images/special_experience.png',
+                        height: 450,
+                        fit: BoxFit.fitHeight,
+                        filterQuality: FilterQuality.high,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
