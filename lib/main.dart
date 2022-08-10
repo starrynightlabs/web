@@ -27,14 +27,17 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff040724),
       appBar: AppBar(
         backgroundColor: const Color(0xff040724),
         toolbarHeight: 72.0,
         leadingWidth: 86.0,
         leading: Padding(
           padding: const EdgeInsets.only(left: 16.0),
-          child:
-              Image.asset('images/logo.png', filterQuality: FilterQuality.high),
+          child: Image.asset(
+            'images/logo.png',
+            filterQuality: FilterQuality.high,
+          ),
         ),
       ),
       body: DefaultTextStyle.merge(
@@ -48,7 +51,8 @@ class MyHomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              getBody(context),
+              getWeMakeStarsPart(),
+              getLaunchingMessage(),
               getFooter(),
             ],
           ),
@@ -57,57 +61,91 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  static Size getLogoContainerSize(Size size) {
-    // Logo image size: 3840 x 2160
-    var imageSize = const Size(3840, 2160);
-
-    // width of actual logo part in logo image
-    var logoWidth = 1440;
-
-    var logicalWidth = size.width * size.aspectRatio / imageSize.aspectRatio;
-    var actualWidth = logicalWidth * (imageSize.width / size.width);
-
-    var diffWidth = logoWidth - actualWidth;
-
-    // If diffWidth is positive, logo part is not fully shown
-    if (diffWidth > 0) {
-      var height = size.height;
-
-      // decrease height to show logo part
-      // 0.05 means 5% margin before and after logo part
-      height *= 1 - diffWidth / logoWidth - 0.05;
-
-      size = Size(size.width, height);
-    }
-
-    return size;
+  Widget getWeMakeStarsPart() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0),
+          child: DefaultTextStyle(
+            style: const TextStyle(
+              color: Color(0xffFFFFFF),
+              fontWeight: FontWeight.w700,
+              fontSize: 36.0,
+              height: 1.06,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text.rich(
+                  TextSpan(
+                    text: 'We Make ',
+                    children: [
+                      TextSpan(
+                        text: 'Stars!',
+                        style: TextStyle(color: Color(0xff28E7C5)),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Stack(
+          children: [
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+                  child: Image.asset(
+                    'images/we_make_stars.png',
+                    height: 555,
+                    fit: BoxFit.fitHeight,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Support your athletes\nEnjoy the missions together.',
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 26.0),
+                    getTag('BETA'),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 
-  Widget getBody(context) {
-    var size = getLogoContainerSize(MediaQuery.of(context).size);
-
+  Widget getLaunchingMessage() {
     return Container(
-      width: size.width,
-      height: size.height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: Image.asset('images/bg.png').image,
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            const Text(
-              'Launching soon ⚡',
-              style: TextStyle(fontSize: 30),
-            ),
-            const SizedBox(height: 18.0),
-            contactEmail,
-            const SizedBox(height: 8.0),
-            const SizedBox(height: 18.0),
+      width: double.infinity,
+      color: const Color(0xff000000),
+      padding: const EdgeInsets.fromLTRB(55.0, 96.0, 54.0, 64.0),
+      child: const Text(
+        'Launching soon.',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 32.0,
+          height: 1.31,
+          color: Color(0xff28E7C5),
+          shadows: [
+            BoxShadow(
+              color: Color.fromRGBO(40, 231, 197, 0.8),
+              blurRadius: 20.0,
+            )
           ],
         ),
       ),
@@ -144,6 +182,30 @@ class MyHomePage extends StatelessWidget {
           socialMediaButtons,
           const SizedBox(height: 32.0),
           copyright,
+        ],
+      ),
+    );
+  }
+
+  Widget getTag(tag) {
+    return Container(
+      height: 26.0,
+      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: const Color(0xff28E7C5)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            tag,
+            style: const TextStyle(
+              fontSize: 14.0,
+              color: Color(0xff28E7C5),
+            ),
+          ),
         ],
       ),
     );
