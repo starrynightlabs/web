@@ -52,6 +52,7 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             children: [
               getWeMakeStarsPart(),
+              getSpecialExperience(),
               getLaunchingMessage(),
               getFooter(),
             ],
@@ -118,6 +119,80 @@ class MyHomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 26.0),
                     getTag('BETA'),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getSpecialExperience() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(102.0, 120.0, 102.0, 40.0),
+          child: Image.asset(
+            'images/large_logo.png',
+            width: 156.0,
+            height: 54.0,
+            filterQuality: FilterQuality.high,
+          ),
+        ),
+        Stack(
+          children: [
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
+                  child: ShaderMask(
+                    shaderCallback: (Rect bound) {
+                      return const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.transparent, Color(0xff000000)],
+                        stops: [0.7, 1.0],
+                      ).createShader(bound);
+                    },
+                    blendMode: BlendMode.darken,
+                    child: Image.asset(
+                      'images/special_experience.png',
+                      height: 450,
+                      fit: BoxFit.fitHeight,
+                      filterQuality: FilterQuality.high,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Make a special experience\nwith your athletes!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 24.0,
+                        height: 1.42,
+                      ),
+                    ),
+                    const SizedBox(height: 40.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        getTag('VIDEO'),
+                        const SizedBox(width: 8.0),
+                        getTag('MESSAGE'),
+                        const SizedBox(width: 8.0),
+                        getTag('NFT')
+                      ],
+                    ),
                   ],
                 ),
               ),
