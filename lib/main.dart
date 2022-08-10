@@ -126,7 +126,11 @@ class MyHomePage extends StatelessWidget {
           const Text('Launching soon to\nApple Store & Google Play Store.',
               style: TextStyle(height: 1.62)),
           const SizedBox(height: 18.0),
-          const Divider(color: Color(0xff838383), height: 24.0, thickness: 1.0),
+          const Divider(
+              color: Color(0xff838383),
+              height: 24.0,
+              thickness: 1.0,
+              endIndent: 16.0),
           const SizedBox(height: 32.0),
           socialMediaButtons,
           const SizedBox(height: 32.0),
