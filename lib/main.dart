@@ -14,9 +14,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'NYXS / Starry Night Labs',
-      home: MyHomePage(),
+      theme: ThemeData(fontFamily: 'Euclid Circular A'),
+      home: const MyHomePage(),
     );
   }
 }
@@ -46,7 +47,6 @@ class MyHomePage extends StatelessWidget {
           color: Color.fromRGBO(255, 255, 255, 1.0),
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          fontFamily: '-apple-system',
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -67,7 +67,7 @@ class MyHomePage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0),
-          child: DefaultTextStyle(
+          child: DefaultTextStyle.merge(
             style: const TextStyle(
               color: Color(0xffFFFFFF),
               fontWeight: FontWeight.w700,
