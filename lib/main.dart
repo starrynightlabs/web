@@ -128,6 +128,7 @@ class MyHomePage extends StatelessWidget {
 
   Widget getLaunchingMessage() {
     return Container(
+      width: double.infinity,
       color: const Color(0xff000000),
       padding: const EdgeInsets.fromLTRB(55.0, 96.0, 54.0, 64.0),
       child: Text(
@@ -194,7 +195,7 @@ class MyHomePage extends StatelessWidget {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             tag,
