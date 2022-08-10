@@ -64,31 +64,33 @@ class MyHomePage extends StatelessWidget {
   Widget getWeMakeStarsPart() {
     return Column(
       children: [
-        DefaultTextStyle(
-          style: const TextStyle(
-            color: Color(0xffFFFFFF),
-            fontWeight: FontWeight.w700,
-            fontSize: 36.0,
-            height: 1.06,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text.rich(
-                TextSpan(
-                  text: 'We Make ',
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Stars!',
-                      style: TextStyle(color: Color(0xff28E7C5)),
-                    ),
-                  ],
+        Padding(
+          padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0 ),
+          child: DefaultTextStyle(
+            style: const TextStyle(
+              color: Color(0xffFFFFFF),
+              fontWeight: FontWeight.w700,
+              fontSize: 36.0,
+              height: 1.06,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text.rich(
+                  TextSpan(
+                    text: 'We Make ',
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Stars!',
+                        style: TextStyle(color: Color(0xff28E7C5)),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-        const SizedBox(height: 16.0),
         Stack(
           children: <Widget>[
             Positioned(
