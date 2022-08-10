@@ -125,7 +125,7 @@ class MyHomePage extends StatelessWidget {
               width: 127, height: 43, filterQuality: FilterQuality.high),
           const SizedBox(height: 16.0),
           // TODO: create hyperlink to App Store, Play Store.
-          const Text('Launching soon to\nApple Store & Google Play Store.',
+          const Text('Launching soon to\nApple App Store & Google Play Store.',
               style: TextStyle(height: 1.62)),
           const SizedBox(height: 18.0),
           const Divider(
