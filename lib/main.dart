@@ -14,9 +14,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'NYXS / Starry Night Labs',
-      home: MyHomePage(),
+      theme: ThemeData(fontFamily: 'Euclid Circular A'),
+      home: const MyHomePage(),
     );
   }
 }
@@ -46,12 +47,12 @@ class MyHomePage extends StatelessWidget {
           color: Color.fromRGBO(255, 255, 255, 1.0),
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          fontFamily: '-apple-system',
         ),
         child: SingleChildScrollView(
           child: Column(
             children: [
               getWeMakeStarsPart(),
+              getSpecialExperience(),
               getLaunchingMessage(),
               getFooter(),
             ],
@@ -66,7 +67,7 @@ class MyHomePage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0),
-          child: DefaultTextStyle(
+          child: DefaultTextStyle.merge(
             style: const TextStyle(
               color: Color(0xffFFFFFF),
               fontWeight: FontWeight.w700,
@@ -118,6 +119,81 @@ class MyHomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 26.0),
                     getTag('BETA'),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getSpecialExperience() {
+    return Column(
+      children: [
+        const SizedBox(height: 120.0),
+        Image.asset(
+          'images/large_logo.png',
+          width: 156.0,
+          height: 54.0,
+          filterQuality: FilterQuality.high,
+        ),
+        const SizedBox(height: 40.0),
+        Stack(
+          children: [
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 50.0),
+                    ShaderMask(
+                      shaderCallback: (Rect bound) {
+                        return const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, Color(0xff000000)],
+                          stops: [0.7, 1.0],
+                        ).createShader(bound);
+                      },
+                      blendMode: BlendMode.darken,
+                      child: Image.asset(
+                        'images/special_experience.png',
+                        height: 450,
+                        fit: BoxFit.fitHeight,
+                        filterQuality: FilterQuality.high,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Make a special experience\nwith your athletes!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 24.0,
+                        height: 1.42,
+                      ),
+                    ),
+                    const SizedBox(height: 40.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        getTag('VIDEO'),
+                        const SizedBox(width: 8.0),
+                        getTag('MESSAGE'),
+                        const SizedBox(width: 8.0),
+                        getTag('NFT')
+                      ],
+                    ),
                   ],
                 ),
               ),
