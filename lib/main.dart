@@ -124,6 +124,7 @@ class MyHomePage extends StatelessWidget {
           Image.asset('images/large_logo_white.png',
               width: 127, height: 43, filterQuality: FilterQuality.high),
           const SizedBox(height: 16.0),
+          // TODO: create hyperlink to App Store, Play Store.
           const Text('Launching soon to\nApple Store & Google Play Store.',
               style: TextStyle(height: 1.62)),
           const SizedBox(height: 18.0),
@@ -187,6 +188,7 @@ Widget getSocialMediaButton(imagePath) {
 
 Widget get copyright {
   return const Text(
+      // TODO: create hyperlink to Privacy Policy, Terms Of Use.
       '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
       style: TextStyle(fontSize: 12.0, height: 1.83));
 }
