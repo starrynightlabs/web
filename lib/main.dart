@@ -65,7 +65,7 @@ class MyHomePage extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0 ),
+          padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0),
           child: DefaultTextStyle(
             style: const TextStyle(
               color: Color(0xffFFFFFF),
@@ -79,7 +79,7 @@ class MyHomePage extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     text: 'We Make ',
-                    children: <TextSpan>[
+                    children: [
                       TextSpan(
                         text: 'Stars!',
                         style: TextStyle(color: Color(0xff28E7C5)),
@@ -92,7 +92,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         Stack(
-          children: <Widget>[
+          children: [
             Positioned(
               child: Align(
                 alignment: Alignment.center,
