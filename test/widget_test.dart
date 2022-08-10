@@ -20,25 +20,4 @@ void main() {
     expect(find.text('Launching soon ⚡'), findsOneWidget);
     expect(find.text('contact@snlabs.io'), findsOneWidget);
   });
-
-  test('getLogoContainerSize', () {
-    for (var row in const [
-      [Size(1920, 1080), Size(1920, 1080)],
-      [Size(1280, 1024), Size(1280, 1024)],
-      // height is usually bigger than width in mobile browsers
-      [Size(400, 920), Size(400, 554)],
-      [Size(390, 850), Size(390, 542.5)],
-      [Size(375, 670), Size(375, 529)],
-    ]) {
-      var input = row[0];
-      var expected = row[1];
-
-      var ret = MyHomePage.getLogoContainerSize(input);
-
-      var inputString = 'Input: $input';
-      expect(ret.width, expected.width, reason: inputString);
-      expect(ret.height, expected.height, reason: inputString);
-      expect(ret, expected, reason: inputString);
-    }
-  });
 }
