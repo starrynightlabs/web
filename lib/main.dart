@@ -121,7 +121,8 @@ class MyHomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset('images/large_logo_white.png', width: 127, height: 43),
+          Image.asset('images/large_logo_white.png',
+              width: 127, height: 43, filterQuality: FilterQuality.high),
           const SizedBox(height: 16.0),
           const Text('Launching soon to\nApple Store & Google Play Store.',
               style: TextStyle(height: 1.62)),
