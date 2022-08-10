@@ -27,6 +27,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff040724),
       appBar: AppBar(
         backgroundColor: const Color(0xff040724),
         toolbarHeight: 72.0,
@@ -48,7 +49,7 @@ class MyHomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              getBody(context),
+              getLaunchingMessage(),
               getFooter(),
             ],
           ),
@@ -57,57 +58,23 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  static Size getLogoContainerSize(Size size) {
-    // Logo image size: 3840 x 2160
-    var imageSize = const Size(3840, 2160);
-
-    // width of actual logo part in logo image
-    var logoWidth = 1440;
-
-    var logicalWidth = size.width * size.aspectRatio / imageSize.aspectRatio;
-    var actualWidth = logicalWidth * (imageSize.width / size.width);
-
-    var diffWidth = logoWidth - actualWidth;
-
-    // If diffWidth is positive, logo part is not fully shown
-    if (diffWidth > 0) {
-      var height = size.height;
-
-      // decrease height to show logo part
-      // 0.05 means 5% margin before and after logo part
-      height *= 1 - diffWidth / logoWidth - 0.05;
-
-      size = Size(size.width, height);
-    }
-
-    return size;
-  }
-
-  Widget getBody(context) {
-    var size = getLogoContainerSize(MediaQuery.of(context).size);
-
+  Widget getLaunchingMessage() {
     return Container(
-      width: size.width,
-      height: size.height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: Image.asset('images/bg.png').image,
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            const Text(
-              'Launching soon ⚡',
-              style: TextStyle(fontSize: 30),
-            ),
-            const SizedBox(height: 18.0),
-            contactEmail,
-            const SizedBox(height: 8.0),
-            const SizedBox(height: 18.0),
+      color: const Color(0xff000000),
+      padding: const EdgeInsets.fromLTRB(55.0, 96.0, 54.0, 64.0),
+      child: Text(
+        'Launching soon.',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 32.0,
+          height: 1.31,
+          color: const Color(0xff28E7C5),
+          shadows: [
+            BoxShadow(
+              color: const Color.fromARGB(1, 40, 231, 197).withOpacity(1.0),
+              blurRadius: 20.0,
+            )
           ],
         ),
       ),
