@@ -15,7 +15,14 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     expect(find.text('We Make Stars!'), findsOneWidget);
-    expect(find.text('Support your athletes\nEnjoy the missions together.'), findsOneWidget);
+    expect(
+      find.text('Support your athletes\nEnjoy the missions together.'),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Make a special experience\nwith your athletes!'),
+      findsOneWidget,
+    );
     expect(find.text('Launching soon.'), findsOneWidget);
   });
 }
