@@ -172,13 +172,13 @@ Widget get socialMediaButtons {
   );
 }
 
-Widget getSocialMediaButton(title) {
+Widget getSocialMediaButton(imagePath) {
   return SizedBox(
     height: 48,
     width: 48,
     child: IconButton(
       padding: const EdgeInsets.all(0.0),
-      icon: Image.asset(title),
+      icon: Image.asset(imagePath),
       onPressed: () {},
     ),
   );
