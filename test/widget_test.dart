@@ -22,7 +22,8 @@ void main() {
     expect(find.text('What is NYXS'), findsOneWidget);
     expect(
       find.text(
-          'A new web3 sporting platform\nconnecting fans with their\nfavorite athletes.'),
+        'A new web3 sporting platform\nconnecting fans with their\nfavorite athletes.',
+      ),
       findsOneWidget,
     );
     expect(find.text('Launching soon.'), findsOneWidget);
