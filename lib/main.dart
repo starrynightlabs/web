@@ -282,7 +282,7 @@ class MyHomePage extends StatelessWidget {
                       Positioned(
                         child: Padding(
                           padding: const EdgeInsets.only(
-                            left: 127.0,
+                            left: 125.0,
                             top: 70.0,
                           ),
                           child: Image.asset(
@@ -386,7 +386,7 @@ class MyHomePage extends StatelessWidget {
                       Positioned(
                         child: Padding(
                           padding: const EdgeInsets.only(
-                            left: 184.0,
+                            left: 185.0,
                             top: 14.0,
                           ),
                           child: Image.asset(
