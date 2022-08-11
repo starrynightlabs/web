@@ -257,8 +257,8 @@ class MyHomePage extends StatelessWidget {
             ),
             Positioned(
               child: Column(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     '1.',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
@@ -267,8 +267,8 @@ class MyHomePage extends StatelessWidget {
                       color: Color(0xff28E7C5),
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
+                  const SizedBox(height: 8.0),
+                  const Text(
                     'Select',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
@@ -276,15 +276,37 @@ class MyHomePage extends StatelessWidget {
                       height: 1.36,
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
-                    'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18.0,
-                      height: 1.56,
-                    ),
-                    textAlign: TextAlign.center,
+                  const SizedBox(height: 8.0),
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 127.0,
+                            top: 70.0,
+                          ),
+                          child: Image.asset(
+                            'images/highlighted_1.png',
+                            width: 123.0,
+                            height: 14.0,
+                            color: const Color(0xff28E7C5),
+                            fit: BoxFit.fitHeight,
+                            filterQuality: FilterQuality.high,
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        child: Text(
+                          'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18.0,
+                            height: 1.56,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -339,8 +361,8 @@ class MyHomePage extends StatelessWidget {
             ),
             Positioned(
               child: Column(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     '2.',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
@@ -349,8 +371,8 @@ class MyHomePage extends StatelessWidget {
                       color: Color(0xff28E7C5),
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
+                  const SizedBox(height: 8.0),
+                  const Text(
                     'Support',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
@@ -358,15 +380,37 @@ class MyHomePage extends StatelessWidget {
                       height: 1.36,
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
-                    'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18.0,
-                      height: 1.56,
-                    ),
-                    textAlign: TextAlign.center,
+                  const SizedBox(height: 8.0),
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 184.0,
+                            top: 14.0,
+                          ),
+                          child: Image.asset(
+                            'images/highlighted_2.png',
+                            width: 51.0,
+                            height: 14.0,
+                            color: const Color(0xff28E7C5),
+                            fit: BoxFit.fitHeight,
+                            filterQuality: FilterQuality.high,
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        child: Text(
+                          'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18.0,
+                            height: 1.56,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -408,8 +452,8 @@ class MyHomePage extends StatelessWidget {
             ),
             Positioned(
               child: Column(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     '3.',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
@@ -418,8 +462,8 @@ class MyHomePage extends StatelessWidget {
                       color: Color(0xff28E7C5),
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
+                  const SizedBox(height: 8.0),
+                  const Text(
                     'Celebrate',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
@@ -427,15 +471,37 @@ class MyHomePage extends StatelessWidget {
                       height: 1.36,
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
-                    'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18.0,
-                      height: 1.56,
-                    ),
-                    textAlign: TextAlign.center,
+                  const SizedBox(height: 8.0),
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 73.0,
+                            top: 70.0,
+                          ),
+                          child: Image.asset(
+                            'images/highlighted_3.png',
+                            width: 173.0,
+                            height: 14.0,
+                            color: const Color(0xff28E7C5),
+                            fit: BoxFit.fitHeight,
+                            filterQuality: FilterQuality.high,
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        child: Text(
+                          'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18.0,
+                            height: 1.56,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
