@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
       body: DefaultTextStyle.merge(
         style: const TextStyle(
           decoration: TextDecoration.none,
-          color: Color.fromRGBO(255, 255, 255, 1.0),
+          color: Colors.white,
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
         ),
@@ -91,7 +91,7 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
                 style: TextStyle(
-                  color: Color(0xffffffff),
+                  color: Colors.white,
                   fontWeight: FontWeight.w700,
                   fontSize: 36.0,
                   height: 1.06,
@@ -125,7 +125,7 @@ class MyHomePage extends StatelessWidget {
                       'Support your athletes\nEnjoy the missions together.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: const Color(0xffffffff).withOpacity(0.8),
+                        color: Colors.white.withOpacity(0.8),
                         fontWeight: FontWeight.w300,
                         fontSize: 18.0,
                         height: 1.56,
@@ -170,7 +170,7 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
             style: TextStyle(
-              color: Color(0xffffffff),
+              color: Colors.white,
               fontWeight: FontWeight.w700,
               fontSize: 28.0,
               height: 1.36,
@@ -183,7 +183,7 @@ class MyHomePage extends StatelessWidget {
               fontWeight: FontWeight.w300,
               fontSize: 18.0,
               height: 1.56,
-              color: const Color(0xffffffff).withOpacity(0.8),
+              color: Colors.white.withOpacity(0.8),
             ),
             textAlign: TextAlign.center,
           )
