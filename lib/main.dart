@@ -90,7 +90,6 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
                 style: TextStyle(
-                  color: Colors.white,
                   fontWeight: FontWeight.w700,
                   fontSize: 36.0,
                   height: 1.06,
@@ -169,7 +168,6 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
             style: TextStyle(
-              color: Colors.white,
               fontWeight: FontWeight.w700,
               fontSize: 28.0,
               height: 1.36,
