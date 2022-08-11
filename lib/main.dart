@@ -208,22 +208,37 @@ class MyHomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 50.0),
-                    ShaderMask(
-                      shaderCallback: (Rect bound) {
-                        return const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, Color(0xff000000)],
-                          stops: [0.7, 1.0],
-                        ).createShader(bound);
-                      },
-                      blendMode: BlendMode.darken,
-                      child: Image.asset(
-                        'images/special_experience.png',
-                        height: 450,
-                        fit: BoxFit.fitHeight,
-                        filterQuality: FilterQuality.high,
-                      ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          height: 450,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.fitHeight,
+                              filterQuality: FilterQuality.high,
+                              image: Image.asset(
+                                'images/special_experience.png',
+                              ).image,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 451,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            gradient: LinearGradient(
+                              begin: FractionalOffset.topCenter,
+                              end: FractionalOffset.bottomCenter,
+                              colors: [
+                                Colors.black.withOpacity(0.0),
+                                Colors.black.withOpacity(1.0),
+                              ],
+                              stops: const [0.67, 1.0],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
