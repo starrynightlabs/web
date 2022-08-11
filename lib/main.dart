@@ -53,6 +53,7 @@ class MyHomePage extends StatelessWidget {
             children: [
               getWeMakeStarsPart(),
               getWhatIsNyxsPart(),
+              getHowToPlayPart(),
               getSpecialExperience(),
               getLaunchingMessage(),
               getFooter(),
@@ -186,6 +187,104 @@ class MyHomePage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Widget getHowToPlayPart() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 30.0, bottom: 119.5),
+      child: Column(
+        children: [
+          getHowToPlayPartOne(),
+        ],
+      ),
+    );
+  }
+
+  Widget getHowToPlayPartOne() {
+    return Column(
+      children: [
+        const Text(
+          'How to play',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 28.0,
+            height: 1.36,
+          ),
+        ),
+        const SizedBox(height: 140.0),
+        const Text(
+          '1.',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 40.0,
+            height: 1.25,
+            color: Color(0xff28E7C5),
+          ),
+        ),
+        const SizedBox(height: 8.0),
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              child: Image.asset(
+                'images/line_1.png',
+                color: const Color(0xff28E7C5),
+                height: 477.5,
+                fit: BoxFit.fitHeight,
+                filterQuality: FilterQuality.high,
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 178.0),
+                child: Image.asset(
+                  'images/mission_cards.png',
+                  height: 164.0,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 143.0),
+                child: Image.asset(
+                  'images/decoration_1.png',
+                  height: 242.0,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Column(
+                children: const [
+                  Text(
+                    'Select',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 28.0,
+                      height: 1.36,
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18.0,
+                      height: 1.56,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
