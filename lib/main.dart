@@ -53,6 +53,7 @@ class MyHomePage extends StatelessWidget {
             children: [
               getWeMakeStarsPart(),
               getWhatIsNyxsPart(),
+              getWhatIsMissionPart(),
               getSpecialExperience(),
               getLaunchingMessage(),
               getFooter(),
@@ -183,6 +184,52 @@ class MyHomePage extends StatelessWidget {
               color: Colors.white.withOpacity(0.8),
             ),
             textAlign: TextAlign.center,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget getWhatIsMissionPart() {
+    const String description = '''
+The mission is the next level goal
+for the athletes to achieve the dream,
+which is an important opportunity
+for fans and athletes to join together
+and watch players to grow.
+    ''';
+    return Container(
+      width: double.infinity,
+      color: Colors.black.withOpacity(0.8),
+      padding: const EdgeInsets.only(top: 120.0, bottom: 120.0),
+      child: Column(
+        children: [
+          const Text.rich(
+            TextSpan(
+              text: 'What is ',
+              children: [
+                TextSpan(
+                  text: 'Mission',
+                  style: TextStyle(color: Color(0xff28E7C5)),
+                )
+              ],
+            ),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 28.0,
+              height: 1.36,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 18,
+              height: 1.56,
+              color: Colors.white.withOpacity(0.8),
+            ),
           )
         ],
       ),
