@@ -216,31 +216,24 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 140.0),
-        const Text(
-          '1.',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 40.0,
-            height: 1.25,
-            color: Color(0xff28E7C5),
-          ),
-        ),
-        const SizedBox(height: 8.0),
         Stack(
           alignment: Alignment.topCenter,
           children: [
             Positioned(
-              child: Image.asset(
-                'images/line_1.png',
-                color: const Color(0xff28E7C5),
-                height: 477.5,
-                fit: BoxFit.fitHeight,
-                filterQuality: FilterQuality.high,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 58.0, right: 6.0),
+                child: Image.asset(
+                  'images/line_1.png',
+                  color: const Color(0xff28E7C5),
+                  height: 477.5,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
               ),
             ),
             Positioned(
               child: Padding(
-                padding: const EdgeInsets.only(top: 178.0),
+                padding: const EdgeInsets.only(top: 236.0),
                 child: Image.asset(
                   'images/mission_cards.png',
                   height: 164.0,
@@ -251,7 +244,7 @@ class MyHomePage extends StatelessWidget {
             ),
             Positioned(
               child: Padding(
-                padding: const EdgeInsets.only(top: 143.0),
+                padding: const EdgeInsets.only(top: 201.0),
                 child: Image.asset(
                   'images/decoration_1.png',
                   height: 242.0,
@@ -263,6 +256,16 @@ class MyHomePage extends StatelessWidget {
             Positioned(
               child: Column(
                 children: const [
+                  Text(
+                    '1.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 40.0,
+                      height: 1.25,
+                      color: Color(0xff28E7C5),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
                   Text(
                     'Select',
                     style: TextStyle(
@@ -293,32 +296,24 @@ class MyHomePage extends StatelessWidget {
   Widget getHowToPlayPartTwo() {
     return Column(
       children: [
-        const SizedBox(height: 140.0),
-        const Text(
-          '2.',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 40.0,
-            height: 1.25,
-            color: Color(0xff28E7C5),
-          ),
-        ),
-        const SizedBox(height: 8.0),
         Stack(
           alignment: Alignment.topCenter,
           children: [
             Positioned(
-              child: Image.asset(
-                'images/line_2.png',
-                color: const Color(0xff28E7C5),
-                height: 454.0,
-                fit: BoxFit.fitHeight,
-                filterQuality: FilterQuality.high,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: Image.asset(
+                  'images/line_2.png',
+                  color: const Color(0xff28E7C5),
+                  height: 484.1,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
               ),
             ),
             Positioned(
               child: Container(
-                padding: const EdgeInsets.only(left: 33.0, top: 178.0),
+                padding: const EdgeInsets.only(left: 33.0, top: 236.0),
                 child: Image.asset(
                   'images/player_cards.png',
                   height: 137.0,
@@ -329,8 +324,30 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 168.0, top: 188.0),
+                child: Image.asset(
+                  'images/decoration_2.png',
+                  width: 152.0,
+                  height: 246.0,
+                  fit: BoxFit.fill,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
               child: Column(
                 children: const [
+                  Text(
+                    '2.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 40.0,
+                      height: 1.25,
+                      color: Color(0xff28E7C5),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
                   Text(
                     'Support',
                     style: TextStyle(
