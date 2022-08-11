@@ -82,7 +82,6 @@ class MyHomePage extends StatelessWidget {
                         shadows: [
                           Shadow(
                             color: Color.fromRGBO(40, 231, 197, 0.8),
-                            offset: Offset.zero,
                             blurRadius: 20,
                           )
                         ],
