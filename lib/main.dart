@@ -199,6 +199,8 @@ class MyHomePage extends StatelessWidget {
           getHowToPlayPartOne(),
           const SizedBox(height: 57.5),
           getHowToPlayPartTwo(),
+          const SizedBox(height: 65),
+          getHowToPlayPartThree(),
         ],
       ),
     );
@@ -367,6 +369,86 @@ class MyHomePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getHowToPlayPartThree() {
+    return Column(
+      children: [
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 25.0, top: 60.0),
+                child: Image.asset(
+                  'images/line_3.png',
+                  color: const Color(0xff28E7C5),
+                  height: 431.51,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 236.0),
+                child: Image.asset(
+                  'images/mission_complete_card.png',
+                  height: 130.0,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Column(
+                children: const [
+                  Text(
+                    '3.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 40.0,
+                      height: 1.25,
+                      color: Color(0xff28E7C5),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Celebrate',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 28.0,
+                      height: 1.36,
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18.0,
+                      height: 1.56,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 172.0),
+                child: Image.asset(
+                  'images/decoration_3.png',
+                  height: 276.24,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
               ),
             ),
           ],
