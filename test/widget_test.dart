@@ -26,6 +26,8 @@ void main() {
       ),
       findsOneWidget,
     );
+    expect(find.text('What is Mission'), findsOneWidget);
+    expect(find.text('What is Star'), findsOneWidget);
     expect(
       find.text('Make a special experience\nwith your athletes!'),
       findsOneWidget,
