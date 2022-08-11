@@ -71,29 +71,23 @@ class MyHomePage extends StatelessWidget {
           padding: const EdgeInsets.only(top: 72.0, bottom: 16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text.rich(
-                TextSpan(
-                  text: 'We Make ',
-                  children: [
-                    TextSpan(
-                      text: 'Stars!',
-                      style: TextStyle(
-                        color: Color(0xff28E7C5),
-                        shadows: [
-                          Shadow(
-                            color: Color.fromRGBO(40, 231, 197, 0.8),
-                            blurRadius: 20,
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                style: TextStyle(
+            children: [
+              getTitleText(
+                prefix: 'We Make ',
+                suffix: 'Stars!',
+                textStyle: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 36.0,
                   height: 1.06,
+                ),
+                suffixStyle: const TextStyle(
+                  color: Color(0xff28E7C5),
+                  shadows: [
+                    Shadow(
+                      color: Color.fromRGBO(40, 231, 197, 0.8),
+                      blurRadius: 20,
+                    )
+                  ],
                 ),
               ),
             ],
