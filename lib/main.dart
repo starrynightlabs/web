@@ -68,29 +68,36 @@ class MyHomePage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 72.0, bottom: 16.0),
-          child: DefaultTextStyle.merge(
-            style: const TextStyle(
-              color: Color(0xffFFFFFF),
-              fontWeight: FontWeight.w700,
-              fontSize: 36.0,
-              height: 1.06,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text.rich(
-                  TextSpan(
-                    text: 'We Make ',
-                    children: [
-                      TextSpan(
-                        text: 'Stars!',
-                        style: TextStyle(color: Color(0xff28E7C5)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text.rich(
+                TextSpan(
+                  text: 'We Make ',
+                  children: [
+                    TextSpan(
+                      text: 'Stars!',
+                      style: TextStyle(
+                        color: Color(0xff28E7C5),
+                        shadows: [
+                          Shadow(
+                            color: Color.fromRGBO(40, 231, 197, 0.8),
+                            offset: Offset(0, 0),
+                            blurRadius: 20,
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+                style: TextStyle(
+                  color: Color(0xffffffff),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 36.0,
+                  height: 1.06,
+                ),
+              ),
+            ],
           ),
         ),
         Stack(
@@ -114,9 +121,15 @@ class MyHomePage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'Support your athletes\nEnjoy the missions together.',
                       textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: const Color(0xffffffff).withOpacity(0.8),
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18.0,
+                        height: 1.56,
+                      ),
                     ),
                     const SizedBox(height: 26.0),
                     getTag('BETA'),
