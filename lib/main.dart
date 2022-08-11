@@ -160,7 +160,7 @@ class MyHomePage extends StatelessWidget {
               color: Color(0xffffffff),
               fontWeight: FontWeight.w700,
               fontSize: 28.0,
-              height: 1.07,
+              height: 1.36,
             ),
           ),
           const SizedBox(height: 8.0),
@@ -169,7 +169,7 @@ class MyHomePage extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w300,
               fontSize: 18.0,
-              height: 1.23,
+              height: 1.56,
               color: const Color(0xffffffff).withOpacity(0.8),
             ),
             textAlign: TextAlign.center,
