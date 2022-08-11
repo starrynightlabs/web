@@ -224,7 +224,7 @@ from NYXS(Governance token)''';
     return Container(
       width: double.infinity,
       color: Colors.black.withOpacity(0.8),
-      padding: const EdgeInsets.only(top: 120.0, bottom: 120.0),
+      padding: const EdgeInsets.only(top: 120.0, bottom: 72.0),
       child: Column(
         children: [
           getTitleText(suffix: 'Mission'),
@@ -234,11 +234,10 @@ from NYXS(Governance token)''';
           getTitleText(suffix: 'Star'),
           const SizedBox(height: 8.0),
           getDescriptionText(starDescription),
-          const SizedBox(height: 32.0),
           Image.asset(
             'images/star.png',
-            width: 48.0,
-            height: 46.0,
+            width: 128.0,
+            height: 126.0,
             filterQuality: FilterQuality.high,
           ),
         ],
