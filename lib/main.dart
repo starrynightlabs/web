@@ -197,6 +197,8 @@ class MyHomePage extends StatelessWidget {
       child: Column(
         children: [
           getHowToPlayPartOne(),
+          const SizedBox(height: 57.5),
+          getHowToPlayPartTwo(),
         ],
       ),
     );
@@ -272,6 +274,74 @@ class MyHomePage extends StatelessWidget {
                   SizedBox(height: 8.0),
                   Text(
                     'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18.0,
+                      height: 1.56,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getHowToPlayPartTwo() {
+    return Column(
+      children: [
+        const SizedBox(height: 140.0),
+        const Text(
+          '2.',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 40.0,
+            height: 1.25,
+            color: Color(0xff28E7C5),
+          ),
+        ),
+        const SizedBox(height: 8.0),
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              child: Image.asset(
+                'images/line_2.png',
+                color: const Color(0xff28E7C5),
+                height: 454.0,
+                fit: BoxFit.fitHeight,
+                filterQuality: FilterQuality.high,
+              ),
+            ),
+            Positioned(
+              child: Container(
+                padding: const EdgeInsets.only(left: 33.0, top: 178.0),
+                child: Image.asset(
+                  'images/player_cards.png',
+                  height: 137.0,
+                  fit: BoxFit.fitHeight,
+                  alignment: Alignment.topLeft,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Column(
+                children: const [
+                  Text(
+                    'Support',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 28.0,
+                      height: 1.36,
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
                     style: TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: 18.0,
