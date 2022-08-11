@@ -158,22 +158,7 @@ class MyHomePage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Text.rich(
-            TextSpan(
-              text: 'What is ',
-              children: [
-                TextSpan(
-                  text: 'NYXS',
-                  style: TextStyle(color: Color(0xff28E7C5)),
-                )
-              ],
-            ),
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 28.0,
-              height: 1.36,
-            ),
-          ),
+          getTitleText(suffix: 'NYXS'),
           const SizedBox(height: 8.0),
           Text(
             'A new web3 sporting platform\nconnecting fans with their\nfavorite athletes.',
@@ -190,47 +175,73 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
+  Widget getTitleText({
+    prefix = 'What is ',
+    required suffix,
+    textStyle,
+    suffixStyle,
+  }) {
+    // default styles
+    textStyle ??= const TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 28.0,
+      height: 1.36,
+    );
+    suffixStyle ??= const TextStyle(color: Color(0xff28E7C5));
+
+    return Text.rich(
+      TextSpan(
+        text: prefix,
+        children: [TextSpan(text: suffix, style: suffixStyle)],
+      ),
+      style: textStyle,
+    );
+  }
+
   Widget getWhatIsMissionPart() {
-    const String description = '''
+    final descriptionStyle = TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 18,
+      height: 1.56,
+      color: Colors.white.withOpacity(0.8),
+    );
+    const String missionDescription = '''
 The mission is the next level goal
 for the athletes to achieve the dream,
 which is an important opportunity
 for fans and athletes to join together
-and watch players to grow.
-    ''';
+and watch players to grow.''';
+    const String starDescription = '''
+As a utility token, Stars are swapped
+from NYXS(Governance token)''';
+
     return Container(
       width: double.infinity,
       color: Colors.black.withOpacity(0.8),
       padding: const EdgeInsets.only(top: 120.0, bottom: 120.0),
       child: Column(
         children: [
-          const Text.rich(
-            TextSpan(
-              text: 'What is ',
-              children: [
-                TextSpan(
-                  text: 'Mission',
-                  style: TextStyle(color: Color(0xff28E7C5)),
-                )
-              ],
-            ),
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 28.0,
-              height: 1.36,
-            ),
-          ),
+          getTitleText(suffix: 'Mission'),
           const SizedBox(height: 8.0),
           Text(
-            description,
+            missionDescription,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 18,
-              height: 1.56,
-              color: Colors.white.withOpacity(0.8),
-            ),
-          )
+            style: descriptionStyle,
+          ),
+          const SizedBox(height: 96.0),
+          getTitleText(suffix: 'Star'),
+          Text(
+            starDescription,
+            textAlign: TextAlign.center,
+            style: descriptionStyle,
+          ),
+          const SizedBox(height: 32.0),
+          Image.asset(
+            'images/star.png',
+            width: 48.0,
+            height: 46.0,
+            filterQuality: FilterQuality.high,
+          ),
         ],
       ),
     );
