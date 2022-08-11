@@ -446,7 +446,10 @@ Widget get socialMediaButtons {
       const SizedBox(width: 10.0),
       getSocialMediaButton('images/discord.png'),
       const SizedBox(width: 16.0),
-      getSocialMediaButton('images/medium.png'),
+      getSocialMediaButton(
+        'images/medium.png',
+        targetUrl: 'https://medium.com/@NYXS',
+      ),
       const SizedBox(width: 10.0),
       getSocialMediaButton(
         'images/mail.png',
