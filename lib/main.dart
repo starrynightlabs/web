@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
       body: DefaultTextStyle.merge(
         style: const TextStyle(
           decoration: TextDecoration.none,
-          color: Color.fromRGBO(255, 255, 255, 1.0),
+          color: Colors.white,
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
         ),
@@ -52,6 +52,7 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             children: [
               getWeMakeStarsPart(),
+              getWhatIsNyxsPart(),
               getSpecialExperience(),
               getLaunchingMessage(),
               getFooter(),
@@ -66,30 +67,35 @@ class MyHomePage extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(47.0, 72.0, 46.0, 16.0),
-          child: DefaultTextStyle.merge(
-            style: const TextStyle(
-              color: Color(0xffFFFFFF),
-              fontWeight: FontWeight.w700,
-              fontSize: 36.0,
-              height: 1.06,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text.rich(
-                  TextSpan(
-                    text: 'We Make ',
-                    children: [
-                      TextSpan(
-                        text: 'Stars!',
-                        style: TextStyle(color: Color(0xff28E7C5)),
+          padding: const EdgeInsets.only(top: 72.0, bottom: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text.rich(
+                TextSpan(
+                  text: 'We Make ',
+                  children: [
+                    TextSpan(
+                      text: 'Stars!',
+                      style: TextStyle(
+                        color: Color(0xff28E7C5),
+                        shadows: [
+                          Shadow(
+                            color: Color.fromRGBO(40, 231, 197, 0.8),
+                            blurRadius: 20,
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 36.0,
+                  height: 1.06,
+                ),
+              ),
+            ],
           ),
         ),
         Stack(
@@ -98,7 +104,7 @@ class MyHomePage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: Image.asset(
                     'images/we_make_stars.png',
                     height: 555,
@@ -113,9 +119,15 @@ class MyHomePage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'Support your athletes\nEnjoy the missions together.',
                       textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18.0,
+                        height: 1.56,
+                      ),
                     ),
                     const SizedBox(height: 26.0),
                     getTag('BETA'),
@@ -126,6 +138,54 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  Widget getWhatIsNyxsPart() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 120.0, bottom: 110.0),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromRGBO(0, 0, 0, 0.8),
+            Color.fromRGBO(0, 0, 0, 0),
+          ],
+        ),
+      ),
+      child: Column(
+        children: [
+          const Text.rich(
+            TextSpan(
+              text: 'What is ',
+              children: [
+                TextSpan(
+                  text: 'NYXS',
+                  style: TextStyle(color: Color(0xff28E7C5)),
+                )
+              ],
+            ),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 28.0,
+              height: 1.36,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            'A new web3 sporting platform\nconnecting fans with their\nfavorite athletes.',
+            style: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 18.0,
+              height: 1.56,
+              color: Colors.white.withOpacity(0.8),
+            ),
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 
@@ -208,7 +268,7 @@ class MyHomePage extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: const Color(0xff000000),
-      padding: const EdgeInsets.fromLTRB(55.0, 96.0, 54.0, 64.0),
+      padding: const EdgeInsets.only(top: 96.0, bottom: 64.0),
       child: const Text(
         'Launching soon.',
         textAlign: TextAlign.center,
