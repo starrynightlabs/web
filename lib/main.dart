@@ -114,14 +114,13 @@ class MyHomePage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(
                   children: [
-                    Text(
+                    getDescriptionText(
                       'Support your athletes\nEnjoy the missions together.',
-                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
                         fontWeight: FontWeight.w300,
                         fontSize: 18.0,
                         height: 1.56,
+                        color: Colors.white.withOpacity(0.8),
                       ),
                     ),
                     const SizedBox(height: 26.0),
@@ -137,6 +136,10 @@ class MyHomePage extends StatelessWidget {
   }
 
   Widget getWhatIsNyxsPart() {
+    const String description = '''
+A new web3 sporting platform
+connecting fans with their
+favorite athletes.''';
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(top: 120.0, bottom: 110.0),
@@ -154,15 +157,14 @@ class MyHomePage extends StatelessWidget {
         children: [
           getTitleText(suffix: 'NYXS'),
           const SizedBox(height: 8.0),
-          Text(
-            'A new web3 sporting platform\nconnecting fans with their\nfavorite athletes.',
+          getDescriptionText(
+            description,
             style: TextStyle(
               fontWeight: FontWeight.w300,
               fontSize: 18.0,
               height: 1.56,
               color: Colors.white.withOpacity(0.8),
             ),
-            textAlign: TextAlign.center,
           )
         ],
       ),
@@ -192,13 +194,23 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget getWhatIsMissionPart() {
-    final descriptionStyle = TextStyle(
+  Widget getDescriptionText(text, {style}) {
+    // default style
+    style ??= TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: 18,
       height: 1.56,
       color: Colors.white.withOpacity(0.8),
     );
+
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: style,
+    );
+  }
+
+  Widget getWhatIsMissionPart() {
     const String missionDescription = '''
 The mission is the next level goal
 for the athletes to achieve the dream,
@@ -217,18 +229,11 @@ from NYXS(Governance token)''';
         children: [
           getTitleText(suffix: 'Mission'),
           const SizedBox(height: 8.0),
-          Text(
-            missionDescription,
-            textAlign: TextAlign.center,
-            style: descriptionStyle,
-          ),
+          getDescriptionText(missionDescription),
           const SizedBox(height: 96.0),
           getTitleText(suffix: 'Star'),
-          Text(
-            starDescription,
-            textAlign: TextAlign.center,
-            style: descriptionStyle,
-          ),
+          const SizedBox(height: 8.0),
+          getDescriptionText(starDescription),
           const SizedBox(height: 32.0),
           Image.asset(
             'images/star.png',
