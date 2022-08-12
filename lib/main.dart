@@ -117,10 +117,7 @@ class MyHomePage extends StatelessWidget {
                   children: [
                     getDescriptionText(
                       'Support your athletes\nEnjoy the missions together.',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 18.0,
-                        height: 1.56,
+                      style: descriptionTextStyle(
                         color: Colors.white.withOpacity(0.8),
                       ),
                     ),
@@ -160,10 +157,7 @@ favorite athletes.''';
           const SizedBox(height: 8.0),
           getDescriptionText(
             description,
-            style: TextStyle(
-              fontWeight: FontWeight.w300,
-              fontSize: 18.0,
-              height: 1.56,
+            style: descriptionTextStyle(
               color: Colors.white.withOpacity(0.8),
             ),
           )
@@ -191,13 +185,9 @@ favorite athletes.''';
   Widget getHowToPlayPartOne() {
     return Column(
       children: [
-        const Text(
+        Text(
           'How to play',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 28.0,
-            height: 1.36,
-          ),
+          style: titleTextStyle(),
         ),
         const SizedBox(height: 140.0),
         Stack(
@@ -252,14 +242,10 @@ favorite athletes.''';
                           child: getTextHighlighter(width: 123.0),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         child: Text(
                           'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18.0,
-                            height: 1.56,
-                          ),
+                          style: descriptionTextStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -331,14 +317,10 @@ favorite athletes.''';
                           child: getTextHighlighter(width: 51.0),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         child: Text(
                           'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18.0,
-                            height: 1.56,
-                          ),
+                          style: descriptionTextStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -397,14 +379,10 @@ favorite athletes.''';
                           child: getTextHighlighter(width: 173.0),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         child: Text(
                           'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18.0,
-                            height: 1.56,
-                          ),
+                          style: descriptionTextStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -442,14 +420,7 @@ favorite athletes.''';
         ),
       ),
       const SizedBox(height: 8.0),
-      Text(
-        title,
-        style: const TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 28.0,
-          height: 1.36,
-        ),
-      ),
+      Text(title, style: titleTextStyle()),
       const SizedBox(height: 8.0),
     ];
   }
@@ -472,12 +443,8 @@ favorite athletes.''';
     suffixStyle,
   }) {
     // default styles
-    textStyle ??= const TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 28.0,
-      height: 1.36,
-    );
-    suffixStyle ??= TextStyle(color: NyxsColor.mint);
+    textStyle ??= titleTextStyle();
+    suffixStyle ??= titleTextStyle(color: NyxsColor.mint);
 
     return Text.rich(
       TextSpan(
@@ -490,10 +457,8 @@ favorite athletes.''';
 
   Widget getDescriptionText(text, {style}) {
     // default style
-    style ??= TextStyle(
+    style ??= descriptionTextStyle(
       fontWeight: FontWeight.w400,
-      fontSize: 18.0,
-      height: 1.56,
       color: Colors.white.withOpacity(0.8),
     );
 
@@ -775,6 +740,29 @@ Widget get copyright {
     // TODO: create hyperlink to Privacy Policy, Terms Of Use.
     '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
     style: TextStyle(fontSize: 12.0, height: 1.83),
+  );
+}
+
+TextStyle descriptionTextStyle({
+  color = Colors.white,
+  fontWeight = FontWeight.w300,
+}) {
+  return TextStyle(
+    fontWeight: fontWeight,
+    fontSize: 18.0,
+    height: 1.56,
+    color: color,
+  );
+}
+
+TextStyle titleTextStyle({
+  color = Colors.white,
+}) {
+  return TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 28.0,
+    height: 1.36,
+    color: color,
   );
 }
 
