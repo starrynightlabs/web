@@ -28,9 +28,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NyxsColor.navy,
+      backgroundColor: NyxsColors.navy,
       appBar: AppBar(
-        backgroundColor: NyxsColor.navy,
+        backgroundColor: NyxsColors.navy,
         toolbarHeight: 72.0,
         leadingWidth: 86.0,
         leading: Padding(
@@ -41,25 +41,17 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: DefaultTextStyle.merge(
-        style: const TextStyle(
-          decoration: TextDecoration.none,
-          color: Colors.white,
-          fontSize: 16.0,
-          fontWeight: FontWeight.w400,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              getWeMakeStarsPart(),
-              getWhatIsNyxsPart(),
-              getHowToPlayPart(),
-              getWhatIsMissionPart(),
-              getSpecialExperiencePart(),
-              getLaunchingMessage(),
-              getFooter(),
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            getWeMakeStarsPart(),
+            getWhatIsNyxsPart(),
+            getHowToPlayPart(),
+            getWhatIsMissionPart(),
+            getSpecialExperiencePart(),
+            getLaunchingMessage(),
+            getFooter(),
+          ],
         ),
       ),
     );
@@ -80,12 +72,13 @@ class MyHomePage extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   fontSize: 36.0,
                   height: 1.06,
+                  color: Colors.white,
                 ),
                 suffixStyle: TextStyle(
-                  color: NyxsColor.mint,
+                  color: NyxsColors.mint,
                   shadows: [
                     Shadow(
-                      color: NyxsColor.mint.withOpacity(0.8),
+                      color: NyxsColors.mint.withOpacity(0.8),
                       blurRadius: 20.0,
                     )
                   ],
@@ -198,7 +191,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(top: 58.0, right: 6.0),
                 child: Image.asset(
                   'images/line_1.png',
-                  color: NyxsColor.mint,
+                  color: NyxsColors.mint,
                   height: 477.5,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -271,7 +264,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(top: 18.0),
                 child: Image.asset(
                   'images/line_2.png',
-                  color: NyxsColor.mint,
+                  color: NyxsColors.mint,
                   height: 484.1,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -346,7 +339,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(left: 25.0, top: 60.0),
                 child: Image.asset(
                   'images/line_3.png',
-                  color: NyxsColor.mint,
+                  color: NyxsColors.mint,
                   height: 431.51,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -416,7 +409,7 @@ favorite athletes.''';
           fontWeight: FontWeight.w700,
           fontSize: 40.0,
           height: 1.25,
-          color: NyxsColor.mint,
+          color: NyxsColors.mint,
         ),
       ),
       const SizedBox(height: 8.0),
@@ -430,7 +423,7 @@ favorite athletes.''';
       'images/text_highlighter.png',
       width: width,
       height: height,
-      color: NyxsColor.mint,
+      color: NyxsColors.mint,
       fit: BoxFit.fitHeight,
       filterQuality: FilterQuality.high,
     );
@@ -444,7 +437,7 @@ favorite athletes.''';
   }) {
     // default styles
     textStyle ??= titleTextStyle();
-    suffixStyle ??= titleTextStyle(color: NyxsColor.mint);
+    suffixStyle ??= titleTextStyle(color: NyxsColors.mint);
 
     return Text.rich(
       TextSpan(
@@ -571,6 +564,7 @@ from NYXS(Governance token)''';
                         fontWeight: FontWeight.w700,
                         fontSize: 24.0,
                         height: 1.42,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 40.0),
@@ -606,10 +600,10 @@ from NYXS(Governance token)''';
           fontWeight: FontWeight.w700,
           fontSize: 32.0,
           height: 1.31,
-          color: NyxsColor.mint,
+          color: NyxsColors.mint,
           shadows: [
             BoxShadow(
-              color: NyxsColor.mint.withOpacity(0.8),
+              color: NyxsColors.mint.withOpacity(0.8),
               blurRadius: 20.0,
             )
           ],
@@ -633,9 +627,14 @@ from NYXS(Governance token)''';
           ),
           const SizedBox(height: 16.0),
           // TODO: create hyperlink to App Store, Play Store.
-          const Text(
+          Text(
             'Launching soon to\nApple App Store & Google Play Store.',
-            style: TextStyle(height: 1.62),
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 16.0,
+              height: 1.62,
+              color: Colors.white.withOpacity(0.6),
+            ),
           ),
           const SizedBox(height: 18.0),
           const Divider(
@@ -659,17 +658,19 @@ from NYXS(Governance token)''';
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: NyxsColor.mint),
+        border: Border.all(color: NyxsColors.mint),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             tag,
             style: TextStyle(
+              fontWeight: FontWeight.w400,
               fontSize: 14.0,
-              color: NyxsColor.mint,
+              height: 1.57,
+              color: NyxsColors.mint,
             ),
           ),
         ],
@@ -736,10 +737,15 @@ Widget getSocialMediaButton(imagePath, {String? targetUrl}) {
 }
 
 Widget get copyright {
-  return const Text(
+  return Text(
     // TODO: create hyperlink to Privacy Policy, Terms Of Use.
     '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
-    style: TextStyle(fontSize: 12.0, height: 1.83),
+    style: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12.0,
+      height: 1.83,
+      color: Colors.white.withOpacity(0.6),
+    ),
   );
 }
 
@@ -766,7 +772,7 @@ TextStyle titleTextStyle({
   );
 }
 
-extension NyxsColor on Color {
+class NyxsColors {
   static Color get mint => const Color.fromRGBO(40, 231, 197, 1.0);
   static Color get navy => const Color.fromRGBO(4, 7, 36, 1.0);
 }
