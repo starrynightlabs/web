@@ -58,6 +58,8 @@ flutter:
     - family: Euclid Circular A
       fonts:
         - asset: fonts/Euclid Circular A Light.ttf
+          weight: 300
+        - asset: fonts/Euclid Circular A Regular.ttf
           weight: 400
         - asset: fonts/Euclid Circular A Bold.ttf
           weight: 700
