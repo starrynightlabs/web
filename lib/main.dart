@@ -240,7 +240,7 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  getHowToPlayPartTitle(1, 'Select'),
+                  ...getHowToPlayPartTitle(1, 'Select'),
                   Stack(
                     children: [
                       Positioned(
@@ -319,7 +319,7 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  getHowToPlayPartTitle(2, 'Support'),
+                  ...getHowToPlayPartTitle(2, 'Support'),
                   Stack(
                     children: [
                       Positioned(
@@ -385,7 +385,7 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  getHowToPlayPartTitle(3, 'Celebrate'),
+                  ...getHowToPlayPartTitle(3, 'Celebrate'),
                   Stack(
                     children: [
                       Positioned(
@@ -430,30 +430,28 @@ favorite athletes.''';
     );
   }
 
-  Widget getHowToPlayPartTitle(number, title) {
-    return Column(
-      children: [
-        Text(
-          '$number.',
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 40.0,
-            height: 1.25,
-            color: Color(0xff28E7C5),
-          ),
+  List<Widget> getHowToPlayPartTitle(number, title) {
+    return [
+      Text(
+        '$number.',
+        style: const TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 40.0,
+          height: 1.25,
+          color: Color(0xff28E7C5),
         ),
-        const SizedBox(height: 8.0),
-        Text(
-          title,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 28.0,
-            height: 1.36,
-          ),
+      ),
+      const SizedBox(height: 8.0),
+      Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 28.0,
+          height: 1.36,
         ),
-        const SizedBox(height: 8.0),
-      ],
-    );
+      ),
+      const SizedBox(height: 8.0),
+    ];
   }
 
   Widget getTextHighlighter({required width, height = 14.0}) {
