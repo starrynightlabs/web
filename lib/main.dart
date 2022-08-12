@@ -733,7 +733,8 @@ Widget get socialMediaButtons {
     children: [
       getSocialMediaButton(
         'images/twitter.png',
-        targetUrl: 'https://twitter.com/StarryNightFndn',
+        // TODO: uncomment when discord, telegram setting done
+        // targetUrl: 'https://twitter.com/StarryNightFndn',
       ),
       const SizedBox(width: 10.0),
       getSocialMediaButton('images/telegram.png'),
@@ -742,7 +743,8 @@ Widget get socialMediaButtons {
       const SizedBox(width: 16.0),
       getSocialMediaButton(
         'images/medium.png',
-        targetUrl: 'https://medium.com/@NYXS',
+        // TODO: uncomment when discord, telegram setting done
+        // targetUrl: 'https://medium.com/@NYXS',
       ),
       const SizedBox(width: 10.0),
       getSocialMediaButton(
