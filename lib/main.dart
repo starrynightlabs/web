@@ -53,8 +53,9 @@ class MyHomePage extends StatelessWidget {
             children: [
               getWeMakeStarsPart(),
               getWhatIsNyxsPart(),
+              getHowToPlayPart(),
               getWhatIsMissionPart(),
-              getSpecialExperience(),
+              getSpecialExperiencePart(),
               getLaunchingMessage(),
               getFooter(),
             ],
@@ -85,7 +86,7 @@ class MyHomePage extends StatelessWidget {
                   shadows: [
                     Shadow(
                       color: Color.fromRGBO(40, 231, 197, 0.8),
-                      blurRadius: 20,
+                      blurRadius: 20.0,
                     )
                   ],
                 ),
@@ -102,7 +103,7 @@ class MyHomePage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Image.asset(
                     'images/we_make_stars.png',
-                    height: 555,
+                    height: 555.0,
                     fit: BoxFit.fitHeight,
                     filterQuality: FilterQuality.high,
                   ),
@@ -143,13 +144,13 @@ favorite athletes.''';
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(top: 120.0, bottom: 110.0),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color.fromRGBO(0, 0, 0, 0.8),
-            Color.fromRGBO(0, 0, 0, 0),
+            Colors.black.withOpacity(0.8),
+            Colors.black.withOpacity(0.0),
           ],
         ),
       ),
@@ -168,6 +169,299 @@ favorite athletes.''';
           )
         ],
       ),
+    );
+  }
+
+  Widget getHowToPlayPart() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 30.0, bottom: 119.5),
+      child: Column(
+        children: [
+          getHowToPlayPartOne(),
+          const SizedBox(height: 57.5),
+          getHowToPlayPartTwo(),
+          const SizedBox(height: 65.0),
+          getHowToPlayPartThree(),
+        ],
+      ),
+    );
+  }
+
+  Widget getHowToPlayPartOne() {
+    return Column(
+      children: [
+        const Text(
+          'How to play',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 28.0,
+            height: 1.36,
+          ),
+        ),
+        const SizedBox(height: 140.0),
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 58.0, right: 6.0),
+                child: Image.asset(
+                  'images/line_1.png',
+                  color: const Color(0xff28E7C5),
+                  height: 477.5,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 236.0),
+                child: Image.asset(
+                  'images/mission_cards.png',
+                  height: 164.0,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 201.0),
+                child: Image.asset(
+                  'images/decoration_1.png',
+                  height: 242.0,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Column(
+                children: [
+                  ...getHowToPlayPartTitle(1, 'Select'),
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 125.0,
+                            top: 70.0,
+                          ),
+                          child: getTextHighlighter(width: 123.0),
+                        ),
+                      ),
+                      const Positioned(
+                        child: Text(
+                          'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18.0,
+                            height: 1.56,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getHowToPlayPartTwo() {
+    return Column(
+      children: [
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: Image.asset(
+                  'images/line_2.png',
+                  color: const Color(0xff28E7C5),
+                  height: 484.1,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Container(
+                padding: const EdgeInsets.only(left: 33.0, top: 236.0),
+                child: Image.asset(
+                  'images/player_cards.png',
+                  height: 137.0,
+                  fit: BoxFit.fitHeight,
+                  alignment: Alignment.topLeft,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 168.0, top: 188.0),
+                child: Image.asset(
+                  'images/decoration_2.png',
+                  width: 152.0,
+                  height: 246.0,
+                  fit: BoxFit.fill,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Column(
+                children: [
+                  ...getHowToPlayPartTitle(2, 'Support'),
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 185.0,
+                            top: 14.0,
+                          ),
+                          child: getTextHighlighter(width: 51.0),
+                        ),
+                      ),
+                      const Positioned(
+                        child: Text(
+                          'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18.0,
+                            height: 1.56,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getHowToPlayPartThree() {
+    return Column(
+      children: [
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 25.0, top: 60.0),
+                child: Image.asset(
+                  'images/line_3.png',
+                  color: const Color(0xff28E7C5),
+                  height: 431.51,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 236.0),
+                child: Image.asset(
+                  'images/mission_complete_card.png',
+                  height: 130.0,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            Positioned(
+              child: Column(
+                children: [
+                  ...getHowToPlayPartTitle(3, 'Celebrate'),
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 73.0,
+                            top: 70.0,
+                          ),
+                          child: getTextHighlighter(width: 173.0),
+                        ),
+                      ),
+                      const Positioned(
+                        child: Text(
+                          'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18.0,
+                            height: 1.56,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 172.0),
+                child: Image.asset(
+                  'images/decoration_3.png',
+                  height: 276.24,
+                  fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  List<Widget> getHowToPlayPartTitle(number, title) {
+    return [
+      Text(
+        '$number.',
+        style: const TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 40.0,
+          height: 1.25,
+          color: Color(0xff28E7C5),
+        ),
+      ),
+      const SizedBox(height: 8.0),
+      Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 28.0,
+          height: 1.36,
+        ),
+      ),
+      const SizedBox(height: 8.0),
+    ];
+  }
+
+  Widget getTextHighlighter({required width, height = 14.0}) {
+    return Image.asset(
+      'images/text_highlighter.png',
+      width: width,
+      height: height,
+      color: const Color(0xff28E7C5),
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
     );
   }
 
@@ -198,7 +492,7 @@ favorite athletes.''';
     // default style
     style ??= TextStyle(
       fontWeight: FontWeight.w400,
-      fontSize: 18,
+      fontSize: 18.0,
       height: 1.56,
       color: Colors.white.withOpacity(0.8),
     );
@@ -245,7 +539,7 @@ from NYXS(Governance token)''';
     );
   }
 
-  Widget getSpecialExperience() {
+  Widget getSpecialExperiencePart() {
     return Column(
       children: [
         const SizedBox(height: 120.0),
@@ -268,7 +562,7 @@ from NYXS(Governance token)''';
                       alignment: Alignment.center,
                       children: [
                         Container(
-                          height: 450,
+                          height: 450.0,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.fitHeight,
@@ -280,7 +574,7 @@ from NYXS(Governance token)''';
                           ),
                         ),
                         Container(
-                          height: 451,
+                          height: 451.0,
                           decoration: BoxDecoration(
                             color: Colors.black,
                             gradient: LinearGradient(
@@ -338,7 +632,7 @@ from NYXS(Governance token)''';
   Widget getLaunchingMessage() {
     return Container(
       width: double.infinity,
-      color: const Color(0xff000000),
+      color: Colors.black,
       padding: const EdgeInsets.only(top: 96.0, bottom: 64.0),
       child: const Text(
         'Launching soon.',
@@ -361,15 +655,15 @@ from NYXS(Governance token)''';
 
   Widget getFooter() {
     return Container(
-      color: const Color(0xff000000),
-      padding: const EdgeInsets.fromLTRB(16.0, 80.0, 0.0, 64.0),
+      color: Colors.black,
+      padding: const EdgeInsets.only(left: 16.0, top: 80.0, bottom: 64.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
             'images/large_logo_white.png',
-            width: 127,
-            height: 43,
+            width: 127.0,
+            height: 43.0,
             filterQuality: FilterQuality.high,
           ),
           const SizedBox(height: 16.0),
@@ -397,7 +691,7 @@ from NYXS(Governance token)''';
   Widget getTag(tag) {
     return Container(
       height: 26.0,
-      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(color: const Color(0xff28E7C5)),
@@ -461,8 +755,8 @@ Widget get socialMediaButtons {
 
 Widget getSocialMediaButton(imagePath, {String? targetUrl}) {
   return SizedBox(
-    height: 48,
-    width: 48,
+    height: 48.0,
+    width: 48.0,
     child: IconButton(
       padding: const EdgeInsets.all(0.0),
       icon: Image.asset(imagePath),
