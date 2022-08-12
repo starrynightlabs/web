@@ -28,9 +28,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff040724),
+      backgroundColor: NyxsColor.navy,
       appBar: AppBar(
-        backgroundColor: const Color(0xff040724),
+        backgroundColor: NyxsColor.navy,
         toolbarHeight: 72.0,
         leadingWidth: 86.0,
         leading: Padding(
@@ -81,11 +81,11 @@ class MyHomePage extends StatelessWidget {
                   fontSize: 36.0,
                   height: 1.06,
                 ),
-                suffixStyle: const TextStyle(
-                  color: Color(0xff28E7C5),
+                suffixStyle: TextStyle(
+                  color: NyxsColor.mint,
                   shadows: [
                     Shadow(
-                      color: Color.fromRGBO(40, 231, 197, 0.8),
+                      color: NyxsColor.mint.withOpacity(0.8),
                       blurRadius: 20.0,
                     )
                   ],
@@ -208,7 +208,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(top: 58.0, right: 6.0),
                 child: Image.asset(
                   'images/line_1.png',
-                  color: const Color(0xff28E7C5),
+                  color: NyxsColor.mint,
                   height: 477.5,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -285,7 +285,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(top: 18.0),
                 child: Image.asset(
                   'images/line_2.png',
-                  color: const Color(0xff28E7C5),
+                  color: NyxsColor.mint,
                   height: 484.1,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -364,7 +364,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(left: 25.0, top: 60.0),
                 child: Image.asset(
                   'images/line_3.png',
-                  color: const Color(0xff28E7C5),
+                  color: NyxsColor.mint,
                   height: 431.51,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -434,11 +434,11 @@ favorite athletes.''';
     return [
       Text(
         '$number.',
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 40.0,
           height: 1.25,
-          color: Color(0xff28E7C5),
+          color: NyxsColor.mint,
         ),
       ),
       const SizedBox(height: 8.0),
@@ -459,7 +459,7 @@ favorite athletes.''';
       'images/text_highlighter.png',
       width: width,
       height: height,
-      color: const Color(0xff28E7C5),
+      color: NyxsColor.mint,
       fit: BoxFit.fitHeight,
       filterQuality: FilterQuality.high,
     );
@@ -477,7 +477,7 @@ favorite athletes.''';
       fontSize: 28.0,
       height: 1.36,
     );
-    suffixStyle ??= const TextStyle(color: Color(0xff28E7C5));
+    suffixStyle ??= TextStyle(color: NyxsColor.mint);
 
     return Text.rich(
       TextSpan(
@@ -634,17 +634,17 @@ from NYXS(Governance token)''';
       width: double.infinity,
       color: Colors.black,
       padding: const EdgeInsets.only(top: 96.0, bottom: 64.0),
-      child: const Text(
+      child: Text(
         'Launching soon.',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 32.0,
           height: 1.31,
-          color: Color(0xff28E7C5),
+          color: NyxsColor.mint,
           shadows: [
             BoxShadow(
-              color: Color.fromRGBO(40, 231, 197, 0.8),
+              color: NyxsColor.mint.withOpacity(0.8),
               blurRadius: 20.0,
             )
           ],
@@ -694,7 +694,7 @@ from NYXS(Governance token)''';
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: const Color(0xff28E7C5)),
+        border: Border.all(color: NyxsColor.mint),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -702,9 +702,9 @@ from NYXS(Governance token)''';
         children: [
           Text(
             tag,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14.0,
-              color: Color(0xff28E7C5),
+              color: NyxsColor.mint,
             ),
           ),
         ],
@@ -776,4 +776,9 @@ Widget get copyright {
     '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
     style: TextStyle(fontSize: 12.0, height: 1.83),
   );
+}
+
+extension NyxsColor on Color {
+  static Color get mint => const Color.fromRGBO(40, 231, 197, 1.0);
+  static Color get navy => const Color.fromRGBO(4, 7, 36, 1.0);
 }
