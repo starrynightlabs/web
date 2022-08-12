@@ -677,21 +677,6 @@ from NYXS(Governance token)''';
       ),
     );
   }
-
-  Widget get contactEmail {
-    return Linkify(
-      text: "contact@snlabs.io",
-      textScaleFactor: 1.2,
-      linkStyle: const TextStyle(
-        decoration: TextDecoration.none,
-        fontFamily: '-apple-system',
-      ),
-      onOpen: (link) async {
-        final Uri uri = Uri.parse(link.url);
-        if (!await launchUrl(uri)) throw 'Could not launch $uri';
-      },
-    );
-  }
 }
 
 Widget get socialMediaButtons {
