@@ -240,7 +240,7 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  getHowToPlayPartTitle('1.', 'Select'),
+                  getHowToPlayPartTitle(1, 'Select'),
                   Stack(
                     children: [
                       Positioned(
@@ -319,7 +319,7 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  getHowToPlayPartTitle('2.', 'Support'),
+                  getHowToPlayPartTitle(2, 'Support'),
                   Stack(
                     children: [
                       Positioned(
@@ -385,7 +385,7 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  getHowToPlayPartTitle('3.', 'Celebrate'),
+                  getHowToPlayPartTitle(3, 'Celebrate'),
                   Stack(
                     children: [
                       Positioned(
@@ -434,7 +434,7 @@ favorite athletes.''';
     return Column(
       children: [
         Text(
-          number,
+          '$number.',
           style: const TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 40.0,
