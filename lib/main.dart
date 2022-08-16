@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -110,7 +109,7 @@ class MyHomePage extends StatelessWidget {
                   children: [
                     getDescriptionText(
                       'Support your athletes\nEnjoy the missions together.',
-                      style: descriptionTextStyle(
+                      style: getDescriptionStyle(
                         color: Colors.white.withOpacity(0.8),
                       ),
                     ),
@@ -150,7 +149,7 @@ favorite athletes.''';
           const SizedBox(height: 8.0),
           getDescriptionText(
             description,
-            style: descriptionTextStyle(
+            style: getDescriptionStyle(
               color: Colors.white.withOpacity(0.8),
             ),
           )
@@ -180,7 +179,7 @@ favorite athletes.''';
       children: [
         Text(
           'How to play',
-          style: titleTextStyle(),
+          style: getTitleTextStyle(),
         ),
         const SizedBox(height: 140.0),
         Stack(
@@ -238,7 +237,7 @@ favorite athletes.''';
                       Positioned(
                         child: Text(
                           'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
-                          style: descriptionTextStyle(),
+                          style: getDescriptionStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -313,7 +312,7 @@ favorite athletes.''';
                       Positioned(
                         child: Text(
                           'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
-                          style: descriptionTextStyle(),
+                          style: getDescriptionStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -375,7 +374,7 @@ favorite athletes.''';
                       Positioned(
                         child: Text(
                           'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
-                          style: descriptionTextStyle(),
+                          style: getDescriptionStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -413,7 +412,7 @@ favorite athletes.''';
         ),
       ),
       const SizedBox(height: 8.0),
-      Text(title, style: titleTextStyle()),
+      Text(title, style: getTitleTextStyle()),
       const SizedBox(height: 8.0),
     ];
   }
@@ -436,8 +435,8 @@ favorite athletes.''';
     suffixStyle,
   }) {
     // default styles
-    textStyle ??= titleTextStyle();
-    suffixStyle ??= titleTextStyle(color: NyxsColors.mint);
+    textStyle ??= getTitleTextStyle();
+    suffixStyle ??= getTitleTextStyle(color: NyxsColors.mint);
 
     return Text.rich(
       TextSpan(
@@ -450,7 +449,7 @@ favorite athletes.''';
 
   Widget getDescriptionText(text, {style}) {
     // default style
-    style ??= descriptionTextStyle(
+    style ??= getDescriptionStyle(
       fontWeight: FontWeight.w400,
       color: Colors.white.withOpacity(0.8),
     );
@@ -736,7 +735,7 @@ Widget get copyright {
   );
 }
 
-TextStyle descriptionTextStyle({
+TextStyle getDescriptionStyle({
   color = Colors.white,
   fontWeight = FontWeight.w300,
 }) {
@@ -748,7 +747,7 @@ TextStyle descriptionTextStyle({
   );
 }
 
-TextStyle titleTextStyle({
+TextStyle getTitleTextStyle({
   color = Colors.white,
 }) {
   return TextStyle(
