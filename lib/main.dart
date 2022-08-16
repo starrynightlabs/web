@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -28,9 +27,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff040724),
+      backgroundColor: NyxsColors.navy,
       appBar: AppBar(
-        backgroundColor: const Color(0xff040724),
+        backgroundColor: NyxsColors.navy,
         toolbarHeight: 72.0,
         leadingWidth: 86.0,
         leading: Padding(
@@ -41,25 +40,17 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: DefaultTextStyle.merge(
-        style: const TextStyle(
-          decoration: TextDecoration.none,
-          color: Colors.white,
-          fontSize: 16.0,
-          fontWeight: FontWeight.w400,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              getWeMakeStarsPart(),
-              getWhatIsNyxsPart(),
-              getHowToPlayPart(),
-              getWhatIsMissionPart(),
-              getSpecialExperiencePart(),
-              getLaunchingMessage(),
-              getFooter(),
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            getWeMakeStarsPart(),
+            getWhatIsNyxsPart(),
+            getHowToPlayPart(),
+            getWhatIsMissionPart(),
+            getSpecialExperiencePart(),
+            getLaunchingMessage(),
+            getFooter(),
+          ],
         ),
       ),
     );
@@ -80,12 +71,13 @@ class MyHomePage extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   fontSize: 36.0,
                   height: 1.06,
+                  color: Colors.white,
                 ),
-                suffixStyle: const TextStyle(
-                  color: Color(0xff28E7C5),
+                suffixStyle: TextStyle(
+                  color: NyxsColors.mint,
                   shadows: [
                     Shadow(
-                      color: Color.fromRGBO(40, 231, 197, 0.8),
+                      color: NyxsColors.mint.withOpacity(0.8),
                       blurRadius: 20.0,
                     )
                   ],
@@ -117,10 +109,7 @@ class MyHomePage extends StatelessWidget {
                   children: [
                     getDescriptionText(
                       'Support your athletes\nEnjoy the missions together.',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 18.0,
-                        height: 1.56,
+                      style: getDescriptionStyle(
                         color: Colors.white.withOpacity(0.8),
                       ),
                     ),
@@ -160,10 +149,7 @@ favorite athletes.''';
           const SizedBox(height: 8.0),
           getDescriptionText(
             description,
-            style: TextStyle(
-              fontWeight: FontWeight.w300,
-              fontSize: 18.0,
-              height: 1.56,
+            style: getDescriptionStyle(
               color: Colors.white.withOpacity(0.8),
             ),
           )
@@ -191,13 +177,9 @@ favorite athletes.''';
   Widget getHowToPlayPartOne() {
     return Column(
       children: [
-        const Text(
+        Text(
           'How to play',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 28.0,
-            height: 1.36,
-          ),
+          style: getTitleTextStyle(),
         ),
         const SizedBox(height: 140.0),
         Stack(
@@ -208,7 +190,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(top: 58.0, right: 6.0),
                 child: Image.asset(
                   'images/line_1.png',
-                  color: const Color(0xff28E7C5),
+                  color: NyxsColors.mint,
                   height: 477.5,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -252,14 +234,10 @@ favorite athletes.''';
                           child: getTextHighlighter(width: 123.0),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         child: Text(
                           'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18.0,
-                            height: 1.56,
-                          ),
+                          style: getDescriptionStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -285,7 +263,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(top: 18.0),
                 child: Image.asset(
                   'images/line_2.png',
-                  color: const Color(0xff28E7C5),
+                  color: NyxsColors.mint,
                   height: 484.1,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -331,14 +309,10 @@ favorite athletes.''';
                           child: getTextHighlighter(width: 51.0),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         child: Text(
                           'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18.0,
-                            height: 1.56,
-                          ),
+                          style: getDescriptionStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -364,7 +338,7 @@ favorite athletes.''';
                 padding: const EdgeInsets.only(left: 25.0, top: 60.0),
                 child: Image.asset(
                   'images/line_3.png',
-                  color: const Color(0xff28E7C5),
+                  color: NyxsColors.mint,
                   height: 431.51,
                   fit: BoxFit.fitHeight,
                   filterQuality: FilterQuality.high,
@@ -397,14 +371,10 @@ favorite athletes.''';
                           child: getTextHighlighter(width: 173.0),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         child: Text(
                           'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18.0,
-                            height: 1.56,
-                          ),
+                          style: getDescriptionStyle(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -434,22 +404,15 @@ favorite athletes.''';
     return [
       Text(
         '$number.',
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 40.0,
           height: 1.25,
-          color: Color(0xff28E7C5),
+          color: NyxsColors.mint,
         ),
       ),
       const SizedBox(height: 8.0),
-      Text(
-        title,
-        style: const TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 28.0,
-          height: 1.36,
-        ),
-      ),
+      Text(title, style: getTitleTextStyle()),
       const SizedBox(height: 8.0),
     ];
   }
@@ -459,7 +422,7 @@ favorite athletes.''';
       'images/text_highlighter.png',
       width: width,
       height: height,
-      color: const Color(0xff28E7C5),
+      color: NyxsColors.mint,
       fit: BoxFit.fitHeight,
       filterQuality: FilterQuality.high,
     );
@@ -472,12 +435,8 @@ favorite athletes.''';
     suffixStyle,
   }) {
     // default styles
-    textStyle ??= const TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 28.0,
-      height: 1.36,
-    );
-    suffixStyle ??= const TextStyle(color: Color(0xff28E7C5));
+    textStyle ??= getTitleTextStyle();
+    suffixStyle ??= getTitleTextStyle(color: NyxsColors.mint);
 
     return Text.rich(
       TextSpan(
@@ -490,10 +449,8 @@ favorite athletes.''';
 
   Widget getDescriptionText(text, {style}) {
     // default style
-    style ??= TextStyle(
+    style ??= getDescriptionStyle(
       fontWeight: FontWeight.w400,
-      fontSize: 18.0,
-      height: 1.56,
       color: Colors.white.withOpacity(0.8),
     );
 
@@ -606,6 +563,7 @@ from NYXS(Governance token)''';
                         fontWeight: FontWeight.w700,
                         fontSize: 24.0,
                         height: 1.42,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 40.0),
@@ -634,17 +592,17 @@ from NYXS(Governance token)''';
       width: double.infinity,
       color: Colors.black,
       padding: const EdgeInsets.only(top: 96.0, bottom: 64.0),
-      child: const Text(
+      child: Text(
         'Launching soon.',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 32.0,
           height: 1.31,
-          color: Color(0xff28E7C5),
+          color: NyxsColors.mint,
           shadows: [
             BoxShadow(
-              color: Color.fromRGBO(40, 231, 197, 0.8),
+              color: NyxsColors.mint.withOpacity(0.8),
               blurRadius: 20.0,
             )
           ],
@@ -668,9 +626,14 @@ from NYXS(Governance token)''';
           ),
           const SizedBox(height: 16.0),
           // TODO: create hyperlink to App Store, Play Store.
-          const Text(
+          Text(
             'Launching soon to\nApple App Store & Google Play Store.',
-            style: TextStyle(height: 1.62),
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 16.0,
+              height: 1.62,
+              color: Colors.white.withOpacity(0.6),
+            ),
           ),
           const SizedBox(height: 18.0),
           const Divider(
@@ -694,36 +657,23 @@ from NYXS(Governance token)''';
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: const Color(0xff28E7C5)),
+        border: Border.all(color: NyxsColors.mint),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             tag,
-            style: const TextStyle(
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
               fontSize: 14.0,
-              color: Color(0xff28E7C5),
+              height: 1.57,
+              color: NyxsColors.mint,
             ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget get contactEmail {
-    return Linkify(
-      text: "contact@snlabs.io",
-      textScaleFactor: 1.2,
-      linkStyle: const TextStyle(
-        decoration: TextDecoration.none,
-        fontFamily: '-apple-system',
-      ),
-      onOpen: (link) async {
-        final Uri uri = Uri.parse(link.url);
-        if (!await launchUrl(uri)) throw 'Could not launch $uri';
-      },
     );
   }
 }
@@ -773,9 +723,42 @@ Widget getSocialMediaButton(imagePath, {String? targetUrl}) {
 }
 
 Widget get copyright {
-  return const Text(
+  return Text(
     // TODO: create hyperlink to Privacy Policy, Terms Of Use.
     '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
-    style: TextStyle(fontSize: 12.0, height: 1.83),
+    style: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12.0,
+      height: 1.83,
+      color: Colors.white.withOpacity(0.6),
+    ),
   );
+}
+
+TextStyle getDescriptionStyle({
+  color = Colors.white,
+  fontWeight = FontWeight.w300,
+}) {
+  return TextStyle(
+    fontWeight: fontWeight,
+    fontSize: 18.0,
+    height: 1.56,
+    color: color,
+  );
+}
+
+TextStyle getTitleTextStyle({
+  color = Colors.white,
+}) {
+  return TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 28.0,
+    height: 1.36,
+    color: color,
+  );
+}
+
+class NyxsColors {
+  static Color get mint => const Color.fromRGBO(40, 231, 197, 1.0);
+  static Color get navy => const Color.fromRGBO(4, 7, 36, 1.0);
 }
