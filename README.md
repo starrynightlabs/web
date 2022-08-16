@@ -3,7 +3,7 @@
 
 # web
 
-A Flutter project for starrynight.world
+A Flutter project for nyxs.io
 
 ## Getting Started
 
