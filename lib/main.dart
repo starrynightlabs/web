@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NYXS / Starry Night Foundation',
+      title: 'NYXS',
       theme: ThemeData(fontFamily: 'Euclid Circular A'),
       home: const MyHomePage(),
     );
