@@ -12,7 +12,7 @@ import 'package:web/main.dart';
 void main() {
   testWidgets('Show text', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const NyxsWeb());
 
     expect(find.text('We Make Stars!'), findsOneWidget);
     expect(
