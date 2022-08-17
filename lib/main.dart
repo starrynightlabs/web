@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:web/utils.dart';
 
 void main() {
   setPathUrlStrategy();
-  runApp(const MyApp());
+  runApp(const NyxsWeb());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class NyxsWeb extends StatelessWidget {
+  const NyxsWeb({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NYXS',
       theme: ThemeData(fontFamily: 'Euclid Circular A'),
-      home: const MyHomePage(),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +43,102 @@ class MyHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            getWeMakeStarsPart(),
-            getWhatIsNyxsPart(),
-            getHowToPlayPart(),
-            getWhatIsMissionPart(),
-            getSpecialExperiencePart(),
-            getLaunchingMessage(),
-            getFooter(),
+            weMakeStarsPart,
+            whatIsNyxsPart,
+            howToPlayPart,
+            whatIsMissionPart,
+            specialExperiencePart,
+            launchingMessage,
+            footer,
           ],
         ),
       ),
     );
   }
 
-  Widget getWeMakeStarsPart() {
+  TextStyle getTitleStyle({
+    color = Colors.white,
+  }) {
+    return TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 28.0,
+      height: 1.36,
+      color: color,
+    );
+  }
+
+  TextStyle getDescriptionStyle({
+    color = Colors.white,
+    fontWeight = FontWeight.w300,
+  }) {
+    return TextStyle(
+      fontWeight: fontWeight,
+      fontSize: 18.0,
+      height: 1.56,
+      color: color,
+    );
+  }
+
+  Widget getTitleText({
+    prefix = 'What is ',
+    required suffix,
+    textStyle,
+    suffixStyle,
+  }) {
+    // default styles
+    textStyle ??= getTitleStyle();
+    suffixStyle ??= getTitleStyle(color: NyxsColors.mint);
+
+    return Text.rich(
+      TextSpan(
+        text: prefix,
+        children: [TextSpan(text: suffix, style: suffixStyle)],
+      ),
+      style: textStyle,
+    );
+  }
+
+  Widget getDescriptionText(text, {style}) {
+    // default style
+    style ??= getDescriptionStyle(
+      fontWeight: FontWeight.w400,
+      color: Colors.white.withOpacity(0.8),
+    );
+
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: style,
+    );
+  }
+
+  Widget getTag(tag) {
+    return Container(
+      height: 26.0,
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: NyxsColors.mint),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            tag,
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 14.0,
+              height: 1.57,
+              color: NyxsColors.mint,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget get weMakeStarsPart {
     return Column(
       children: [
         Padding(
@@ -125,7 +207,7 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget getWhatIsNyxsPart() {
+  Widget get whatIsNyxsPart {
     const String description = '''
 A new web3 sporting platform
 connecting fans with their
@@ -158,28 +240,56 @@ favorite athletes.''';
     );
   }
 
-  Widget getHowToPlayPart() {
+  Widget get howToPlayPart {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(top: 30.0, bottom: 119.5),
       child: Column(
         children: [
-          getHowToPlayPartOne(),
+          howToPlayPartOne,
           const SizedBox(height: 57.5),
-          getHowToPlayPartTwo(),
+          howToPlayPartTwo,
           const SizedBox(height: 65.0),
-          getHowToPlayPartThree(),
+          howToPlayPartThree,
         ],
       ),
     );
   }
 
-  Widget getHowToPlayPartOne() {
+  List<Widget> getHowToPlayPartTitle(number, title) {
+    return [
+      Text(
+        '$number.',
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 40.0,
+          height: 1.25,
+          color: NyxsColors.mint,
+        ),
+      ),
+      const SizedBox(height: 8.0),
+      Text(title, style: getTitleStyle()),
+      const SizedBox(height: 8.0),
+    ];
+  }
+
+  Widget getTextHighlighter({required width, height = 14.0}) {
+    return Image.asset(
+      'images/text_highlighter.png',
+      width: width,
+      height: height,
+      color: NyxsColors.mint,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+  }
+
+  Widget get howToPlayPartOne {
     return Column(
       children: [
         Text(
           'How to play',
-          style: getTitleTextStyle(),
+          style: getTitleStyle(),
         ),
         const SizedBox(height: 140.0),
         Stack(
@@ -252,7 +362,7 @@ favorite athletes.''';
     );
   }
 
-  Widget getHowToPlayPartTwo() {
+  Widget get howToPlayPartTwo {
     return Column(
       children: [
         Stack(
@@ -327,7 +437,7 @@ favorite athletes.''';
     );
   }
 
-  Widget getHowToPlayPartThree() {
+  Widget get howToPlayPartThree {
     return Column(
       children: [
         Stack(
@@ -400,68 +510,7 @@ favorite athletes.''';
     );
   }
 
-  List<Widget> getHowToPlayPartTitle(number, title) {
-    return [
-      Text(
-        '$number.',
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 40.0,
-          height: 1.25,
-          color: NyxsColors.mint,
-        ),
-      ),
-      const SizedBox(height: 8.0),
-      Text(title, style: getTitleTextStyle()),
-      const SizedBox(height: 8.0),
-    ];
-  }
-
-  Widget getTextHighlighter({required width, height = 14.0}) {
-    return Image.asset(
-      'images/text_highlighter.png',
-      width: width,
-      height: height,
-      color: NyxsColors.mint,
-      fit: BoxFit.fitHeight,
-      filterQuality: FilterQuality.high,
-    );
-  }
-
-  Widget getTitleText({
-    prefix = 'What is ',
-    required suffix,
-    textStyle,
-    suffixStyle,
-  }) {
-    // default styles
-    textStyle ??= getTitleTextStyle();
-    suffixStyle ??= getTitleTextStyle(color: NyxsColors.mint);
-
-    return Text.rich(
-      TextSpan(
-        text: prefix,
-        children: [TextSpan(text: suffix, style: suffixStyle)],
-      ),
-      style: textStyle,
-    );
-  }
-
-  Widget getDescriptionText(text, {style}) {
-    // default style
-    style ??= getDescriptionStyle(
-      fontWeight: FontWeight.w400,
-      color: Colors.white.withOpacity(0.8),
-    );
-
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      style: style,
-    );
-  }
-
-  Widget getWhatIsMissionPart() {
+  Widget get whatIsMissionPart {
     const String missionDescription = '''
 The mission is the next level goal
 for the athletes to achieve the dream,
@@ -496,7 +545,7 @@ from NYXS(Governance token)''';
     );
   }
 
-  Widget getSpecialExperiencePart() {
+  Widget get specialExperiencePart {
     return Column(
       children: [
         const SizedBox(height: 120.0),
@@ -587,7 +636,7 @@ from NYXS(Governance token)''';
     );
   }
 
-  Widget getLaunchingMessage() {
+  Widget get launchingMessage {
     return Container(
       width: double.infinity,
       color: Colors.black,
@@ -611,7 +660,64 @@ from NYXS(Governance token)''';
     );
   }
 
-  Widget getFooter() {
+  Widget getSocialMediaButton(imagePath, {String? targetUrl}) {
+    return SizedBox(
+      height: 48.0,
+      width: 48.0,
+      child: IconButton(
+        padding: const EdgeInsets.all(0.0),
+        icon: Image.asset(imagePath),
+        onPressed: () async {
+          if (targetUrl != null) {
+            final Uri uri = Uri.parse(targetUrl);
+            if (!await launchUrl(uri)) throw 'Could not launch $uri';
+          }
+        },
+      ),
+    );
+  }
+
+  Widget get socialMediaButtons {
+    return Row(
+      children: [
+        getSocialMediaButton(
+          'images/twitter.png',
+          // TODO: uncomment when discord, telegram setting done
+          // targetUrl: 'https://twitter.com/StarryNightFndn',
+        ),
+        const SizedBox(width: 10.0),
+        getSocialMediaButton('images/telegram.png'),
+        const SizedBox(width: 10.0),
+        getSocialMediaButton('images/discord.png'),
+        const SizedBox(width: 16.0),
+        getSocialMediaButton(
+          'images/medium.png',
+          // TODO: uncomment when discord, telegram setting done
+          // targetUrl: 'https://medium.com/@NYXS',
+        ),
+        const SizedBox(width: 10.0),
+        getSocialMediaButton(
+          'images/mail.png',
+          targetUrl: 'mailto:contact@snlabs.io',
+        )
+      ],
+    );
+  }
+
+  Widget get copyright {
+    return Text(
+      // TODO: create hyperlink to Privacy Policy, Terms Of Use.
+      '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
+      style: TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 12.0,
+        height: 1.83,
+        color: Colors.white.withOpacity(0.6),
+      ),
+    );
+  }
+
+  Widget get footer {
     return Container(
       color: Colors.black,
       padding: const EdgeInsets.only(left: 16.0, top: 80.0, bottom: 64.0),
@@ -650,115 +756,4 @@ from NYXS(Governance token)''';
       ),
     );
   }
-
-  Widget getTag(tag) {
-    return Container(
-      height: 26.0,
-      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: NyxsColors.mint),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            tag,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 14.0,
-              height: 1.57,
-              color: NyxsColors.mint,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-Widget get socialMediaButtons {
-  return Row(
-    children: [
-      getSocialMediaButton(
-        'images/twitter.png',
-        // TODO: uncomment when discord, telegram setting done
-        // targetUrl: 'https://twitter.com/StarryNightFndn',
-      ),
-      const SizedBox(width: 10.0),
-      getSocialMediaButton('images/telegram.png'),
-      const SizedBox(width: 10.0),
-      getSocialMediaButton('images/discord.png'),
-      const SizedBox(width: 16.0),
-      getSocialMediaButton(
-        'images/medium.png',
-        // TODO: uncomment when discord, telegram setting done
-        // targetUrl: 'https://medium.com/@NYXS',
-      ),
-      const SizedBox(width: 10.0),
-      getSocialMediaButton(
-        'images/mail.png',
-        targetUrl: 'mailto:contact@snlabs.io',
-      )
-    ],
-  );
-}
-
-Widget getSocialMediaButton(imagePath, {String? targetUrl}) {
-  return SizedBox(
-    height: 48.0,
-    width: 48.0,
-    child: IconButton(
-      padding: const EdgeInsets.all(0.0),
-      icon: Image.asset(imagePath),
-      onPressed: () async {
-        if (targetUrl != null) {
-          final Uri uri = Uri.parse(targetUrl);
-          if (!await launchUrl(uri)) throw 'Could not launch $uri';
-        }
-      },
-    ),
-  );
-}
-
-Widget get copyright {
-  return Text(
-    // TODO: create hyperlink to Privacy Policy, Terms Of Use.
-    '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
-    style: TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 12.0,
-      height: 1.83,
-      color: Colors.white.withOpacity(0.6),
-    ),
-  );
-}
-
-TextStyle getDescriptionStyle({
-  color = Colors.white,
-  fontWeight = FontWeight.w300,
-}) {
-  return TextStyle(
-    fontWeight: fontWeight,
-    fontSize: 18.0,
-    height: 1.56,
-    color: color,
-  );
-}
-
-TextStyle getTitleTextStyle({
-  color = Colors.white,
-}) {
-  return TextStyle(
-    fontWeight: FontWeight.w700,
-    fontSize: 28.0,
-    height: 1.36,
-    color: color,
-  );
-}
-
-class NyxsColors {
-  static Color get mint => const Color.fromRGBO(40, 231, 197, 1.0);
-  static Color get navy => const Color.fromRGBO(4, 7, 36, 1.0);
 }
