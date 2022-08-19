@@ -21,8 +21,47 @@ class NyxsWeb extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late ScrollController _controller;
+  double pixels = 0.0;
+
+  bool isWeMakeStarsShown = false;
+  bool isWhatIsNyxsShown = false;
+  bool isHowToPlayShown = false;
+  bool isWhatIsMissionShown = false;
+  bool isSpecialExperienceShown = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    isWeMakeStarsShown = false;
+    isWhatIsNyxsShown = false;
+    isHowToPlayShown = false;
+    isWhatIsMissionShown = false;
+    isSpecialExperienceShown = false;
+
+    _controller = ScrollController();
+    _controller.addListener(() {
+      setState(() {
+        pixels = _controller.position.pixels;
+        print(pixels);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +80,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        controller: _controller,
         child: Column(
           children: [
             weMakeStarsPart,
@@ -112,6 +152,25 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget getAnimatedWidget(
+    Widget widget,
+    double startingPoint,
+  ) {
+    return AnimatedContainer(
+      alignment: pixels <= startingPoint
+          ? const Alignment(0.0, -0.2)
+          : const Alignment(0.0, 0.0),
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeIn,
+      child: AnimatedOpacity(
+        opacity: pixels <= startingPoint ? 0.0 : 1.0,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeIn,
+        child: widget,
+      ),
+    );
+  }
+
   Widget getTag(tag) {
     return Container(
       height: 26.0,
@@ -139,49 +198,63 @@ class HomePage extends StatelessWidget {
   }
 
   Widget get weMakeStarsPart {
-    return Column(
+    double startPoint = 144.0 - 143;
+    double descriptionPoint = startPoint + 20;
+    double tagPoint = descriptionPoint + 5;
+    double imagePoint = tagPoint + 10;
+
+    if (pixels >= (startPoint + 130)) isWeMakeStarsShown = true;
+
+    Widget title = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 72.0, bottom: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              getTitleText(
-                prefix: 'We Make ',
-                suffix: 'Stars!',
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 36.0,
-                  height: 1.06,
-                  color: Colors.white,
-                ),
-                suffixStyle: TextStyle(
-                  color: NyxsColors.mint,
-                  shadows: [
-                    Shadow(
-                      color: NyxsColors.mint.withOpacity(0.8),
-                      blurRadius: 20.0,
-                    )
-                  ],
-                ),
+        getTitleText(
+          prefix: 'We Make ',
+          suffix: 'Stars!',
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 36.0,
+            height: 1.06,
+            color: Colors.white,
+          ),
+          suffixStyle: TextStyle(
+            color: NyxsColors.mint,
+            shadows: [
+              Shadow(
+                color: NyxsColors.mint.withOpacity(0.8),
+                blurRadius: 20.0,
               ),
             ],
           ),
         ),
+      ],
+    );
+    Widget description = getDescriptionText(
+      'Support your athletes\nEnjoy the missions together.',
+      style: getDescriptionStyle(
+        color: Colors.white.withOpacity(0.8),
+      ),
+    );
+    Widget image = Image.asset(
+      'images/we_make_stars.png',
+      height: 555.0,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+
+    return Column(
+      children: [
+        const SizedBox(height: 72.0),
+        isWeMakeStarsShown ? title : getAnimatedWidget(title, startPoint),
+        const SizedBox(height: 20.0),
         Stack(
           children: [
             Positioned(
               child: Align(
                 alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Image.asset(
-                    'images/we_make_stars.png',
-                    height: 555.0,
-                    fit: BoxFit.fitHeight,
-                    filterQuality: FilterQuality.high,
-                  ),
-                ),
+                child: isWeMakeStarsShown
+                    ? image
+                    : getAnimatedWidget(image, imagePoint),
               ),
             ),
             Positioned(
@@ -189,29 +262,41 @@ class HomePage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(
                   children: [
-                    getDescriptionText(
-                      'Support your athletes\nEnjoy the missions together.',
-                      style: getDescriptionStyle(
-                        color: Colors.white.withOpacity(0.8),
-                      ),
-                    ),
+                    isWeMakeStarsShown
+                        ? description
+                        : getAnimatedWidget(description, descriptionPoint),
                     const SizedBox(height: 26.0),
-                    getTag('BETA'),
+                    isWeMakeStarsShown
+                        ? getTag('BETA')
+                        : getAnimatedWidget(getTag('BETA'), tagPoint),
                   ],
                 ),
               ),
             ),
           ],
         ),
+        const SizedBox(height: 16.0),
       ],
     );
   }
 
   Widget get whatIsNyxsPart {
-    const String description = '''
+    double startPoint = 836.0 - 150;
+    double descriptionPoint = startPoint + 41;
+
+    if (pixels >= (startPoint + 61)) isWhatIsNyxsShown = true;
+
+    const String nyxsDescription = '''
 A new web3 sporting platform
 connecting fans with their
 favorite athletes.''';
+    Widget description = getDescriptionText(
+      nyxsDescription,
+      style: getDescriptionStyle(
+        color: Colors.white.withOpacity(0.8),
+      ),
+    );
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(top: 120.0, bottom: 110.0),
@@ -227,25 +312,29 @@ favorite athletes.''';
       ),
       child: Column(
         children: [
-          getTitleText(suffix: 'NYXS'),
+          isWhatIsNyxsShown
+              ? getTitleText(suffix: 'NYXS')
+              : getAnimatedWidget(getTitleText(suffix: 'NYXS'), startPoint),
           const SizedBox(height: 8.0),
-          getDescriptionText(
-            description,
-            style: getDescriptionStyle(
-              color: Colors.white.withOpacity(0.8),
-            ),
-          )
+          isWhatIsNyxsShown
+              ? description
+              : getAnimatedWidget(description, descriptionPoint),
         ],
       ),
     );
   }
 
   Widget get howToPlayPart {
+    double titlePoint = 1106.0 - 100;
+
+    Widget title = Text('How to play', style: getTitleStyle());
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(top: 30.0, bottom: 119.5),
       child: Column(
         children: [
+          isHowToPlayShown ? title : getAnimatedWidget(title, titlePoint),
           howToPlayPartOne,
           const SizedBox(height: 57.5),
           howToPlayPartTwo,
@@ -256,21 +345,23 @@ favorite athletes.''';
     );
   }
 
-  List<Widget> getHowToPlayPartTitle(number, title) {
-    return [
-      Text(
-        '$number.',
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 40.0,
-          height: 1.25,
-          color: NyxsColors.mint,
+  Widget getHowToPlayPartTitle(number, title) {
+    return Column(
+      children: [
+        Text(
+          '$number.',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 40.0,
+            height: 1.25,
+            color: NyxsColors.mint,
+          ),
         ),
-      ),
-      const SizedBox(height: 8.0),
-      Text(title, style: getTitleStyle()),
-      const SizedBox(height: 8.0),
-    ];
+        const SizedBox(height: 8.0),
+        Text(title, style: getTitleStyle()),
+        const SizedBox(height: 8.0),
+      ],
+    );
   }
 
   Widget getTextHighlighter({required width, height = 14.0}) {
@@ -285,12 +376,54 @@ favorite athletes.''';
   }
 
   Widget get howToPlayPartOne {
+    double startPoint = 1284.0 - 160;
+    double descriptionPoint = startPoint + 36;
+    double imagePoint = descriptionPoint + 47;
+    double decorationPoint = imagePoint + 35;
+
+    Widget title = getHowToPlayPartTitle(1, 'Select');
+    Widget description = Stack(
+      children: [
+        Positioned(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 125.0,
+              top: 70.0,
+            ),
+            child: getTextHighlighter(width: 123.0),
+          ),
+        ),
+        Positioned(
+          child: Text(
+            'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
+            style: getDescriptionStyle(),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+    Widget image = Image.asset(
+      'images/mission_cards.png',
+      height: 164.0,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+    Widget decoration = Image.asset(
+      'images/decoration_1.png',
+      height: 242.0,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+    Widget lineDecoration = Image.asset(
+      'images/line_1.png',
+      color: NyxsColors.mint,
+      height: 477.5,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+
     return Column(
       children: [
-        Text(
-          'How to play',
-          style: getTitleStyle(),
-        ),
         const SizedBox(height: 140.0),
         Stack(
           alignment: Alignment.topCenter,
@@ -298,61 +431,34 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 58.0, right: 6.0),
-                child: Image.asset(
-                  'images/line_1.png',
-                  color: NyxsColors.mint,
-                  height: 477.5,
-                  fit: BoxFit.fitHeight,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: lineDecoration,
               ),
             ),
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 236.0),
-                child: Image.asset(
-                  'images/mission_cards.png',
-                  height: 164.0,
-                  fit: BoxFit.fitHeight,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: isHowToPlayShown
+                    ? image
+                    : getAnimatedWidget(image, imagePoint),
               ),
             ),
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 201.0),
-                child: Image.asset(
-                  'images/decoration_1.png',
-                  height: 242.0,
-                  fit: BoxFit.fitHeight,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: isHowToPlayShown
+                    ? decoration
+                    : getAnimatedWidget(decoration, decorationPoint),
               ),
             ),
             Positioned(
               child: Column(
                 children: [
-                  ...getHowToPlayPartTitle(1, 'Select'),
-                  Stack(
-                    children: [
-                      Positioned(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 125.0,
-                            top: 70.0,
-                          ),
-                          child: getTextHighlighter(width: 123.0),
-                        ),
-                      ),
-                      Positioned(
-                        child: Text(
-                          'Your own athletes from all over\nthe world and missions given to\nthe athletes every season.',
-                          style: getDescriptionStyle(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
+                  isHowToPlayShown
+                      ? title
+                      : getAnimatedWidget(title, startPoint),
+                  isHowToPlayShown
+                      ? description
+                      : getAnimatedWidget(description, descriptionPoint),
                 ],
               ),
             ),
@@ -363,6 +469,54 @@ favorite athletes.''';
   }
 
   Widget get howToPlayPartTwo {
+    double startPoint = 1864.0 - 140;
+    double descriptionPoint = startPoint + 46;
+    double imagePoint = descriptionPoint + 47;
+    double decorationPoint = imagePoint + 35;
+
+    Widget title = getHowToPlayPartTitle(2, 'Support');
+    Widget description = Stack(
+      children: [
+        Positioned(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 185.0,
+              top: 14.0,
+            ),
+            child: getTextHighlighter(width: 51.0),
+          ),
+        ),
+        Positioned(
+          child: Text(
+            'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
+            style: getDescriptionStyle(),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+    Widget image = Image.asset(
+      'images/player_cards.png',
+      height: 137.0,
+      fit: BoxFit.fitHeight,
+      alignment: Alignment.topLeft,
+      filterQuality: FilterQuality.high,
+    );
+    Widget decoration = Image.asset(
+      'images/decoration_2.png',
+      width: 152.0,
+      height: 246.0,
+      fit: BoxFit.fill,
+      filterQuality: FilterQuality.high,
+    );
+    Widget lineDecoration = Image.asset(
+      'images/line_2.png',
+      color: NyxsColors.mint,
+      height: 484.1,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+
     return Column(
       children: [
         Stack(
@@ -371,63 +525,34 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 18.0),
-                child: Image.asset(
-                  'images/line_2.png',
-                  color: NyxsColors.mint,
-                  height: 484.1,
-                  fit: BoxFit.fitHeight,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: lineDecoration,
               ),
             ),
             Positioned(
               child: Container(
                 padding: const EdgeInsets.only(left: 33.0, top: 236.0),
-                child: Image.asset(
-                  'images/player_cards.png',
-                  height: 137.0,
-                  fit: BoxFit.fitHeight,
-                  alignment: Alignment.topLeft,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: isHowToPlayShown
+                    ? image
+                    : getAnimatedWidget(image, imagePoint),
               ),
             ),
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(left: 168.0, top: 188.0),
-                child: Image.asset(
-                  'images/decoration_2.png',
-                  width: 152.0,
-                  height: 246.0,
-                  fit: BoxFit.fill,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: isHowToPlayShown
+                    ? decoration
+                    : getAnimatedWidget(decoration, decorationPoint),
               ),
             ),
             Positioned(
               child: Column(
                 children: [
-                  ...getHowToPlayPartTitle(2, 'Support'),
-                  Stack(
-                    children: [
-                      Positioned(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 185.0,
-                            top: 14.0,
-                          ),
-                          child: getTextHighlighter(width: 51.0),
-                        ),
-                      ),
-                      Positioned(
-                        child: Text(
-                          'Your athletes with our ‘stars’ and\nparticipate in your athletes\njourney together.',
-                          style: getDescriptionStyle(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
+                  isHowToPlayShown
+                      ? title
+                      : getAnimatedWidget(title, startPoint),
+                  isHowToPlayShown
+                      ? description
+                      : getAnimatedWidget(description, descriptionPoint),
                 ],
               ),
             ),
@@ -438,6 +563,54 @@ favorite athletes.''';
   }
 
   Widget get howToPlayPartThree {
+    double startPoint = 2417.0 - 120;
+    double descriptionPoint = startPoint + 36;
+    double imagePoint = descriptionPoint + 27;
+    double decorationPoint = imagePoint + 35;
+
+    if (pixels >= (startPoint + 120)) isHowToPlayShown = true;
+
+    Widget title = getHowToPlayPartTitle(3, 'Celebrate');
+    Widget description = Stack(
+      children: [
+        Positioned(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 73.0,
+              top: 70.0,
+            ),
+            child: getTextHighlighter(width: 173.0),
+          ),
+        ),
+        Positioned(
+          child: Text(
+            'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
+            style: getDescriptionStyle(),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+    Widget image = Image.asset(
+      'images/mission_complete_card.png',
+      height: 130.0,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+    Widget decoration = Image.asset(
+      'images/decoration_3.png',
+      height: 276.24,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+    Widget lineDecoration = Image.asset(
+      'images/line_3.png',
+      color: NyxsColors.mint,
+      height: 431.51,
+      fit: BoxFit.fitHeight,
+      filterQuality: FilterQuality.high,
+    );
+
     return Column(
       children: [
         Stack(
@@ -446,62 +619,35 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(left: 25.0, top: 60.0),
-                child: Image.asset(
-                  'images/line_3.png',
-                  color: NyxsColors.mint,
-                  height: 431.51,
-                  fit: BoxFit.fitHeight,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: lineDecoration,
               ),
             ),
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 236.0),
-                child: Image.asset(
-                  'images/mission_complete_card.png',
-                  height: 130.0,
-                  fit: BoxFit.fitHeight,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: isHowToPlayShown
+                    ? image
+                    : getAnimatedWidget(image, imagePoint),
               ),
             ),
             Positioned(
               child: Column(
                 children: [
-                  ...getHowToPlayPartTitle(3, 'Celebrate'),
-                  Stack(
-                    children: [
-                      Positioned(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 73.0,
-                            top: 70.0,
-                          ),
-                          child: getTextHighlighter(width: 173.0),
-                        ),
-                      ),
-                      Positioned(
-                        child: Text(
-                          'Together when your athletes\ncomplete the missions and\nearn the rewards from NYXS.',
-                          style: getDescriptionStyle(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
+                  isHowToPlayShown
+                      ? title
+                      : getAnimatedWidget(title, startPoint),
+                  isHowToPlayShown
+                      ? description
+                      : getAnimatedWidget(description, descriptionPoint),
                 ],
               ),
             ),
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 172.0),
-                child: Image.asset(
-                  'images/decoration_3.png',
-                  height: 276.24,
-                  fit: BoxFit.fitHeight,
-                  filterQuality: FilterQuality.high,
-                ),
+                child: isHowToPlayShown
+                    ? decoration
+                    : getAnimatedWidget(decoration, decorationPoint),
               ),
             ),
           ],
@@ -511,6 +657,14 @@ favorite athletes.''';
   }
 
   Widget get whatIsMissionPart {
+    double startPoint = 3135.0 - 100;
+    double descriptionOnePoint = startPoint + 30;
+    double titleTwoPoint = descriptionOnePoint + 60;
+    double descriptionTwoPoint = titleTwoPoint + 30;
+    double imagePoint = descriptionTwoPoint + 40;
+
+    if (pixels >= (startPoint + 120)) isWhatIsMissionShown = true;
+
     const String missionDescription = '''
 The mission is the next level goal
 for the athletes to achieve the dream,
@@ -520,6 +674,12 @@ and watch players to grow.''';
     const String starDescription = '''
 As a utility token, Stars are swapped
 from NYXS(Governance token)''';
+    Widget image = Image.asset(
+      'images/star.png',
+      width: 128.0,
+      height: 126.0,
+      filterQuality: FilterQuality.high,
+    );
 
     return Container(
       width: double.infinity,
@@ -527,34 +687,104 @@ from NYXS(Governance token)''';
       padding: const EdgeInsets.only(top: 120.0, bottom: 72.0),
       child: Column(
         children: [
-          getTitleText(suffix: 'Mission'),
+          isWhatIsMissionShown
+              ? getTitleText(suffix: 'Mission')
+              : getAnimatedWidget(getTitleText(suffix: 'Mission'), startPoint),
           const SizedBox(height: 8.0),
-          getDescriptionText(missionDescription),
+          isWhatIsMissionShown
+              ? getDescriptionText(missionDescription)
+              : getAnimatedWidget(
+                  getDescriptionText(missionDescription),
+                  descriptionOnePoint,
+                ),
           const SizedBox(height: 96.0),
-          getTitleText(suffix: 'Star'),
+          isWhatIsMissionShown
+              ? getTitleText(suffix: 'Star')
+              : getAnimatedWidget(getTitleText(suffix: 'Star'), titleTwoPoint),
           const SizedBox(height: 8.0),
-          getDescriptionText(starDescription),
-          Image.asset(
-            'images/star.png',
-            width: 128.0,
-            height: 126.0,
-            filterQuality: FilterQuality.high,
-          ),
+          isWhatIsMissionShown
+              ? getDescriptionText(starDescription)
+              : getAnimatedWidget(
+                  getDescriptionText(starDescription),
+                  descriptionTwoPoint,
+                ),
+          isWhatIsMissionShown ? image : getAnimatedWidget(image, imagePoint),
         ],
       ),
     );
   }
 
   Widget get specialExperiencePart {
+    double startPoint = 3837.0 - 100;
+    double titlePoint = startPoint + 30;
+    double tagPoint = titlePoint + 36;
+    double imagePoint = tagPoint + 10;
+
+    if (pixels >= (titlePoint + 120)) isSpecialExperienceShown = true;
+
+    Widget logo = Image.asset(
+      'images/large_logo.png',
+      width: 156.0,
+      height: 54.0,
+      filterQuality: FilterQuality.high,
+    );
+    Widget title = const Text(
+      'Make a special experience\nwith your athletes!',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 24.0,
+        height: 1.42,
+        color: Colors.white,
+      ),
+    );
+    Widget tags = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        getTag('VIDEO'),
+        const SizedBox(width: 8.0),
+        getTag('MESSAGE'),
+        const SizedBox(width: 8.0),
+        getTag('NFT')
+      ],
+    );
+    Widget image = Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          height: 450.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fitHeight,
+              filterQuality: FilterQuality.high,
+              image: Image.asset(
+                'images/special_experience.png',
+              ).image,
+            ),
+          ),
+        ),
+        Container(
+          height: 451.0,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            gradient: LinearGradient(
+              begin: FractionalOffset.topCenter,
+              end: FractionalOffset.bottomCenter,
+              colors: [
+                Colors.black.withOpacity(0.0),
+                Colors.black.withOpacity(1.0),
+              ],
+              stops: const [0.67, 1.0],
+            ),
+          ),
+        ),
+      ],
+    );
+
     return Column(
       children: [
         const SizedBox(height: 120.0),
-        Image.asset(
-          'images/large_logo.png',
-          width: 156.0,
-          height: 54.0,
-          filterQuality: FilterQuality.high,
-        ),
+        isSpecialExperienceShown ? logo : getAnimatedWidget(logo, startPoint),
         const SizedBox(height: 40.0),
         Stack(
           children: [
@@ -564,38 +794,9 @@ from NYXS(Governance token)''';
                 child: Column(
                   children: [
                     const SizedBox(height: 50.0),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          height: 450.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fitHeight,
-                              filterQuality: FilterQuality.high,
-                              image: Image.asset(
-                                'images/special_experience.png',
-                              ).image,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 451.0,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            gradient: LinearGradient(
-                              begin: FractionalOffset.topCenter,
-                              end: FractionalOffset.bottomCenter,
-                              colors: [
-                                Colors.black.withOpacity(0.0),
-                                Colors.black.withOpacity(1.0),
-                              ],
-                              stops: const [0.67, 1.0],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    isSpecialExperienceShown
+                        ? image
+                        : getAnimatedWidget(image, imagePoint),
                   ],
                 ),
               ),
@@ -605,27 +806,13 @@ from NYXS(Governance token)''';
                 alignment: Alignment.center,
                 child: Column(
                   children: [
-                    const Text(
-                      'Make a special experience\nwith your athletes!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24.0,
-                        height: 1.42,
-                        color: Colors.white,
-                      ),
-                    ),
+                    isSpecialExperienceShown
+                        ? title
+                        : getAnimatedWidget(title, titlePoint),
                     const SizedBox(height: 40.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        getTag('VIDEO'),
-                        const SizedBox(width: 8.0),
-                        getTag('MESSAGE'),
-                        const SizedBox(width: 8.0),
-                        getTag('NFT')
-                      ],
-                    ),
+                    isSpecialExperienceShown
+                        ? tags
+                        : getAnimatedWidget(tags, tagPoint),
                   ],
                 ),
               ),
