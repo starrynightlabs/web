@@ -41,18 +41,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
-    isWeMakeStarsShown = false;
-    isWhatIsNyxsShown = false;
-    isHowToPlayShown = false;
-    isWhatIsMissionShown = false;
-    isSpecialExperienceShown = false;
-
     _controller = ScrollController();
     _controller.addListener(() {
       setState(() {
         pixels = _controller.position.pixels;
-        print(pixels);
       });
     });
   }
