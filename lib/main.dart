@@ -35,6 +35,9 @@ class _HomePageState extends State<HomePage> {
   bool isWeMakeStarsShown = false;
   bool isWhatIsNyxsShown = false;
   bool isHowToPlayShown = false;
+  bool isHowToPlayOneShown = false;
+  bool isHowToPlayTwoShown = false;
+  bool isHowToPlayThreeShown = false;
   bool isWhatIsMissionShown = false;
   bool isSpecialExperienceShown = false;
 
@@ -150,7 +153,7 @@ class _HomePageState extends State<HomePage> {
   ) {
     return AnimatedContainer(
       alignment: pixels <= startingPoint
-          ? const Alignment(0.0, -0.2)
+          ? const Alignment(0.0, -19.0)
           : const Alignment(0.0, 0.0),
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeIn,
@@ -195,7 +198,7 @@ class _HomePageState extends State<HomePage> {
     double tagPoint = descriptionPoint + 5;
     double imagePoint = tagPoint + 10;
 
-    if (pixels >= (startPoint + 130)) isWeMakeStarsShown = true;
+    if (pixels >= (startPoint + 51)) isWeMakeStarsShown = true;
 
     Widget title = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -238,11 +241,12 @@ class _HomePageState extends State<HomePage> {
       children: [
         const SizedBox(height: 72.0),
         isWeMakeStarsShown ? title : getAnimatedWidget(title, startPoint),
-        const SizedBox(height: 20.0),
+        const SizedBox(height: 16.0),
         Stack(
           children: [
             Positioned(
-              child: Align(
+              child: Container(
+                padding: const EdgeInsets.only(top: 34.0),
                 alignment: Alignment.center,
                 child: isWeMakeStarsShown
                     ? image
@@ -267,16 +271,15 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        const SizedBox(height: 16.0),
       ],
     );
   }
 
   Widget get whatIsNyxsPart {
-    double startPoint = 836.0 - 150;
+    double startPoint = 836.0 - 359;
     double descriptionPoint = startPoint + 41;
 
-    if (pixels >= (startPoint + 61)) isWhatIsNyxsShown = true;
+    if (pixels >= (startPoint + 63)) isWhatIsNyxsShown = true;
 
     const String nyxsDescription = '''
 A new web3 sporting platform
@@ -317,7 +320,9 @@ favorite athletes.''';
   }
 
   Widget get howToPlayPart {
-    double titlePoint = 1106.0 - 100;
+    double startPoint = 1106.0 - 196;
+
+    if (pixels >= (startPoint + 9)) isHowToPlayShown = true;
 
     Widget title = Text('How to play', style: getTitleStyle());
 
@@ -326,7 +331,7 @@ favorite athletes.''';
       padding: const EdgeInsets.only(top: 30.0, bottom: 119.5),
       child: Column(
         children: [
-          isHowToPlayShown ? title : getAnimatedWidget(title, titlePoint),
+          isHowToPlayShown ? title : getAnimatedWidget(title, startPoint),
           howToPlayPartOne,
           const SizedBox(height: 57.5),
           howToPlayPartTwo,
@@ -368,10 +373,12 @@ favorite athletes.''';
   }
 
   Widget get howToPlayPartOne {
-    double startPoint = 1284.0 - 160;
+    double startPoint = 1284.0 - 351;
     double descriptionPoint = startPoint + 36;
-    double imagePoint = descriptionPoint + 47;
-    double decorationPoint = imagePoint + 35;
+    double imagePoint = descriptionPoint + 165;
+    double decorationPoint = imagePoint + 50;
+
+    if (pixels >= (startPoint + 284)) isHowToPlayOneShown = true;
 
     Widget title = getHowToPlayPartTitle(1, 'Select');
     Widget description = Stack(
@@ -429,7 +436,7 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 236.0),
-                child: isHowToPlayShown
+                child: isHowToPlayOneShown
                     ? image
                     : getAnimatedWidget(image, imagePoint),
               ),
@@ -437,7 +444,7 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 201.0),
-                child: isHowToPlayShown
+                child: isHowToPlayOneShown
                     ? decoration
                     : getAnimatedWidget(decoration, decorationPoint),
               ),
@@ -445,10 +452,10 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  isHowToPlayShown
+                  isHowToPlayOneShown
                       ? title
                       : getAnimatedWidget(title, startPoint),
-                  isHowToPlayShown
+                  isHowToPlayOneShown
                       ? description
                       : getAnimatedWidget(description, descriptionPoint),
                 ],
@@ -461,10 +468,12 @@ favorite athletes.''';
   }
 
   Widget get howToPlayPartTwo {
-    double startPoint = 1864.0 - 140;
+    double startPoint = 1864.0 - 360;
     double descriptionPoint = startPoint + 46;
-    double imagePoint = descriptionPoint + 47;
-    double decorationPoint = imagePoint + 35;
+    double imagePoint = descriptionPoint + 163;
+    double decorationPoint = imagePoint + 50;
+
+    if (pixels >= (startPoint + 312)) isHowToPlayTwoShown = true;
 
     Widget title = getHowToPlayPartTitle(2, 'Support');
     Widget description = Stack(
@@ -523,7 +532,7 @@ favorite athletes.''';
             Positioned(
               child: Container(
                 padding: const EdgeInsets.only(left: 33.0, top: 236.0),
-                child: isHowToPlayShown
+                child: isHowToPlayTwoShown
                     ? image
                     : getAnimatedWidget(image, imagePoint),
               ),
@@ -531,7 +540,7 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(left: 168.0, top: 188.0),
-                child: isHowToPlayShown
+                child: isHowToPlayTwoShown
                     ? decoration
                     : getAnimatedWidget(decoration, decorationPoint),
               ),
@@ -539,10 +548,10 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  isHowToPlayShown
+                  isHowToPlayTwoShown
                       ? title
                       : getAnimatedWidget(title, startPoint),
-                  isHowToPlayShown
+                  isHowToPlayTwoShown
                       ? description
                       : getAnimatedWidget(description, descriptionPoint),
                 ],
@@ -555,12 +564,12 @@ favorite athletes.''';
   }
 
   Widget get howToPlayPartThree {
-    double startPoint = 2417.0 - 120;
+    double startPoint = 2417.0 - 320;
     double descriptionPoint = startPoint + 36;
-    double imagePoint = descriptionPoint + 27;
-    double decorationPoint = imagePoint + 35;
+    double imagePoint = descriptionPoint + 126;
+    double decorationPoint = imagePoint + 50;
 
-    if (pixels >= (startPoint + 120)) isHowToPlayShown = true;
+    if (pixels >= (startPoint + 288)) isHowToPlayThreeShown = true;
 
     Widget title = getHowToPlayPartTitle(3, 'Celebrate');
     Widget description = Stack(
@@ -617,7 +626,7 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 236.0),
-                child: isHowToPlayShown
+                child: isHowToPlayThreeShown
                     ? image
                     : getAnimatedWidget(image, imagePoint),
               ),
@@ -625,10 +634,10 @@ favorite athletes.''';
             Positioned(
               child: Column(
                 children: [
-                  isHowToPlayShown
+                  isHowToPlayThreeShown
                       ? title
                       : getAnimatedWidget(title, startPoint),
-                  isHowToPlayShown
+                  isHowToPlayThreeShown
                       ? description
                       : getAnimatedWidget(description, descriptionPoint),
                 ],
@@ -637,7 +646,7 @@ favorite athletes.''';
             Positioned(
               child: Padding(
                 padding: const EdgeInsets.only(top: 172.0),
-                child: isHowToPlayShown
+                child: isHowToPlayThreeShown
                     ? decoration
                     : getAnimatedWidget(decoration, decorationPoint),
               ),
@@ -649,13 +658,13 @@ favorite athletes.''';
   }
 
   Widget get whatIsMissionPart {
-    double startPoint = 3135.0 - 100;
+    double startPoint = 3135.0 - 434;
     double descriptionOnePoint = startPoint + 30;
-    double titleTwoPoint = descriptionOnePoint + 60;
+    double titleTwoPoint = descriptionOnePoint + 226;
     double descriptionTwoPoint = titleTwoPoint + 30;
-    double imagePoint = descriptionTwoPoint + 40;
+    double imagePoint = descriptionTwoPoint + 154;
 
-    if (pixels >= (startPoint + 120)) isWhatIsMissionShown = true;
+    if (pixels >= (startPoint + 468)) isWhatIsMissionShown = true;
 
     const String missionDescription = '''
 The mission is the next level goal
@@ -707,12 +716,12 @@ from NYXS(Governance token)''';
   }
 
   Widget get specialExperiencePart {
-    double startPoint = 3837.0 - 100;
+    double startPoint = 3837.0 - 390;
     double titlePoint = startPoint + 30;
-    double tagPoint = titlePoint + 36;
-    double imagePoint = tagPoint + 10;
+    double tagPoint = titlePoint + 165;
+    double imagePoint = tagPoint + 76;
 
-    if (pixels >= (titlePoint + 120)) isSpecialExperienceShown = true;
+    if (pixels >= (startPoint + 322)) isSpecialExperienceShown = true;
 
     Widget logo = Image.asset(
       'images/large_logo.png',
