@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:web/utils.dart';
+import 'package:flutter_fadein/flutter_fadein.dart';
 
 void main() {
   setPathUrlStrategy();
@@ -28,8 +29,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late ScrollController _controller;
+  late final AnimationController _animationController = AnimationController(
+    duration: const Duration(milliseconds: 400),
+    vsync: this,
+  )..forward();
   double pixels = 0.0;
 
   bool isWeMakeStarsShown = false;
@@ -55,6 +61,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -241,6 +248,15 @@ class _HomePageState extends State<HomePage> {
       fit: BoxFit.fitHeight,
       filterQuality: FilterQuality.high,
     );
+    var tween = Tween<Offset>(
+      begin: const Offset(0.0, 0.3),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeIn,
+      ),
+    );
 
     return SizedBox(
       height: 715.0,
@@ -250,31 +266,39 @@ class _HomePageState extends State<HomePage> {
         children: [
           isWeMakeStarsShown
               ? Positioned(top: titleTop, child: title)
-              : getAnimatedWidget(
-                  marginTop: titleTop,
-                  widget: title,
-                  startingPoint: 1.0,
+              : Positioned(
+                  top: titleTop,
+                  child: SlideTransition(
+                    position: tween,
+                    child: title,
+                  ),
                 ),
           isWeMakeStarsShown
               ? Positioned(top: imageTop, child: image)
-              : getAnimatedWidget(
-                  marginTop: imageTop,
-                  widget: image,
-                  startingPoint: 26.0,
+              : Positioned(
+                  top: imageTop,
+                  child: SlideTransition(
+                    position: tween,
+                    child: image,
+                  ),
                 ),
           isWeMakeStarsShown
               ? Positioned(top: descriptionTop, child: description)
-              : getAnimatedWidget(
-                  marginTop: descriptionTop,
-                  widget: description,
-                  startingPoint: 21.0,
+              : Positioned(
+                  top: descriptionTop,
+                  child: SlideTransition(
+                    position: tween,
+                    child: description,
+                  ),
                 ),
           isWeMakeStarsShown
               ? Positioned(top: tagTop, child: getTag('BETA'))
-              : getAnimatedWidget(
-                  marginTop: tagTop,
-                  widget: getTag('BETA'),
-                  startingPoint: 34.0,
+              : Positioned(
+                  top: tagTop,
+                  child: SlideTransition(
+                    position: tween,
+                    child: getTag('BETA'),
+                  ),
                 ),
         ],
       ),
