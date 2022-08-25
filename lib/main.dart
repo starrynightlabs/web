@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:web/utils.dart';
-import 'package:flutter_fadein/flutter_fadein.dart';
+import 'dart:async';
 
 void main() {
   setPathUrlStrategy();
@@ -29,16 +29,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late ScrollController _controller;
-  late final AnimationController _animationController = AnimationController(
-    duration: const Duration(milliseconds: 400),
-    vsync: this,
-  )..forward();
   double pixels = 0.0;
 
-  bool isWeMakeStarsShown = false;
   bool isWhatIsNyxsShown = false;
   bool isHowToPlayTitleShown = false;
   bool isHowToPlayOneShown = false;
@@ -46,6 +40,12 @@ class _HomePageState extends State<HomePage>
   bool isHowToPlayThreeShown = false;
   bool isWhatIsMissionShown = false;
   bool isSpecialExperienceShown = false;
+
+  late final AnimationController _titleAnimationController;
+  late final AnimationController _descriptionAnimationController;
+  late final AnimationController _imageAnimationController;
+  static const duration = Duration(milliseconds: 500);
+  static const curve = Curves.easeOutExpo;
 
   @override
   void initState() {
@@ -56,12 +56,27 @@ class _HomePageState extends State<HomePage>
         pixels = _controller.position.pixels;
       });
     });
+
+    _titleAnimationController = AnimationController(
+      duration: duration,
+      vsync: this,
+    );
+    _descriptionAnimationController = AnimationController(
+      duration: duration,
+      vsync: this,
+    );
+    _imageAnimationController = AnimationController(
+      duration: duration,
+      vsync: this,
+    );
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    _animationController.dispose();
+    _titleAnimationController.dispose();
+    _descriptionAnimationController.dispose();
+    _imageAnimationController.dispose();
     super.dispose();
   }
 
@@ -165,14 +180,14 @@ class _HomePageState extends State<HomePage>
     reverse = false,
   }) {
     return AnimatedPositioned(
-      curve: Curves.easeIn,
-      duration: const Duration(milliseconds: 500),
+      curve: curve,
+      duration: duration,
       top: pixels <= startingPoint
           ? (reverse ? marginTop - 10 : marginTop + 10)
           : marginTop,
       child: AnimatedOpacity(
         opacity: pixels <= startingPoint ? 0.0 : 1.0,
-        duration: const Duration(milliseconds: 500),
+        duration: duration,
         child: widget,
       ),
     );
@@ -204,13 +219,25 @@ class _HomePageState extends State<HomePage>
     );
   }
 
+  void startWeMakeStarsAnimation() {
+    Timer(const Duration(seconds: 1), () {
+      _titleAnimationController.forward();
+    });
+    Timer(const Duration(seconds: 2), () {
+      _descriptionAnimationController.forward();
+    });
+    Timer(const Duration(seconds: 3), () {
+      _imageAnimationController.forward();
+    });
+  }
+
   Widget get weMakeStarsPart {
     double titleTop = 72.0;
     double descriptionTop = 126.0;
     double tagTop = 206.0;
     double imageTop = 160.0;
 
-    if (pixels >= 45.0) isWeMakeStarsShown = true;
+    startWeMakeStarsAnimation();
 
     Widget title = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -248,15 +275,6 @@ class _HomePageState extends State<HomePage>
       fit: BoxFit.fitHeight,
       filterQuality: FilterQuality.high,
     );
-    var tween = Tween<Offset>(
-      begin: const Offset(0.0, 0.3),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeIn,
-      ),
-    );
 
     return SizedBox(
       height: 715.0,
@@ -264,42 +282,62 @@ class _HomePageState extends State<HomePage>
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          isWeMakeStarsShown
-              ? Positioned(top: titleTop, child: title)
-              : Positioned(
-                  top: titleTop,
-                  child: SlideTransition(
-                    position: tween,
-                    child: title,
-                  ),
-                ),
-          isWeMakeStarsShown
-              ? Positioned(top: imageTop, child: image)
-              : Positioned(
-                  top: imageTop,
-                  child: SlideTransition(
-                    position: tween,
-                    child: image,
-                  ),
-                ),
-          isWeMakeStarsShown
-              ? Positioned(top: descriptionTop, child: description)
-              : Positioned(
-                  top: descriptionTop,
-                  child: SlideTransition(
-                    position: tween,
-                    child: description,
-                  ),
-                ),
-          isWeMakeStarsShown
-              ? Positioned(top: tagTop, child: getTag('BETA'))
-              : Positioned(
-                  top: tagTop,
-                  child: SlideTransition(
-                    position: tween,
-                    child: getTag('BETA'),
-                  ),
-                ),
+          Positioned(
+            top: titleTop,
+            child: FadeTransition(
+              opacity: Tween(begin: 0.0, end: 1.0)
+                  .animate(_titleAnimationController),
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 0.4),
+                  end: Offset.zero,
+                ).animate(_titleAnimationController),
+                child: title,
+              ),
+            ),
+          ),
+          Positioned(
+            top: imageTop,
+            child: FadeTransition(
+              opacity: Tween(begin: 0.0, end: 1.0)
+                  .animate(_imageAnimationController),
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 0.1),
+                  end: Offset.zero,
+                ).animate(_imageAnimationController),
+                child: image,
+              ),
+            ),
+          ),
+          Positioned(
+            top: descriptionTop,
+            child: FadeTransition(
+              opacity: Tween(begin: 0.0, end: 1.0)
+                  .animate(_descriptionAnimationController),
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 0.4),
+                  end: Offset.zero,
+                ).animate(_descriptionAnimationController),
+                child: description,
+              ),
+            ),
+          ),
+          Positioned(
+            top: tagTop,
+            child: FadeTransition(
+              opacity: Tween(begin: 0.0, end: 1.0)
+                  .animate(_imageAnimationController),
+              child: SlideTransition(
+                position: Tween(
+                  begin: const Offset(0.0, 0.6),
+                  end: Offset.zero,
+                ).animate(_imageAnimationController),
+                child: getTag('BETA'),
+              ),
+            ),
+          ),
         ],
       ),
     );
