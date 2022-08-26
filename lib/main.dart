@@ -498,16 +498,19 @@ favorite athletes.''';
       fit: BoxFit.fitHeight,
       filterQuality: FilterQuality.high,
     );
-    Widget lineDecoration = Image.asset(
-      'images/line_1.png',
-      color: NyxsColors.mint,
-      height: 477.5,
-      fit: BoxFit.fitHeight,
-      filterQuality: FilterQuality.high,
+    Widget lineDecoration = Padding(
+      padding: const EdgeInsets.only(right: 5.0),
+      child: Image.asset(
+        'images/line_1.png',
+        color: NyxsColors.mint,
+        height: 477.5,
+        fit: BoxFit.fitHeight,
+        filterQuality: FilterQuality.high,
+      ),
     );
 
     return [
-      Positioned(top: 266.0, left: 128.0, child: lineDecoration),
+      Positioned(top: 267.0, child: lineDecoration),
       isHowToPlayOneShown
           ? Positioned(top: imageTop, child: image)
           : getAnimatedWidget(
@@ -583,16 +586,19 @@ favorite athletes.''';
       fit: BoxFit.fill,
       filterQuality: FilterQuality.high,
     );
-    Widget lineDecoration = Image.asset(
-      'images/line_2.png',
-      color: NyxsColors.mint,
-      height: 484.1,
-      fit: BoxFit.fitHeight,
-      filterQuality: FilterQuality.high,
+    Widget lineDecoration = Padding(
+      padding: const EdgeInsets.only(right: 4.0),
+      child: Image.asset(
+        'images/line_2.png',
+        color: NyxsColors.mint,
+        height: 484.1,
+        fit: BoxFit.fitHeight,
+        filterQuality: FilterQuality.high,
+      ),
     );
 
     return [
-      Positioned(top: 822.0, left: 135, child: lineDecoration),
+      Positioned(top: 822.0, child: lineDecoration),
       isHowToPlayTwoShown
           ? Positioned(top: imageTop, child: image)
           : getAnimatedWidget(
@@ -666,16 +672,19 @@ favorite athletes.''';
       fit: BoxFit.fitHeight,
       filterQuality: FilterQuality.high,
     );
-    Widget lineDecoration = Image.asset(
-      'images/line_3.png',
-      color: NyxsColors.mint,
-      height: 431.51,
-      fit: BoxFit.fitHeight,
-      filterQuality: FilterQuality.high,
+    Widget lineDecoration = Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: Image.asset(
+        'images/line_3.png',
+        color: NyxsColors.mint,
+        height: 431.51,
+        fit: BoxFit.fitHeight,
+        filterQuality: FilterQuality.high,
+      ),
     );
 
     return [
-      Positioned(top: 1405.0, left: 156.5, child: lineDecoration),
+      Positioned(top: 1405.0, child: lineDecoration),
       isHowToPlayThreeShown
           ? Positioned(top: imageTop, child: image)
           : getAnimatedWidget(
