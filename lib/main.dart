@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final AnimationController _imageAnimationController;
   static const duration = Duration(milliseconds: 500);
   static const curve = Curves.easeOutExpo;
+  late Timer _timer;
 
   @override
   void initState() {
@@ -77,6 +78,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _titleAnimationController.dispose();
     _descriptionAnimationController.dispose();
     _imageAnimationController.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
@@ -220,14 +222,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   void startWeMakeStarsAnimation() {
-    Timer(const Duration(seconds: 1), () {
-      _titleAnimationController.forward();
-    });
-    Timer(const Duration(seconds: 2), () {
-      _descriptionAnimationController.forward();
-    });
-    Timer(const Duration(seconds: 3), () {
-      _imageAnimationController.forward();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (timer.tick == 1) {
+        _titleAnimationController.forward();
+      } else if (timer.tick == 2) {
+        _descriptionAnimationController.forward();
+      } else if (timer.tick == 3) {
+        _imageAnimationController.forward();
+      } else {
+        timer.cancel();
+      }
     });
   }
 
