@@ -576,6 +576,7 @@ favorite athletes.''';
         ),
       ],
     );
+    // TODO: Align image to center.
     Widget image = Container(
       alignment: Alignment.topCenter,
       padding: const EdgeInsets.only(left: 160),
@@ -583,7 +584,6 @@ favorite athletes.''';
         'images/player_cards.png',
         height: 137.0,
         fit: BoxFit.fitHeight,
-        // alignment: Alignment.,
         filterQuality: FilterQuality.high,
       ),
     );
@@ -607,7 +607,7 @@ favorite athletes.''';
 
     return [
       Positioned(top: 822.0, child: lineDecoration),
-      // TODO: Align to center.
+      // TODO: Align image to center.
       isHowToPlayTwoShown
           ? Positioned(top: imageTop, child: image)
           : Positioned(
