@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final AnimationController _descriptionAnimationController;
   late final AnimationController _imageAnimationController;
   static const duration = Duration(milliseconds: 500);
-  static const curve = Curves.easeOutExpo;
+  static const curve = Curves.easeOutQuart;
   late Timer _timer;
 
   @override
@@ -59,15 +59,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     });
 
     _titleAnimationController = AnimationController(
-      duration: duration,
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
     _descriptionAnimationController = AnimationController(
-      duration: duration,
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
     _imageAnimationController = AnimationController(
-      duration: duration,
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
   }
@@ -180,12 +180,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     required widget,
     required startingPoint,
     reverse = false,
+    duration = const Duration(milliseconds: 500),
+    padding = 10,
   }) {
     return AnimatedPositioned(
-      curve: curve,
+      curve: Curves.easeOutQuart,
       duration: duration,
       top: pixels <= startingPoint
-          ? (reverse ? marginTop - 10 : marginTop + 10)
+          ? (reverse ? marginTop - padding : marginTop + padding)
           : marginTop,
       child: AnimatedOpacity(
         opacity: pixels <= startingPoint ? 0.0 : 1.0,
@@ -222,7 +224,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   void startWeMakeStarsAnimation() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       if (timer.tick == 1) {
         _titleAnimationController.forward();
       } else if (timer.tick == 2) {
@@ -463,7 +465,7 @@ favorite athletes.''';
     double imageTop = 444.0;
     double decorationTop = 409.0;
 
-    if (pixels >= 1230.0) isHowToPlayOneShown = true;
+    if (pixels >= 1500.0) isHowToPlayOneShown = true;
 
     Widget title = getHowToPlayPartTitle(1, 'Select');
     Widget description = Stack(
@@ -523,8 +525,10 @@ favorite athletes.''';
           : getAnimatedWidget(
               marginTop: decorationTop,
               widget: decoration,
-              startingPoint: 1184.0,
+              startingPoint: 1264.0,
               reverse: true,
+              duration: const Duration(milliseconds: 1500),
+              padding: 30,
             ),
       isHowToPlayOneShown
           ? Positioned(top: descriptionTop, child: description)
@@ -549,7 +553,7 @@ favorite athletes.''';
     double imageTop = 1024.0;
     double decorationTop = 976.0;
 
-    if (pixels >= 1800.0) isHowToPlayTwoShown = true;
+    if (pixels >= 2100.0) isHowToPlayTwoShown = true;
 
     Widget title = getHowToPlayPartTitle(2, 'Support');
     Widget description = Stack(
@@ -572,12 +576,16 @@ favorite athletes.''';
         ),
       ],
     );
-    Widget image = Image.asset(
-      'images/player_cards.png',
-      height: 137.0,
-      fit: BoxFit.fitHeight,
-      alignment: Alignment.topLeft,
-      filterQuality: FilterQuality.high,
+    Widget image = Container(
+      alignment: Alignment.topCenter,
+      padding: const EdgeInsets.only(left: 160),
+      child: Image.asset(
+        'images/player_cards.png',
+        height: 137.0,
+        fit: BoxFit.fitHeight,
+        // alignment: Alignment.,
+        filterQuality: FilterQuality.high,
+      ),
     );
     Widget decoration = Image.asset(
       'images/decoration_2.png',
@@ -599,19 +607,30 @@ favorite athletes.''';
 
     return [
       Positioned(top: 822.0, child: lineDecoration),
+      // TODO: Align to center.
       isHowToPlayTwoShown
           ? Positioned(top: imageTop, child: image)
-          : getAnimatedWidget(
-              marginTop: imageTop,
-              widget: image,
-              startingPoint: 1713.0,
+          : Positioned(
+              top: imageTop,
+              child: AnimatedOpacity(
+                opacity: pixels <= 1713.0 ? 0.0 : 1.0,
+                duration: const Duration(seconds: 2),
+                child: AnimatedAlign(
+                  alignment: pixels <= 1713.0
+                      ? const Alignment(5, 0)
+                      : const Alignment(0, 0),
+                  curve: curve,
+                  duration: const Duration(seconds: 2),
+                  child: image,
+                ),
+              ),
             ),
       isHowToPlayTwoShown
           ? Positioned(top: decorationTop, child: decoration)
           : getAnimatedWidget(
               marginTop: decorationTop,
               widget: decoration,
-              startingPoint: 1763.0,
+              startingPoint: 1763.0 + 80,
               reverse: true,
             ),
       isHowToPlayTwoShown
@@ -637,7 +656,7 @@ favorite athletes.''';
     double imageTop = 1577.0;
     double decorationTop = 1513.0;
 
-    if (pixels >= 2350.0) isHowToPlayThreeShown = true;
+    if (pixels >= 2700.0) isHowToPlayThreeShown = true;
 
     Widget title = getHowToPlayPartTitle(3, 'Celebrate');
     Widget description = Stack(
@@ -711,8 +730,10 @@ favorite athletes.''';
           : getAnimatedWidget(
               marginTop: decorationTop,
               widget: decoration,
-              startingPoint: 2309.0,
+              startingPoint: 2389.0,
               reverse: true,
+              duration: const Duration(milliseconds: 1500),
+              padding: 30,
             ),
     ];
   }
@@ -838,13 +859,16 @@ from NYXS(Governance token)''';
       alignment: Alignment.topCenter,
       children: [
         Positioned(
-          child: Image(
-            height: 450.0,
-            fit: BoxFit.fitHeight,
-            filterQuality: FilterQuality.high,
-            image: Image.asset(
-              'images/special_experience.png',
-            ).image,
+          child: SizedBox(
+            height: 449.0,
+            width: MediaQuery.of(context).size.width,
+            child: Image(
+              fit: BoxFit.fitHeight,
+              filterQuality: FilterQuality.high,
+              image: Image.asset(
+                'images/special_experience.png',
+              ).image,
+            ),
           ),
         ),
         Positioned(
