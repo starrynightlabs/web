@@ -44,8 +44,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final AnimationController _titleAnimationController;
   late final AnimationController _descriptionAnimationController;
   late final AnimationController _imageAnimationController;
-  static const duration = Duration(milliseconds: 500);
-  static const curve = Curves.easeOutQuart;
   late Timer _timer;
 
   @override
@@ -576,10 +574,8 @@ favorite athletes.''';
         ),
       ],
     );
-    // TODO: Align image to center.
-    Widget image = Container(
-      alignment: Alignment.topCenter,
-      padding: const EdgeInsets.only(left: 160),
+    Widget image = Padding(
+      padding: const EdgeInsets.only(left: 33.0),
       child: Image.asset(
         'images/player_cards.png',
         height: 137.0,
@@ -587,12 +583,15 @@ favorite athletes.''';
         filterQuality: FilterQuality.high,
       ),
     );
-    Widget decoration = Image.asset(
-      'images/decoration_2.png',
-      width: 152.0,
-      height: 246.0,
-      fit: BoxFit.fill,
-      filterQuality: FilterQuality.high,
+    Widget decoration = Padding(
+      padding: const EdgeInsets.only(left: 138.0),
+      child: Image.asset(
+        'images/decoration_2.png',
+        width: 152.0,
+        height: 246.0,
+        fit: BoxFit.fill,
+        filterQuality: FilterQuality.high,
+      ),
     );
     Widget lineDecoration = Padding(
       padding: const EdgeInsets.only(right: 4.0),
@@ -607,19 +606,18 @@ favorite athletes.''';
 
     return [
       Positioned(top: 822.0, child: lineDecoration),
-      // TODO: Align image to center.
       isHowToPlayTwoShown
           ? Positioned(top: imageTop, child: image)
           : Positioned(
               top: imageTop,
-              child: AnimatedOpacity(
-                opacity: pixels <= 1713.0 ? 0.0 : 1.0,
+              child: AnimatedSlide(
+                offset: pixels <= 1713.0
+                    ? const Offset(0.5, 0.0)
+                    : const Offset(0.2, 0.0),
+                curve: Curves.easeOutQuart,
                 duration: const Duration(seconds: 2),
-                child: AnimatedAlign(
-                  alignment: pixels <= 1713.0
-                      ? const Alignment(5, 0)
-                      : const Alignment(0, 0),
-                  curve: curve,
+                child: AnimatedOpacity(
+                  opacity: pixels <= 1713.0 ? 0.0 : 1.0,
                   duration: const Duration(seconds: 2),
                   child: image,
                 ),
