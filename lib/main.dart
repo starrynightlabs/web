@@ -607,7 +607,13 @@ favorite athletes.''';
     return [
       Positioned(top: 822.0, child: lineDecoration),
       isHowToPlayTwoShown
-          ? Positioned(top: imageTop, child: image)
+          ? Positioned(
+              top: imageTop,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 254.0),
+                child: image,
+              ),
+            )
           : Positioned(
               top: imageTop,
               child: AnimatedSlide(
