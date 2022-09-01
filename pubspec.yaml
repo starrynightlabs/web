@@ -31,7 +31,6 @@ dependencies:
     sdk: flutter
   flutter_linkify: ^5.0.2
   url_launcher: ^6.1.4
-  flutter_fadein: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
