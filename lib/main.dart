@@ -70,7 +70,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void dispose() {
     _timer.cancel();
-    animationControllers.forEach((_, controller) => controller.dispose());
+    for (var controller in animationControllers.values) {
+      controller.dispose();
+    }
     _controller.dispose();
     super.dispose();
   }
@@ -220,11 +222,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void startWeMakeStarsAnimation() {
     _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       if (timer.tick == 1) {
-        animationControllers['title']?.forward();
+        animationControllers['title']!.forward();
       } else if (timer.tick == 2) {
-        animationControllers['description']?.forward();
+        animationControllers['description']!.forward();
       } else if (timer.tick == 3) {
-        animationControllers['image']?.forward();
+        animationControllers['image']!.forward();
       } else {
         timer.cancel();
       }
@@ -237,6 +239,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     double tagTop = 206.0;
     double imageTop = 160.0;
 
+    AnimationController titleAnimation = animationControllers['title']!;
+    AnimationController descriptionAnimation =
+        animationControllers['description']!;
+    AnimationController imageAnimation = animationControllers['image']!;
     startWeMakeStarsAnimation();
 
     Widget title = Row(
@@ -285,13 +291,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Positioned(
             top: titleTop,
             child: FadeTransition(
-              opacity: Tween(begin: 0.0, end: 1.0)
-                  .animate(animationControllers['title']!),
+              opacity: Tween(begin: 0.0, end: 1.0).animate(titleAnimation),
               child: SlideTransition(
                 position: Tween<Offset>(
                   begin: const Offset(0.0, 0.4),
                   end: Offset.zero,
-                ).animate(animationControllers['title']!),
+                ).animate(titleAnimation),
                 child: title,
               ),
             ),
@@ -299,13 +304,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Positioned(
             top: imageTop,
             child: FadeTransition(
-              opacity: Tween(begin: 0.0, end: 1.0)
-                  .animate(animationControllers['image']!),
+              opacity: Tween(begin: 0.0, end: 1.0).animate(imageAnimation),
               child: SlideTransition(
                 position: Tween<Offset>(
                   begin: const Offset(0.0, 0.1),
                   end: Offset.zero,
-                ).animate(animationControllers['image']!),
+                ).animate(imageAnimation),
                 child: image,
               ),
             ),
@@ -313,13 +317,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Positioned(
             top: descriptionTop,
             child: FadeTransition(
-              opacity: Tween(begin: 0.0, end: 1.0)
-                  .animate(animationControllers['description']!),
+              opacity:
+                  Tween(begin: 0.0, end: 1.0).animate(descriptionAnimation),
               child: SlideTransition(
                 position: Tween<Offset>(
                   begin: const Offset(0.0, 0.4),
                   end: Offset.zero,
-                ).animate(animationControllers['description']!),
+                ).animate(descriptionAnimation),
                 child: description,
               ),
             ),
@@ -327,13 +331,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Positioned(
             top: tagTop,
             child: FadeTransition(
-              opacity: Tween(begin: 0.0, end: 1.0)
-                  .animate(animationControllers['image']!),
+              opacity: Tween(begin: 0.0, end: 1.0).animate(imageAnimation),
               child: SlideTransition(
                 position: Tween(
                   begin: const Offset(0.0, 0.6),
                   end: Offset.zero,
-                ).animate(animationControllers['image']!),
+                ).animate(imageAnimation),
                 child: getTag('BETA'),
               ),
             ),
