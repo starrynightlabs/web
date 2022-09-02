@@ -170,6 +170,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
+  Widget animateWeMakeStars(
+    widget,
+    controller, {
+    Offset beginOffset = const Offset(0.0, 0.4),
+  }) {
+    return FadeTransition(
+      opacity: Tween(begin: 0.0, end: 1.0).animate(controller),
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: beginOffset,
+          end: Offset.zero,
+        ).animate(controller),
+        child: widget,
+      ),
+    );
+  }
+
   Widget animateWidget(
     widget, {
     required position,
@@ -231,23 +248,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         timer.cancel();
       }
     });
-  }
-
-  Widget animateWeMakeStars(
-    widget,
-    controller, {
-    double beginOffset = 0.4,
-  }) {
-    return FadeTransition(
-      opacity: Tween(begin: 0.0, end: 1.0).animate(controller),
-      child: SlideTransition(
-        position: Tween<Offset>(
-          begin: const Offset(0.0, 0.4),
-          end: Offset.zero,
-        ).animate(controller),
-        child: widget,
-      ),
-    );
   }
 
   Widget get weMakeStarsPart {
@@ -316,7 +316,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: animateWeMakeStars(
               image,
               imageAnimationController,
-              beginOffset: 0.1,
+              beginOffset: const Offset(0.0, 0.1),
             ),
           ),
           Positioned(
@@ -331,7 +331,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: animateWeMakeStars(
               getTag('BETA'),
               imageAnimationController,
-              beginOffset: 0.6,
+              beginOffset: const Offset(0.0, 0.6),
             ),
           ),
         ],
