@@ -30,7 +30,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late ScrollController _controller;
+  final ScrollController _controller = ScrollController();
   double currentPixels = 0.0;
 
   Map<String, bool> partsShown = {};
@@ -41,7 +41,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _controller = ScrollController();
     _controller.addListener(() {
       setState(() {
         currentPixels = _controller.position.pixels;
