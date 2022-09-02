@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget getAnimatedWidget(
+  Widget animateWidget(
     widget, {
     required position,
     required startingPoint,
@@ -233,16 +233,35 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     });
   }
 
+  Widget animateWeMakeStars(
+    widget,
+    controller, {
+    double beginOffset = 0.4,
+  }) {
+    return FadeTransition(
+      opacity: Tween(begin: 0.0, end: 1.0).animate(controller),
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(0.0, 0.4),
+          end: Offset.zero,
+        ).animate(controller),
+        child: widget,
+      ),
+    );
+  }
+
   Widget get weMakeStarsPart {
     double titleTop = 72.0;
     double descriptionTop = 126.0;
     double tagTop = 206.0;
     double imageTop = 160.0;
 
-    AnimationController titleAnimation = animationControllers['title']!;
-    AnimationController descriptionAnimation =
+    AnimationController titleAnimationController =
+        animationControllers['title']!;
+    AnimationController descriptionAnimationController =
         animationControllers['description']!;
-    AnimationController imageAnimation = animationControllers['image']!;
+    AnimationController imageAnimationController =
+        animationControllers['image']!;
     startWeMakeStarsAnimation();
 
     Widget title = Row(
@@ -290,55 +309,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         children: [
           Positioned(
             top: titleTop,
-            child: FadeTransition(
-              opacity: Tween(begin: 0.0, end: 1.0).animate(titleAnimation),
-              child: SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0.0, 0.4),
-                  end: Offset.zero,
-                ).animate(titleAnimation),
-                child: title,
-              ),
-            ),
+            child: animateWeMakeStars(title, titleAnimationController),
           ),
           Positioned(
             top: imageTop,
-            child: FadeTransition(
-              opacity: Tween(begin: 0.0, end: 1.0).animate(imageAnimation),
-              child: SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0.0, 0.1),
-                  end: Offset.zero,
-                ).animate(imageAnimation),
-                child: image,
-              ),
+            child: animateWeMakeStars(
+              image,
+              imageAnimationController,
+              beginOffset: 0.1,
             ),
           ),
           Positioned(
             top: descriptionTop,
-            child: FadeTransition(
-              opacity:
-                  Tween(begin: 0.0, end: 1.0).animate(descriptionAnimation),
-              child: SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0.0, 0.4),
-                  end: Offset.zero,
-                ).animate(descriptionAnimation),
-                child: description,
-              ),
+            child: animateWeMakeStars(
+              description,
+              descriptionAnimationController,
             ),
           ),
           Positioned(
             top: tagTop,
-            child: FadeTransition(
-              opacity: Tween(begin: 0.0, end: 1.0).animate(imageAnimation),
-              child: SlideTransition(
-                position: Tween(
-                  begin: const Offset(0.0, 0.6),
-                  end: Offset.zero,
-                ).animate(imageAnimation),
-                child: getTag('BETA'),
-              ),
+            child: animateWeMakeStars(
+              getTag('BETA'),
+              imageAnimationController,
+              beginOffset: 0.6,
             ),
           ),
         ],
@@ -383,14 +376,14 @@ favorite athletes.''';
         children: [
           isShown
               ? Positioned(top: titleTop, child: title)
-              : getAnimatedWidget(
+              : animateWidget(
                   title,
                   position: titleTop,
                   startingPoint: 477.0,
                 ),
           isShown
               ? Positioned(top: descriptionTop, child: description)
-              : getAnimatedWidget(
+              : animateWidget(
                   description,
                   position: descriptionTop,
                   startingPoint: 518.0,
@@ -415,7 +408,7 @@ favorite athletes.''';
         children: [
               partsShown['howToPlayTitle'] == true
                   ? Positioned(top: titleTop, child: title)
-                  : getAnimatedWidget(
+                  : animateWidget(
                       title,
                       position: titleTop,
                       startingPoint: 910.0,
@@ -519,14 +512,14 @@ the athletes every season.''';
       Positioned(top: 267.0, child: lineDecoration),
       isShown
           ? Positioned(top: imageTop, child: image)
-          : getAnimatedWidget(
+          : animateWidget(
               image,
               position: imageTop,
               startingPoint: 1134.0,
             ),
       isShown
           ? Positioned(top: decorationTop, child: decoration)
-          : getAnimatedWidget(
+          : animateWidget(
               decoration,
               position: decorationTop,
               startingPoint: 1264.0,
@@ -536,14 +529,14 @@ the athletes every season.''';
             ),
       isShown
           ? Positioned(top: descriptionTop, child: description)
-          : getAnimatedWidget(
+          : animateWidget(
               description,
               position: descriptionTop,
               startingPoint: 969.0,
             ),
       isShown
           ? Positioned(top: titleTop, child: title)
-          : getAnimatedWidget(
+          : animateWidget(
               title,
               position: titleTop,
               startingPoint: 933.0,
@@ -642,7 +635,7 @@ journey together.''';
             ),
       isShown
           ? Positioned(top: decorationTop, child: decoration)
-          : getAnimatedWidget(
+          : animateWidget(
               decoration,
               position: decorationTop,
               startingPoint: 1763.0 + 80,
@@ -650,14 +643,14 @@ journey together.''';
             ),
       isShown
           ? Positioned(top: descriptionTop, child: description)
-          : getAnimatedWidget(
+          : animateWidget(
               description,
               position: descriptionTop,
               startingPoint: 1550.0,
             ),
       isShown
           ? Positioned(top: titleTop, child: title)
-          : getAnimatedWidget(
+          : animateWidget(
               title,
               position: titleTop,
               startingPoint: 1504.0,
@@ -726,28 +719,28 @@ earn the rewards from NYXS.''';
       Positioned(top: 1405.0, child: lineDecoration),
       isShown
           ? Positioned(top: imageTop, child: image)
-          : getAnimatedWidget(
+          : animateWidget(
               image,
               position: imageTop,
               startingPoint: 2259.0,
             ),
       isShown
           ? Positioned(top: descriptionTop, child: description)
-          : getAnimatedWidget(
+          : animateWidget(
               description,
               position: descriptionTop,
               startingPoint: 2133.0,
             ),
       isShown
           ? Positioned(top: titleTop, child: title)
-          : getAnimatedWidget(
+          : animateWidget(
               title,
               position: titleTop,
               startingPoint: 2097.0,
             ),
       isShown
           ? Positioned(top: decorationTop, child: decoration)
-          : getAnimatedWidget(
+          : animateWidget(
               decoration,
               position: decorationTop,
               startingPoint: 2389.0,
@@ -799,7 +792,7 @@ from NYXS(Governance token)''';
                   top: titleTop,
                   child: title,
                 )
-              : getAnimatedWidget(
+              : animateWidget(
                   title,
                   position: titleTop,
                   startingPoint: 2701.0,
@@ -809,7 +802,7 @@ from NYXS(Governance token)''';
                   top: descriptionTop,
                   child: description,
                 )
-              : getAnimatedWidget(
+              : animateWidget(
                   description,
                   position: descriptionTop,
                   startingPoint: 2731.0,
@@ -819,7 +812,7 @@ from NYXS(Governance token)''';
                   top: titleTwoTop,
                   child: titleTwo,
                 )
-              : getAnimatedWidget(
+              : animateWidget(
                   titleTwo,
                   position: titleTwoTop,
                   startingPoint: 2957.0,
@@ -829,14 +822,14 @@ from NYXS(Governance token)''';
                   top: descriptionTwoTop,
                   child: descriptionTwo,
                 )
-              : getAnimatedWidget(
+              : animateWidget(
                   descriptionTwo,
                   position: descriptionTwoTop,
                   startingPoint: 2987.0,
                 ),
           isShown
               ? Positioned(top: imageTop, child: image)
-              : getAnimatedWidget(
+              : animateWidget(
                   image,
                   position: imageTop,
                   startingPoint: 3141.0,
@@ -926,28 +919,28 @@ from NYXS(Governance token)''';
         children: [
           isShown
               ? Positioned(top: logoTop, child: logo)
-              : getAnimatedWidget(
+              : animateWidget(
                   logo,
                   position: logoTop,
                   startingPoint: 3447.0,
                 ),
           isShown
               ? Positioned(top: imageTop, child: image)
-              : getAnimatedWidget(
+              : animateWidget(
                   image,
                   position: imageTop,
                   startingPoint: 3718.0,
                 ),
           isShown
               ? Positioned(top: titleTop, child: title)
-              : getAnimatedWidget(
+              : animateWidget(
                   title,
                   position: titleTop,
                   startingPoint: 3477.0,
                 ),
           isShown
               ? Positioned(top: tagTop, child: tags)
-              : getAnimatedWidget(
+              : animateWidget(
                   tags,
                   position: tagTop,
                   startingPoint: 3642.0,
