@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web/Widgets/part.dart';
+import 'package:web/Widgets/common.dart';
 
 class WhatIsNyxs extends Part {
   final double titleTop = 120.0;

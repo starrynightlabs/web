@@ -1,22 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:web/Widgets/part.dart';
+import 'package:web/Widgets/common.dart';
 import 'package:web/utils.dart';
 import 'dart:async';
 
-class WeMakeStars extends Part {
-  final double titleTop = 72.0;
-  final double descriptionTop = 126.0;
-  final double tagTop = 206.0;
-  final double imageTop = 160.0;
+class WeMakeStars extends StatefulWidget {
+  const WeMakeStars({super.key});
 
-  final Map<String, AnimationController> animationControllers;
+  @override
+  State<WeMakeStars> createState() => _WeMakeStarsState();
+}
 
-  const WeMakeStars(
-    super.isAnimated,
-    super.currentPixels,
-    this.animationControllers, {
-    Key? key,
-  }) : super(key: key);
+class _WeMakeStarsState extends State<WeMakeStars>
+    with CommonWidget, TickerProviderStateMixin {
+  static const double titleTop = 72.0;
+  static const double descriptionTop = 126.0;
+  static const double tagTop = 206.0;
+  static const double imageTop = 160.0;
+
+  final Map<String, AnimationController> animationControllers = {};
+  late final Timer animationTimer;
+
+  @override
+  void initState() {
+    for (var element in ['title', 'description', 'image']) {
+      animationControllers[element] = AnimationController(
+        duration: const Duration(milliseconds: 500),
+        vsync: this,
+      );
+    }
+
+    animationTimer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+      if (timer.tick == 1) {
+        animationControllers['title']!.forward();
+      } else if (timer.tick == 2) {
+        animationControllers['description']!.forward();
+      } else if (timer.tick == 3) {
+        animationControllers['image']!.forward();
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    for (var controller in animationControllers.values) {
+      controller.dispose();
+    }
+    animationTimer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +59,6 @@ class WeMakeStars extends Part {
         animationControllers['description']!;
     AnimationController imageAnimationController =
         animationControllers['image']!;
-
-    startWeMakeStarsAnimation();
 
     Widget title = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -102,20 +133,6 @@ class WeMakeStars extends Part {
         ],
       ),
     );
-  }
-
-  void startWeMakeStarsAnimation() {
-    Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      if (timer.tick == 1) {
-        animationControllers['title']!.forward();
-      } else if (timer.tick == 2) {
-        animationControllers['description']!.forward();
-      } else if (timer.tick == 3) {
-        animationControllers['image']!.forward();
-      } else {
-        timer.cancel();
-      }
-    });
   }
 
   Widget animateWeMakeStars(

@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:web/utils.dart';
 
-class Part extends StatelessWidget {
+class Part extends StatelessWidget with CommonWidget {
   final bool isAnimated;
   final double currentPixels;
 
-  const Part(this.isAnimated, this.currentPixels, {Key? key}) : super(key: key );
+  const Part(this.isAnimated, this.currentPixels, {Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
+  }
+
+  Widget animateWidget(
+    widget, {
+    required position,
+    required startingPoint,
+    margin = 10,
+    reverse = false,
+    duration = const Duration(milliseconds: 500),
+  }) {
+    double begin = reverse ? position - margin : position + margin;
+    double end = position;
+
+    return AnimatedPositioned(
+      curve: Curves.easeOutQuart,
+      duration: duration,
+      top: currentPixels <= startingPoint ? begin : end,
+      child: AnimatedOpacity(
+        opacity: currentPixels <= startingPoint ? 0.0 : 1.0,
+        duration: duration,
+        child: widget,
+      ),
+    );
+  }
+}
+
+mixin CommonWidget {
   TextStyle getTitleStyle({
     color = Colors.white,
   }) {
@@ -87,33 +117,5 @@ class Part extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget animateWidget(
-    widget, {
-    required position,
-    required startingPoint,
-    margin = 10,
-    reverse = false,
-    duration = const Duration(milliseconds: 500),
-  }) {
-    double begin = reverse ? position - margin : position + margin;
-    double end = position;
-
-    return AnimatedPositioned(
-      curve: Curves.easeOutQuart,
-      duration: duration,
-      top: currentPixels <= startingPoint ? begin : end,
-      child: AnimatedOpacity(
-        opacity: currentPixels <= startingPoint ? 0.0 : 1.0,
-        duration: duration,
-        child: widget,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    throw UnimplementedError();
   }
 }

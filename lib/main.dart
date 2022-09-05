@@ -30,12 +30,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
   double currentPixels = 0.0;
 
   Map<String, bool> partsShown = {};
-  Map<String, AnimationController> animationControllers = {};
 
   @override
   void initState() {
@@ -57,20 +56,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ]) {
       partsShown[part] = false;
     }
-
-    for (var element in ['title', 'description', 'image']) {
-      animationControllers[element] = AnimationController(
-        duration: const Duration(milliseconds: 500),
-        vsync: this,
-      );
-    }
   }
 
   @override
   void dispose() {
-    for (var controller in animationControllers.values) {
-      controller.dispose();
-    }
     _scrollController.dispose();
     super.dispose();
   }
@@ -100,11 +89,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           controller: _scrollController,
           child: Column(
             children: [
-              WeMakeStars(
-                partsShown['whatIsNyxs']!,
-                currentPixels,
-                animationControllers,
-              ),
+              const WeMakeStars(),
               WhatIsNyxs(
                 partsShown['whatIsNyxs']!,
                 currentPixels,
