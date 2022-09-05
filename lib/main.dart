@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:web/utils.dart';
-import 'dart:async';
+import 'Widgets/we_make_stars.dart';
+import 'Widgets/what_is_nyxs.dart';
 
 void main() {
   setPathUrlStrategy();
@@ -30,20 +31,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  final ScrollController _controller = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   double currentPixels = 0.0;
 
   Map<String, bool> partsShown = {};
   Map<String, AnimationController> animationControllers = {};
 
-  late Timer _timer;
-
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
+    _scrollController.addListener(() {
       setState(() {
-        currentPixels = _controller.position.pixels;
+        currentPixels = _scrollController.position.pixels;
       });
     });
 
@@ -69,16 +68,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _timer.cancel();
     for (var controller in animationControllers.values) {
       controller.dispose();
     }
-    _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (currentPixels >= 545.0) partsShown['whatIsNyxs'] = true;
+
     return Scaffold(
       backgroundColor: NyxsColors.navy,
       appBar: AppBar(
@@ -97,11 +97,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         height: 5144.0,
         width: MediaQuery.of(context).size.width,
         child: SingleChildScrollView(
-          controller: _controller,
+          controller: _scrollController,
           child: Column(
             children: [
-              weMakeStarsPart,
-              whatIsNyxsPart,
+              WeMakeStars(
+                partsShown['whatIsNyxs']!,
+                currentPixels,
+                animationControllers,
+              ),
+              WhatIsNyxs(
+                partsShown['whatIsNyxs']!,
+                currentPixels,
+              ),
               howToPlayPart,
               whatIsMissionPart,
               specialExperiencePart,
@@ -231,163 +238,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               color: NyxsColors.mint,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  void startWeMakeStarsAnimation() {
-    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      if (timer.tick == 1) {
-        animationControllers['title']!.forward();
-      } else if (timer.tick == 2) {
-        animationControllers['description']!.forward();
-      } else if (timer.tick == 3) {
-        animationControllers['image']!.forward();
-      } else {
-        timer.cancel();
-      }
-    });
-  }
-
-  Widget get weMakeStarsPart {
-    double titleTop = 72.0;
-    double descriptionTop = 126.0;
-    double tagTop = 206.0;
-    double imageTop = 160.0;
-
-    AnimationController titleAnimationController =
-        animationControllers['title']!;
-    AnimationController descriptionAnimationController =
-        animationControllers['description']!;
-    AnimationController imageAnimationController =
-        animationControllers['image']!;
-    startWeMakeStarsAnimation();
-
-    Widget title = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        getTitleText(
-          prefix: 'We Make ',
-          suffix: 'Stars!',
-          textStyle: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 36.0,
-            height: 1.06,
-            color: Colors.white,
-          ),
-          suffixStyle: TextStyle(
-            color: NyxsColors.mint,
-            shadows: [
-              Shadow(
-                color: NyxsColors.mint.withOpacity(0.8),
-                blurRadius: 20.0,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-    Widget description = getDescriptionText(
-      'Support your athletes\nEnjoy the missions together.',
-      style: getDescriptionStyle(
-        color: Colors.white.withOpacity(0.8),
-      ),
-    );
-    Widget image = Image.asset(
-      'images/we_make_stars.png',
-      height: 555.0,
-      fit: BoxFit.fitHeight,
-      filterQuality: FilterQuality.high,
-    );
-
-    return SizedBox(
-      height: 715.0,
-      width: MediaQuery.of(context).size.width,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Positioned(
-            top: titleTop,
-            child: animateWeMakeStars(title, titleAnimationController),
-          ),
-          Positioned(
-            top: imageTop,
-            child: animateWeMakeStars(
-              image,
-              imageAnimationController,
-              beginOffset: const Offset(0.0, 0.1),
-            ),
-          ),
-          Positioned(
-            top: descriptionTop,
-            child: animateWeMakeStars(
-              description,
-              descriptionAnimationController,
-            ),
-          ),
-          Positioned(
-            top: tagTop,
-            child: animateWeMakeStars(
-              getTag('BETA'),
-              imageAnimationController,
-              beginOffset: const Offset(0.0, 0.6),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget get whatIsNyxsPart {
-    double titleTop = 120.0;
-    double descriptionTop = 166.0;
-
-    if (currentPixels >= 545.0) partsShown['whatIsNyxs'] = true;
-    bool isShown = partsShown['whatIsNyxs']!;
-
-    const String nyxsDescription = '''
-A new web3 sporting platform
-connecting fans with their
-favorite athletes.''';
-    Widget title = getTitleText(suffix: 'NYXS');
-    Widget description = getDescriptionText(
-      nyxsDescription,
-      style: getDescriptionStyle(
-        color: Colors.white.withOpacity(0.8),
-      ),
-    );
-
-    return Container(
-      height: 360.0,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.black.withOpacity(0.8),
-            Colors.black.withOpacity(0.0),
-          ],
-        ),
-      ),
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          isShown
-              ? Positioned(top: titleTop, child: title)
-              : animateWidget(
-                  title,
-                  position: titleTop,
-                  startingPoint: 477.0,
-                ),
-          isShown
-              ? Positioned(top: descriptionTop, child: description)
-              : animateWidget(
-                  description,
-                  position: descriptionTop,
-                  startingPoint: 518.0,
-                ),
         ],
       ),
     );
