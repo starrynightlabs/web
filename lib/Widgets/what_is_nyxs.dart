@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:web/Widgets/common.dart';
 
 class WhatIsNyxs extends Part {
-  final double titleTop = 120.0;
-  final double descriptionTop = 166.0;
+  static const double titleTop = 120.0;
+  static const double descriptionTop = 166.0;
 
   const WhatIsNyxs(
     super.isAnimated,

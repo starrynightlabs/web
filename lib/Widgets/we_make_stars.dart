@@ -48,6 +48,7 @@ class _WeMakeStarsState extends State<WeMakeStars>
       controller.dispose();
     }
     animationTimer.cancel();
+
     super.dispose();
   }
 
