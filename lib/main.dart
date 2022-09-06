@@ -31,6 +31,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static const Map<String, double> partShowMap = {
+    'whatIsNyxs': 545.0,
+    'howToPlayTitle': 919.0,
+    'howToPlayOne': 1500.0,
+    'howToPlayTwo': 2100.0,
+    'howToPlayThree': 2700.0,
+    'whatIsMission': 3250.0,
+    'specialExperience': 3770.0,
+  };
   final ScrollController _scrollController = ScrollController();
   double currentPixels = 0.0;
 
@@ -45,15 +54,7 @@ class _HomePageState extends State<HomePage> {
       });
     });
 
-    for (var part in [
-      'whatIsNyxs',
-      'howToPlayTitle',
-      'howToPlayOne',
-      'howToPlayTwo',
-      'howToPlayThree',
-      'whatIsMission',
-      'specialExperience'
-    ]) {
+    for (var part in partShowMap.keys) {
       partsShown[part] = false;
     }
   }
@@ -66,13 +67,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (currentPixels >= 545.0) partsShown['whatIsNyxs'] = true;
-    if (currentPixels >= 919.0) partsShown['howToPlayTitle'] = true;
-    if (currentPixels >= 1500.0) partsShown['howToPlayOne'] = true;
-    if (currentPixels >= 2100.0) partsShown['howToPlayTwo'] = true;
-    if (currentPixels >= 2700.0) partsShown['howToPlayThree'] = true;
-    if (currentPixels >= 3250.0) partsShown['whatIsMission'] = true;
-    if (currentPixels >= 3770.0) partsShown['specialExperience'] = true;
+    // Not to show animation again if once shown
+    partShowMap.forEach((key, value) {
+      if (currentPixels >= value) partsShown[key] = true;
+    });
 
     return Scaffold(
       backgroundColor: NyxsColors.navy,
