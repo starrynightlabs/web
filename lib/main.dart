@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'Widgets/common.dart';
 import 'Widgets/intro.dart';
 import 'Widgets/body.dart';
 import 'Widgets/footer.dart';
