@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:web/Widgets/common.dart';
-import 'package:web/utils.dart';
 import 'dart:async';
 
 class WeMakeStars extends StatefulWidget {
