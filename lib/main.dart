@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'Widgets/common.dart';
-import 'Widgets/intro.dart';
-import 'Widgets/body.dart';
-import 'Widgets/footer.dart';
+import 'package:web/widgets/common.dart';
+import 'package:web/widgets/intro.dart';
+import 'package:web/widgets/body.dart';
+import 'package:web/widgets/footer.dart';
 
 void main() {
   setPathUrlStrategy();
