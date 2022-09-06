@@ -3,7 +3,7 @@ import 'package:web/Widgets/common.dart';
 import 'package:web/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Footer extends StatelessWidget with CommonWidget {
+class Footer extends StatelessWidget with CommonWidgetMixin {
   const Footer({Key? key}) : super(key: key);
 
   @override

@@ -11,7 +11,7 @@ class WeMakeStars extends StatefulWidget {
 }
 
 class _WeMakeStarsState extends State<WeMakeStars>
-    with CommonWidget, TickerProviderStateMixin {
+    with CommonWidgetMixin, TickerProviderStateMixin {
   static const double titleTop = 72.0;
   static const double descriptionTop = 126.0;
   static const double tagTop = 206.0;

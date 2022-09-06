@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:web/utils.dart';
 
-class Part extends StatelessWidget with CommonWidget {
+class Part extends StatelessWidget with CommonWidgetMixin {
   final double currentPixels;
   final bool? isAnimated;
 
@@ -36,7 +36,7 @@ class Part extends StatelessWidget with CommonWidget {
   }
 }
 
-mixin CommonWidget {
+mixin CommonWidgetMixin {
   TextStyle getTitleStyle({
     color = Colors.white,
   }) {
