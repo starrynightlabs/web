@@ -6,11 +6,9 @@ class WhatIsNyxs extends Part {
   static const double titleTop = 120.0;
   static const double descriptionTop = 166.0;
 
-  const WhatIsNyxs(
-    super.isAnimated,
-    super.currentPixels, {
-    Key? key,
-  }) : super(key: key);
+  const WhatIsNyxs(super.currentPixels, {Key? key, super.isAnimated})
+      : assert(isAnimated != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +40,14 @@ favorite athletes.''';
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          isAnimated
+          isAnimated!
               ? Positioned(top: titleTop, child: title)
               : animateWidget(
                   title,
                   position: titleTop,
                   startingPoint: 477.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(top: descriptionTop, child: description)
               : animateWidget(
                   description,
@@ -69,11 +67,9 @@ class WhatIsMission extends Part {
   static const double descriptionTwoTop = 448.0;
   static const double imageTop = 540.0;
 
-  const WhatIsMission(
-    super.isAnimated,
-    super.currentPixels, {
-    Key? key,
-  }) : super(key: key);
+  const WhatIsMission(super.currentPixels, {Key? key, super.isAnimated})
+      : assert(isAnimated != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +99,7 @@ from NYXS(Governance token)''';
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          isAnimated
+          isAnimated!
               ? Positioned(
                   top: titleTop,
                   child: title,
@@ -113,7 +109,7 @@ from NYXS(Governance token)''';
                   position: titleTop,
                   startingPoint: 2701.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(
                   top: descriptionTop,
                   child: description,
@@ -123,7 +119,7 @@ from NYXS(Governance token)''';
                   position: descriptionTop,
                   startingPoint: 2731.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(
                   top: titleTwoTop,
                   child: titleTwo,
@@ -133,7 +129,7 @@ from NYXS(Governance token)''';
                   position: titleTwoTop,
                   startingPoint: 2957.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(
                   top: descriptionTwoTop,
                   child: descriptionTwo,
@@ -143,7 +139,7 @@ from NYXS(Governance token)''';
                   position: descriptionTwoTop,
                   startingPoint: 2987.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(top: imageTop, child: image)
               : animateWidget(
                   image,
@@ -159,12 +155,8 @@ from NYXS(Governance token)''';
 class HowToPlay extends Part {
   final Map<String, bool> partsShown;
 
-  const HowToPlay(
-    super.isAnimated,
-    super.currentPixels,
-    this.partsShown, {
-    Key? key,
-  }) : super(key: key);
+  const HowToPlay(super.currentPixels, this.partsShown, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -525,11 +517,9 @@ class SpecialExperience extends Part {
   static const double tagTop = 322.0;
   static const double imageTop = 267.0;
 
-  const SpecialExperience(
-    super.isAnimated,
-    super.currentPixels, {
-    Key? key,
-  }) : super(key: key);
+  const SpecialExperience(super.currentPixels, {Key? key, super.isAnimated})
+      : assert(isAnimated != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -602,28 +592,28 @@ class SpecialExperience extends Part {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          isAnimated
+          isAnimated!
               ? Positioned(top: logoTop, child: logo)
               : animateWidget(
                   logo,
                   position: logoTop,
                   startingPoint: 3447.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(top: imageTop, child: image)
               : animateWidget(
                   image,
                   position: imageTop,
                   startingPoint: 3718.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(top: titleTop, child: title)
               : animateWidget(
                   title,
                   position: titleTop,
                   startingPoint: 3477.0,
                 ),
-          isAnimated
+          isAnimated!
               ? Positioned(top: tagTop, child: tags)
               : animateWidget(
                   tags,

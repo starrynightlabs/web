@@ -94,12 +94,15 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               const WeMakeStars(),
-              WhatIsNyxs(partsShown['whatIsNyxs']!, currentPixels),
-              HowToPlay(false, currentPixels, partsShown),
-              WhatIsMission(partsShown['whatIsMission']!, currentPixels),
-              SpecialExperience(
-                partsShown['specialExperience']!,
+              WhatIsNyxs(currentPixels, isAnimated: partsShown['whatIsNyxs']!),
+              HowToPlay(currentPixels, partsShown),
+              WhatIsMission(
                 currentPixels,
+                isAnimated: partsShown['whatIsMission']!,
+              ),
+              SpecialExperience(
+                currentPixels,
+                isAnimated: partsShown['specialExperience']!,
               ),
               const Footer(),
             ],
