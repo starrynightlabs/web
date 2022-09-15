@@ -624,3 +624,135 @@ class SpecialExperience extends Part {
     );
   }
 }
+
+class FAQ extends StatefulWidget {
+  const FAQ({Key? key}) : super(key: key);
+
+  @override
+  State<FAQ> createState() => _FAQState();
+}
+
+class _FAQState extends State<FAQ> with CommonWidgetMixin {
+  // TODO: FAQ items are not confirmed yet
+  static const Map<String, String> items = {
+    'What is the concept of NYXS?':
+        'WE SUPPORT AMBITIONS. We are connecting Fans all over the world. Everyone has "The Right to Dream." Fans can involve directly in the future of their favourite sports athletes and teams via our community.',
+    'What is STARRY NIGHT FOUNDATION?':
+        'We integrate sports and blockchain into one, enabling direct relationship between athletes and fans. Support young or potential athletes, through Starry Night Foundation (Web3), expanding their fan engagement. We are a platform (Community) for the Athletes to shine, from rookie to seasoned professional.',
+    'What is NYXS Governance Token?':
+        'NYXS is a "Starry night Governance Token". The token holders have a right to participate in major community decisions by voting and can support the athletes by exchanging it for stars (Mission Token).',
+    'What is the Platform of Fan Community in NYXS?':
+        'Fans can select and support athletes from different country and sports categories. Fans can participate in a various matter that arise to athletes and teams.',
+    'What is the target market of NYXS?':
+        'Countries and regions with active crypto environments around the world. Young sports fans (Generation Z) all over the world.',
+  };
+  final List<bool> itemVisible = [];
+
+  @override
+  void initState() {
+    super.initState();
+    for (var i = 0; i < items.length; i++) {
+      itemVisible.add(false);
+    }
+  }
+
+  void changeVisibility(int id, [bool visible = true]) {
+    setState(() {
+      itemVisible[id] = visible;
+    });
+  }
+
+  List<Widget> getFAQItem(int id, String question, String answer) {
+    const showIconPath = 'images/arrow_down.png';
+    const hideIconPath = 'images/arrow_up.png';
+
+    return [
+      Container(
+        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 18.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 282.0,
+              child: Text(
+                question,
+                style: getDescriptionStyle(
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xffFAFAFA),
+                ),
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            GestureDetector(
+              onTap: () => changeVisibility(id, !itemVisible[id]),
+              child: Image.asset(
+                itemVisible[id] ? hideIconPath : showIconPath,
+                width: 30.0,
+                height: 30.0,
+                filterQuality: FilterQuality.high,
+              ),
+            ),
+          ],
+        ),
+      ),
+      Visibility(
+        visible: itemVisible[id],
+        child: Container(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: SizedBox(
+            width: 328.0,
+            child: Text(
+              answer,
+              style: getDescriptionStyle(
+                fontWeight: FontWeight.w400,
+                color: const Color(0xffCCCCCC),
+              ),
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(
+        width: 360.0,
+        child: Divider(
+          color: Color(0xff838383),
+          height: 8.0,
+          thickness: 1.0,
+          indent: 18.0,
+          endIndent: 18.0,
+        ),
+      )
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> children = [
+      const Align(
+        alignment: Alignment.center,
+        child: Text(
+          "FAQ",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 32.0,
+            height: 1.31,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      const SizedBox(height: 56.0),
+    ];
+
+    var i = 0;
+    for (MapEntry e in items.entries) {
+      children += getFAQItem(i, e.key, e.value);
+      i++;
+    }
+
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      padding: const EdgeInsets.only(top: 80.0, bottom: 16.0),
+      child: Column(children: children),
+    );
+  }
+}
