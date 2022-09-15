@@ -5,33 +5,35 @@ import 'package:url_launcher/url_launcher.dart';
 class Footer extends StatelessWidget with CommonWidgetMixin {
   const Footer({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    Widget launchingMessage = Align(
-      alignment: Alignment.center,
-      child: Text(
-        'Launching soon.',
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 32.0,
-          height: 1.31,
-          color: NyxsColors.mint,
-          shadows: [
-            BoxShadow(
-              color: NyxsColors.mint.withOpacity(0.8),
-              blurRadius: 20.0,
-            )
-          ],
-        ),
+  Widget get launchingMessage {
+    return Text(
+      'Launching soon.',
+      style: TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 32.0,
+        height: 1.31,
+        color: NyxsColors.mint,
+        shadows: [
+          BoxShadow(
+            color: NyxsColors.mint.withOpacity(0.8),
+            blurRadius: 20.0,
+          )
+        ],
       ),
     );
-    Widget logo = Image.asset(
+  }
+
+  Widget get logo {
+    return Image.asset(
       'images/large_logo_white.png',
       width: 127.0,
       height: 43.0,
       filterQuality: FilterQuality.high,
     );
-    Widget description = Text(
+  }
+
+  Widget get description {
+    return Text(
       // TODO: create hyperlink to App Store, Play Store.
       'Launching soon to\nApple App Store & Google Play Store.',
       style: TextStyle(
@@ -41,13 +43,46 @@ class Footer extends StatelessWidget with CommonWidgetMixin {
         color: Colors.white.withOpacity(0.6),
       ),
     );
-    Widget divider = const Divider(
+  }
+
+  Widget get divider {
+    return const Divider(
       color: Color(0xff838383),
       height: 24.0,
       thickness: 1.0,
       endIndent: 16.0,
     );
-    Widget copyright = Text(
+  }
+
+  Widget get socialMediaButtons {
+    return Row(
+      children: [
+        getSocialMediaButton(
+          'images/twitter.png',
+          // TODO: uncomment when discord, telegram setting done
+          // targetUrl: 'https://twitter.com/StarryNightFndn',
+        ),
+        const SizedBox(width: 16.0),
+        getSocialMediaButton('images/telegram.png'),
+        const SizedBox(width: 16.0),
+        getSocialMediaButton('images/discord.png'),
+        const SizedBox(width: 16.0),
+        getSocialMediaButton(
+          'images/medium.png',
+          // TODO: uncomment when discord, telegram setting done
+          // targetUrl: 'https://medium.com/@NYXS',
+        ),
+        const SizedBox(width: 16.0),
+        getSocialMediaButton(
+          'images/mail.png',
+          targetUrl: 'mailto:contact@snlabs.io',
+        )
+      ],
+    );
+  }
+
+  Widget get copyright {
+    return Text(
       // TODO: create hyperlink to Privacy Policy, Terms Of Use.
       '© 2022 All Rights Reserved. Starry Night Labs Pte. Ltd.\nPrivacy Policy and Terms Of Use.',
       style: TextStyle(
@@ -57,51 +92,40 @@ class Footer extends StatelessWidget with CommonWidgetMixin {
         color: Colors.white.withOpacity(0.6),
       ),
     );
-    Widget socialMediaButtons = Row(
-      children: [
-        getSocialMediaButton(
-          'images/twitter.png',
-          // TODO: uncomment when discord, telegram setting done
-          // targetUrl: 'https://twitter.com/StarryNightFndn',
-        ),
-        const SizedBox(width: 10.0),
-        getSocialMediaButton('images/telegram.png'),
-        const SizedBox(width: 10.0),
-        getSocialMediaButton('images/discord.png'),
-        const SizedBox(width: 16.0),
-        getSocialMediaButton(
-          'images/medium.png',
-          // TODO: uncomment when discord, telegram setting done
-          // targetUrl: 'https://medium.com/@NYXS',
-        ),
-        const SizedBox(width: 10.0),
-        getSocialMediaButton(
-          'images/mail.png',
-          targetUrl: 'mailto:contact@snlabs.io',
-        )
-      ],
-    );
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       color: Colors.black,
-      padding: const EdgeInsets.only(left: 16.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 96.0),
           launchingMessage,
           const SizedBox(height: 144.0),
-          logo,
-          const SizedBox(height: 16.0),
-          description,
-          const SizedBox(height: 24.0),
-          divider,
-          const SizedBox(height: 32.0),
-          socialMediaButtons,
-          const SizedBox(height: 32.0),
-          copyright,
-          const SizedBox(height: 64.0),
+          SizedBox(
+            width: 360.0,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  logo,
+                  const SizedBox(height: 16.0),
+                  description,
+                  const SizedBox(height: 24.0),
+                  divider,
+                  const SizedBox(height: 32.0),
+                  socialMediaButtons,
+                  const SizedBox(height: 32.0),
+                  copyright,
+                  const SizedBox(height: 64.0),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
