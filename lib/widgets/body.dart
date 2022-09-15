@@ -662,35 +662,60 @@ class _FAQState extends State<FAQ> with CommonWidgetMixin {
     });
   }
 
-  List<Widget> getFAQItem(int id, String question, String answer) {
+  Widget get divider {
+    return const Divider(
+      color: Color(0xff838383),
+      height: 8.0,
+      thickness: 1.0,
+      indent: 18.0,
+      endIndent: 18.0,
+    );
+  }
+
+  Widget getQuestion(String question) {
+    return Text(
+      question,
+      style: getDescriptionStyle(
+        fontWeight: FontWeight.w700,
+        color: const Color(0xffFAFAFA),
+      ),
+    );
+  }
+
+  Widget getAnswer(String answer) {
+    return Text(
+      answer,
+      style: getDescriptionStyle(
+        fontWeight: FontWeight.w400,
+        color: const Color(0xffCCCCCC),
+      ),
+    );
+  }
+
+  Widget getArrowImage(bool visible) {
     const showIconPath = 'images/arrow_down.png';
     const hideIconPath = 'images/arrow_up.png';
 
+    return Image.asset(
+      visible ? hideIconPath : showIconPath,
+      width: 30.0,
+      height: 30.0,
+      filterQuality: FilterQuality.high,
+    );
+  }
+
+  List<Widget> getFAQItem(int id, String question, String answer) {
     return [
       Container(
         padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 18.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 282.0,
-              child: Text(
-                question,
-                style: getDescriptionStyle(
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xffFAFAFA),
-                ),
-              ),
-            ),
+            SizedBox(width: 282.0, child: getQuestion(question)),
             const SizedBox(width: 16.0),
             GestureDetector(
               onTap: () => changeVisibility(id, !itemVisible[id]),
-              child: Image.asset(
-                itemVisible[id] ? hideIconPath : showIconPath,
-                width: 30.0,
-                height: 30.0,
-                filterQuality: FilterQuality.high,
-              ),
+              child: getArrowImage(itemVisible[id]),
             ),
           ],
         ),
@@ -699,28 +724,10 @@ class _FAQState extends State<FAQ> with CommonWidgetMixin {
         visible: itemVisible[id],
         child: Container(
           padding: const EdgeInsets.only(bottom: 16.0),
-          child: SizedBox(
-            width: 328.0,
-            child: Text(
-              answer,
-              style: getDescriptionStyle(
-                fontWeight: FontWeight.w400,
-                color: const Color(0xffCCCCCC),
-              ),
-            ),
-          ),
+          child: SizedBox(width: 328.0, child: getAnswer(answer)),
         ),
       ),
-      const SizedBox(
-        width: 360.0,
-        child: Divider(
-          color: Color(0xff838383),
-          height: 8.0,
-          thickness: 1.0,
-          indent: 18.0,
-          endIndent: 18.0,
-        ),
-      )
+      SizedBox(width: 360.0, child: divider)
     ];
   }
 
