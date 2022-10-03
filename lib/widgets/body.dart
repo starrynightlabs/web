@@ -633,18 +633,18 @@ class FAQ extends StatefulWidget {
 }
 
 class _FAQState extends State<FAQ> with CommonWidgetMixin {
-  // TODO: FAQ items are not confirmed yet
-  static const Map<String, String> items = {
-    'What is the concept of NYXS?':
-        'WE SUPPORT AMBITIONS. We are connecting Fans all over the world. Everyone has "The Right to Dream." Fans can involve directly in the future of their favourite sports athletes and teams via our community.',
-    'What is STARRY NIGHT FOUNDATION?':
-        'We integrate sports and blockchain into one, enabling direct relationship between athletes and fans. Support young or potential athletes, through Starry Night Foundation (Web3), expanding their fan engagement. We are a platform (Community) for the Athletes to shine, from rookie to seasoned professional.',
-    'What is NYXS Governance Token?':
-        'NYXS is a "Starry night Governance Token". The token holders have a right to participate in major community decisions by voting and can support the athletes by exchanging it for stars (Mission Token).',
-    'What is the Platform of Fan Community in NYXS?':
-        'Fans can select and support athletes from different country and sports categories. Fans can participate in a various matter that arise to athletes and teams.',
-    'What is the target market of NYXS?':
-        'Countries and regions with active crypto environments around the world. Young sports fans (Generation Z) all over the world.',
+  // TODO: Tokenomics should be added
+  // question: answer
+  final Map<String, dynamic> items = {
+    'What is the NYXS?':
+        'We integrate sports and blockchain into one, enabling direct relationships between athletes and fans. Starry Night Foundation (Web3) supports young & potential athletes to close the gap and distance between each athlete to their fans. We are a platform (Community) for Athletes to achieve their sporting ambitions, right from an aspiring rookie to being a seasoned professional.',
+    'What is the NYXS token?': '''
+Governance token NYXS:
+NYXS: a "Starry Night Governance Token. "The token holders have a right to participate in significant community decisions by voting and can support the athletes by exchanging them for stars (Mission Token).
+Utility token:
+Star: As an athlete's support token, it is non-tradable for now. However, the ways to use it on our platform will gradually vary sooner or later.''',
+    'Do I need a wallet to swap in NYXS?':
+        'Firstly, you will have to purchase our coins on various exchanges globally. We will also have our coins on major local exchanges for ease of purchase in each of your countries. After this purchase, you can send the coins to the wallet on our mobile application.',
   };
   final List<bool> itemVisible = [];
 
