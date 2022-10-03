@@ -102,14 +102,13 @@ mixin CommonWidgetMixin {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             tag,
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14.0,
-              height: 1.57,
               color: NyxsColors.mint,
             ),
           ),
