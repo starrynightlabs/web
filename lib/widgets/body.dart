@@ -708,16 +708,16 @@ Star: As an athlete's support token, it is non-tradable for now. However, the wa
     return [
       Container(
         padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 18.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(width: 282.0, child: getQuestion(question)),
-            const SizedBox(width: 16.0),
-            GestureDetector(
-              onTap: () => changeVisibility(id, !itemVisible[id]),
-              child: getArrowImage(itemVisible[id]),
-            ),
-          ],
+        child: GestureDetector(
+          onTap: () => changeVisibility(id, !itemVisible[id]),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(width: 282.0, child: getQuestion(question)),
+              const SizedBox(width: 16.0),
+              getArrowImage(itemVisible[id]),
+            ],
+          ),
         ),
       ),
       Visibility(
