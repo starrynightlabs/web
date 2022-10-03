@@ -55,13 +55,13 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   fonts:
-    - family: Euclid Circular A
+    - family: Inter
       fonts:
-        - asset: fonts/Euclid Circular A Light.ttf
+        - asset: fonts/Inter-Light.otf
           weight: 300
-        - asset: fonts/Euclid Circular A Regular.ttf
+        - asset: fonts/Inter-Regular.otf
           weight: 400
-        - asset: fonts/Euclid Circular A Bold.ttf
+        - asset: fonts/Inter-Bold.otf
           weight: 700
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
