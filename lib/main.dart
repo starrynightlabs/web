@@ -104,6 +104,7 @@ class _HomePageState extends State<HomePage> {
                 currentPixels,
                 isAnimated: partsShown['specialExperience']!,
               ),
+              const FAQ(),
               const Footer(),
             ],
           ),
