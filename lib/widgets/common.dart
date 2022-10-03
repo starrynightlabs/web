@@ -109,7 +109,6 @@ mixin CommonWidgetMixin {
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14.0,
-              // height: 1.57,
               color: NyxsColors.mint,
             ),
           ),
