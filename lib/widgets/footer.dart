@@ -59,8 +59,7 @@ class Footer extends StatelessWidget with CommonWidgetMixin {
       children: [
         getSocialMediaButton(
           'images/twitter.png',
-          // TODO: uncomment when discord, telegram setting done
-          // targetUrl: 'https://twitter.com/StarryNightFndn',
+          targetUrl: "https://twitter.com/NYXS_io",
         ),
         const SizedBox(width: 16.0),
         getSocialMediaButton('images/telegram.png'),
@@ -69,7 +68,7 @@ class Footer extends StatelessWidget with CommonWidgetMixin {
         const SizedBox(width: 16.0),
         getSocialMediaButton(
           'images/medium.png',
-          // TODO: uncomment when discord, telegram setting done
+          // TODO: uncomment when medium is ready
           // targetUrl: 'https://medium.com/@NYXS',
         ),
         const SizedBox(width: 16.0),
