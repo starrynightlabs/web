@@ -4,7 +4,7 @@ import 'package:web/scroll_notifier.dart';
 import 'package:web/utils/styles.dart';
 import 'package:web/widgets/body/faq.dart';
 import 'package:web/widgets/body/how_to_play.dart';
-import 'package:web/widgets/body/special_experiance.dart';
+import 'package:web/widgets/body/special_experience.dart';
 import 'package:web/widgets/body/what_is_mission.dart';
 import 'package:web/widgets/body/what_is_nyxs.dart';
 import 'package:web/widgets/intro.dart';
