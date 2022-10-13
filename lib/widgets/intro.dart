@@ -1,134 +1,124 @@
 import 'package:flutter/material.dart';
-import 'package:web/widgets/common.dart';
+import 'package:web/utils/styles.dart';
+import 'package:web/widgets/common/description_text.dart';
+import 'package:web/widgets/common/tag_widget.dart';
 import 'dart:async';
+
+import 'package:web/widgets/common/title_text.dart';
 
 class WeMakeStars extends StatefulWidget {
   const WeMakeStars({super.key});
+  static const double overallHeight = 715.0;
+  static const double titleTop = 72.0;
+  static const double imageTop = 160.0;
 
   @override
   State<WeMakeStars> createState() => _WeMakeStarsState();
 }
 
 class _WeMakeStarsState extends State<WeMakeStars>
-    with CommonWidgetMixin, TickerProviderStateMixin {
-  static const double titleTop = 72.0;
-  static const double descriptionTop = 126.0;
-  static const double tagTop = 206.0;
-  static const double imageTop = 160.0;
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  late final AnimationController _animationController;
 
   final Map<String, AnimationController> animationControllers = {};
   late final Timer animationTimer;
 
   @override
   void initState() {
-    for (var element in ['title', 'description', 'image']) {
-      animationControllers[element] = AnimationController(
-        duration: const Duration(milliseconds: 500),
-        vsync: this,
-      );
-    }
-
-    animationTimer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      if (timer.tick == 1) {
-        animationControllers['title']!.forward();
-      } else if (timer.tick == 2) {
-        animationControllers['description']!.forward();
-      } else if (timer.tick == 3) {
-        animationControllers['image']!.forward();
-      }
-    });
-
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _animationController.forward();
     super.initState();
   }
 
   @override
   void dispose() {
-    for (var controller in animationControllers.values) {
-      controller.dispose();
-    }
-    animationTimer.cancel();
-
+    _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    AnimationController titleAnimationController =
-        animationControllers['title']!;
-    AnimationController descriptionAnimationController =
-        animationControllers['description']!;
-    AnimationController imageAnimationController =
-        animationControllers['image']!;
-
-    Widget title = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        getTitleText(
-          prefix: 'We Make ',
-          suffix: 'Stars!',
-          textStyle: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 36.0,
-            height: 1.06,
-            color: Colors.white,
-          ),
-          suffixStyle: TextStyle(
-            color: NyxsColors.mint,
-            shadows: [
-              Shadow(
-                color: NyxsColors.mint.withOpacity(0.8),
-                blurRadius: 20.0,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-    Widget description = getDescriptionText(
-      'Support your athletes\nEnjoy the missions together.',
-      style: getDescriptionStyle(
-        color: Colors.white.withOpacity(0.8),
-      ),
-    );
-    Widget image = Image.asset(
-      'images/we_make_stars.png',
-      height: 555.0,
-      fit: BoxFit.fitHeight,
-      filterQuality: FilterQuality.high,
-    );
-
+    super.build(context);
     return SizedBox(
-      height: 715.0,
-      width: MediaQuery.of(context).size.width,
+      height: WeMakeStars.overallHeight,
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
           Positioned(
-            top: titleTop,
-            child: animateWeMakeStars(title, titleAnimationController),
-          ),
-          Positioned(
-            top: imageTop,
+            top: WeMakeStars.imageTop,
             child: animateWeMakeStars(
-              image,
-              imageAnimationController,
+              Image.asset(
+                'images/we_make_stars.png',
+                height: 555.0,
+                fit: BoxFit.fitHeight,
+                filterQuality: FilterQuality.high,
+              ),
+              _animationController,
               beginOffset: const Offset(0.0, 0.1),
+              const Interval(0.66, 1),
             ),
           ),
-          Positioned(
-            top: descriptionTop,
-            child: animateWeMakeStars(
-              description,
-              descriptionAnimationController,
-            ),
-          ),
-          Positioned(
-            top: tagTop,
-            child: animateWeMakeStars(
-              getTag('BETA'),
-              imageAnimationController,
-              beginOffset: const Offset(0.0, 0.6),
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: WeMakeStars.titleTop,
+              ),
+              animateWeMakeStars(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TitleText(
+                      prefix: 'We Make ',
+                      suffix: 'Stars!',
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 36.0,
+                        height: 1.06,
+                        color: Colors.white,
+                      ),
+                      suffixStyle: TextStyle(
+                        color: NyxsColors.mint,
+                        shadows: [
+                          Shadow(
+                            color: NyxsColors.mint.withOpacity(0.8),
+                            blurRadius: 20.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                _animationController,
+                const Interval(0.0, 0.33),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              animateWeMakeStars(
+                DescriptionText(
+                  text: 'Support your athletes\nEnjoy the missions together.',
+                  style: getDescriptionStyle(
+                    color: Colors.white.withOpacity(0.8),
+                  ),
+                ),
+                _animationController,
+                const Interval(0.33, 0.66),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              animateWeMakeStars(
+                const TagWidget(tag: 'BETA'),
+                _animationController,
+                beginOffset: const Offset(0.0, 0.6),
+                const Interval(0.66, 1),
+              ),
+            ],
           ),
         ],
       ),
@@ -137,18 +127,32 @@ class _WeMakeStarsState extends State<WeMakeStars>
 
   Widget animateWeMakeStars(
     widget,
-    controller, {
+    controller,
+    Interval interval, {
     Offset beginOffset = const Offset(0.0, 0.4),
   }) {
     return FadeTransition(
-      opacity: Tween(begin: 0.0, end: 1.0).animate(controller),
+      opacity: Tween(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(
+          parent: _animationController,
+          curve: interval,
+        ),
+      ),
       child: SlideTransition(
         position: Tween<Offset>(
           begin: beginOffset,
           end: Offset.zero,
-        ).animate(controller),
+        ).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: interval,
+          ),
+        ),
         child: widget,
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
