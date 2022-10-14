@@ -27,7 +27,6 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Build from title text!');
     return Text.rich(
       TextSpan(
         text: prefix,

@@ -80,9 +80,7 @@ class _HomePageState extends State<HomePage> {
           controller: _scrollController,
           children: [
             const WeMakeStars(),
-            WhatIsNyxs(
-              scrollNotifier: _scrollNotifier,
-            ),
+            WhatIsNyxs(scrollNotifier: _scrollNotifier),
             HowToPlay(scrollNotifier: _scrollNotifier),
             WhatIsMission(scrollNotifier: _scrollNotifier),
             SpecialExperience(scrollNotifier: _scrollNotifier),

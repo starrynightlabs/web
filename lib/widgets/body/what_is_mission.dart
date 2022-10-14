@@ -34,6 +34,7 @@ class _WhatIsMissionState extends State<WhatIsMission>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SizedBox(
       height: 702.0,
       width: MediaQuery.of(context).size.width,

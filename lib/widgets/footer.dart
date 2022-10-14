@@ -59,8 +59,7 @@ class Footer extends StatelessWidget {
       children: [
         getSocialMediaButton(
           'images/twitter.png',
-          // TODO: uncomment when discord, telegram setting done
-          // targetUrl: 'https://twitter.com/StarryNightFndn',
+          targetUrl: "https://twitter.com/NYXS_io",
         ),
         const SizedBox(width: 16.0),
         getSocialMediaButton('images/telegram.png'),
