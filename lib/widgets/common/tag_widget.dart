@@ -7,8 +7,6 @@ class TagWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Build from tag widget!');
-
     return Container(
       height: 26.0,
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),

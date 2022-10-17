@@ -17,7 +17,6 @@ class DescriptionText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Build from description text!');
     return Text(
       text,
       textAlign: TextAlign.center,
