@@ -68,7 +68,7 @@ class Footer extends StatelessWidget {
         const SizedBox(width: 16.0),
         getSocialMediaButton(
           'images/medium.png',
-          // TODO: uncomment when discord, telegram setting done
+          // TODO: uncomment when medium is ready
           // targetUrl: 'https://medium.com/@NYXS',
         ),
         const SizedBox(width: 16.0),
