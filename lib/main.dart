@@ -7,7 +7,7 @@ import 'package:web/widgets/body/how_to_play.dart';
 import 'package:web/widgets/body/special_experience.dart';
 import 'package:web/widgets/body/what_is_mission.dart';
 import 'package:web/widgets/body/what_is_nyxs.dart';
-import 'package:web/widgets/intro.dart';
+import 'package:web/widgets/body/we_make_stars.dart';
 import 'package:web/widgets/footer.dart';
 
 void main() {

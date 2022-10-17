@@ -126,7 +126,7 @@ class _HowToPlayPartTwoState extends State<HowToPlayPartTwo>
               const Positioned(
                 child: Padding(
                   padding: EdgeInsets.only(
-                    left: 185.0,
+                    left: 187.0,
                     top: 14.0,
                   ),
                   child: TextHighlighter(width: 51.0),
