@@ -35,7 +35,8 @@ class _WhatIsMissionState extends State<WhatIsMission>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return SizedBox(
+    return Container(
+      color: Colors.black.withOpacity(0.8),
       height: 702.0,
       width: MediaQuery.of(context).size.width,
       child: Stack(
