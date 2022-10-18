@@ -38,9 +38,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
   final ScrollNotifier _scrollNotifier = ScrollNotifier();
-  double currentPixels = 0.0;
-
-  Map<String, bool> partsShown = {};
 
   @override
   void initState() {
@@ -84,7 +81,7 @@ class _HomePageState extends State<HomePage> {
             HowToPlay(scrollNotifier: _scrollNotifier),
             WhatIsMission(scrollNotifier: _scrollNotifier),
             SpecialExperience(scrollNotifier: _scrollNotifier),
-            const FAQ(),
+            FAQ(),
             const Footer(),
           ],
         ),

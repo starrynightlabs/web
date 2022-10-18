@@ -8,6 +8,7 @@ import 'package:web/widgets/common/title_text.dart';
 
 class WeMakeStars extends StatefulWidget {
   const WeMakeStars({super.key});
+
   static const double overallHeight = 715.0;
   static const double titleTop = 72.0;
   static const double imageTop = 160.0;

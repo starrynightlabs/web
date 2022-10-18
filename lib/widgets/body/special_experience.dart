@@ -4,9 +4,9 @@ import 'package:web/widgets/common/tag_widget.dart';
 import 'package:web/widgets/common/animated_widget.dart' as my;
 
 class SpecialExperience extends StatefulWidget {
-  final ScrollNotifier scrollNotifier;
   const SpecialExperience({super.key, required this.scrollNotifier});
 
+  final ScrollNotifier scrollNotifier;
   final double logoTop = 120.0;
   final double titleTop = 214.0;
   final double tagTop = 322.0;

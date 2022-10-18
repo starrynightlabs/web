@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DescriptionText extends StatelessWidget {
-  final String text;
-  final TextStyle style;
-
   const DescriptionText({
     Key? key,
     required this.text,
@@ -14,6 +11,9 @@ class DescriptionText extends StatelessWidget {
       color: Colors.white,
     ),
   }) : super(key: key);
+
+  final String text;
+  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {

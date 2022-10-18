@@ -3,13 +3,6 @@ import 'package:web/utils/observer_interface/listener.dart' as my;
 import 'package:web/utils/observer_interface/subject.dart';
 
 class AnimatedWidget extends StatefulWidget {
-  final double position;
-  final double startingPoint;
-  final int margin;
-  final bool reverse;
-  final Duration duration;
-  final Subject scrollNotifier;
-  final Widget child;
   const AnimatedWidget({
     Key? key,
     required this.scrollNotifier,
@@ -21,6 +14,14 @@ class AnimatedWidget extends StatefulWidget {
     this.duration = const Duration(milliseconds: 500),
   }) : super(key: key);
 
+  final double position;
+  final double startingPoint;
+  final int margin;
+  final bool reverse;
+  final Duration duration;
+  final Subject scrollNotifier;
+  final Widget child;
+
   @override
   State<AnimatedWidget> createState() => _AnimatedWidgetState();
 }
@@ -30,6 +31,7 @@ class _AnimatedWidgetState extends State<AnimatedWidget>
     implements my.Listener<double> {
   late final AnimationController _animationController;
   late final Animation _positionAnimation;
+
   @override
   void initState() {
     super.initState();
