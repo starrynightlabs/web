@@ -14,7 +14,6 @@ class HowToPlayPartThree extends StatelessWidget {
   final double descriptionTop = 1445.0;
   final double imageTop = 1577.0;
   final double decorationTop = 1513.0;
-
   final String howToPlayDescription = '''
 Together when your athletes
 complete the missions and
