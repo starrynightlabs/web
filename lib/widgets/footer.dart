@@ -78,9 +78,13 @@ class Footer extends StatelessWidget {
         ),
         const SizedBox(width: 16.0),
         getSocialMediaButton(
-          'images/mail.png',
-          targetUrl: 'mailto:contact@snlabs.io',
+          'images/instagram.png',
+          targetUrl: 'https://www.instagram.com/nyxs.io/',
         )
+        // getSocialMediaButton(
+        //   'images/mail.png',
+        //   targetUrl: 'mailto:contact@snlabs.io',
+        // )
       ],
     );
   }
