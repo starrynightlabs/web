@@ -26,9 +26,9 @@ class Footer extends StatelessWidget {
 
   Widget get logo {
     return Image.asset(
-      'images/large_logo_white.png',
-      width: 127.0,
-      height: 43.0,
+      'images/footer_logo_white.png',
+      width: 70.88,
+      height: 24.0,
       filterQuality: FilterQuality.high,
     );
   }
