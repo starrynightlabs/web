@@ -62,14 +62,19 @@ class Footer extends StatelessWidget {
           targetUrl: "https://twitter.com/NYXS_io",
         ),
         const SizedBox(width: 16.0),
-        getSocialMediaButton('images/telegram.png'),
+        getSocialMediaButton(
+          'images/telegram.png',
+          targetUrl: "https://t.me/+xNFQU60YKEA0MDY1",
+        ),
         const SizedBox(width: 16.0),
-        getSocialMediaButton('images/discord.png'),
+        getSocialMediaButton(
+          'images/discord.png',
+          targetUrl: "https://discord.gg/7rj6r6j5kr",
+        ),
         const SizedBox(width: 16.0),
         getSocialMediaButton(
           'images/medium.png',
-          // TODO: uncomment when medium is ready
-          // targetUrl: 'https://medium.com/@NYXS',
+          targetUrl: 'https://medium.com/@NYXS',
         ),
         const SizedBox(width: 16.0),
         getSocialMediaButton(
