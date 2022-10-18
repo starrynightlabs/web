@@ -63,11 +63,11 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: NyxsColors.navy,
         toolbarHeight: 72.0,
-        leadingWidth: 86.0,
+        leadingWidth: 16.0 + 77.0, // left padding + logo width
         leading: Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Image.asset(
-            'images/logo.png',
+            'images/header_logo.png',
             filterQuality: FilterQuality.high,
           ),
         ),
