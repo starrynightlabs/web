@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:web/utils/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,9 +26,9 @@ class Footer extends StatelessWidget {
 
   Widget get logo {
     return Image.asset(
-      'images/large_logo_white.png',
-      width: 127.0,
-      height: 43.0,
+      'images/footer_logo_white.png',
+      width: 70.88,
+      height: 24.0,
       filterQuality: FilterQuality.high,
     );
   }
@@ -78,8 +79,8 @@ class Footer extends StatelessWidget {
         ),
         const SizedBox(width: 16.0),
         getSocialMediaButton(
-          'images/mail.png',
-          targetUrl: 'mailto:contact@snlabs.io',
+          'images/instagram.png',
+          targetUrl: 'https://www.instagram.com/nyxs.io/',
         )
       ],
     );
@@ -95,6 +96,27 @@ class Footer extends StatelessWidget {
         height: 1.83,
         color: Colors.white.withOpacity(0.6),
       ),
+    );
+  }
+
+  void openUrl(String targetUrl) async {
+    final Uri uri = Uri.parse(targetUrl);
+    if (!await launchUrl(uri)) throw 'Could not launch $uri';
+  }
+
+  Widget get contactEmail {
+    return Linkify(
+      text: "contact@snlabs.io",
+      linkStyle: const TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 12.0,
+        height: 1.83,
+        color: Colors.white,
+        decoration: TextDecoration.underline,
+      ),
+      onOpen: (link) async {
+        openUrl(link.url);
+      },
     );
   }
 
@@ -123,7 +145,9 @@ class Footer extends StatelessWidget {
                   divider,
                   const SizedBox(height: 32.0),
                   socialMediaButtons,
-                  const SizedBox(height: 32.0),
+                  const SizedBox(height: 24.0),
+                  contactEmail,
+                  const SizedBox(height: 16.0),
                   copyright,
                   const SizedBox(height: 64.0),
                 ],
@@ -143,10 +167,7 @@ class Footer extends StatelessWidget {
         padding: const EdgeInsets.all(0.0),
         icon: Image.asset(imagePath),
         onPressed: () async {
-          if (targetUrl != null) {
-            final Uri uri = Uri.parse(targetUrl);
-            if (!await launchUrl(uri)) throw 'Could not launch $uri';
-          }
+          if (targetUrl != null) openUrl(targetUrl);
         },
       ),
     );
