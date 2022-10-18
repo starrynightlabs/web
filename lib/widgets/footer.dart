@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:web/widgets/common.dart';
+import 'package:web/utils/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Footer extends StatelessWidget with CommonWidgetMixin {
+class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
 
   Widget get launchingMessage {

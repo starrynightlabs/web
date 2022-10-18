@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'package:web/widgets/common.dart';
-import 'package:web/widgets/intro.dart';
-import 'package:web/widgets/body.dart';
+import 'package:web/scroll_notifier.dart';
+import 'package:web/utils/styles.dart';
+import 'package:web/widgets/body/faq.dart';
+import 'package:web/widgets/body/how_to_play.dart';
+import 'package:web/widgets/body/special_experience.dart';
+import 'package:web/widgets/body/what_is_mission.dart';
+import 'package:web/widgets/body/what_is_nyxs.dart';
+import 'package:web/widgets/body/we_make_stars.dart';
 import 'package:web/widgets/footer.dart';
 
 void main() {
@@ -31,16 +36,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const Map<String, double> partShowMap = {
-    'whatIsNyxs': 545.0,
-    'howToPlayTitle': 919.0,
-    'howToPlayOne': 1500.0,
-    'howToPlayTwo': 2100.0,
-    'howToPlayThree': 2700.0,
-    'whatIsMission': 3250.0,
-    'specialExperience': 3770.0,
-  };
   final ScrollController _scrollController = ScrollController();
+  final ScrollNotifier _scrollNotifier = ScrollNotifier();
   double currentPixels = 0.0;
 
   Map<String, bool> partsShown = {};
@@ -49,14 +46,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _scrollController.addListener(() {
-      setState(() {
-        currentPixels = _scrollController.position.pixels;
-      });
+      _scrollNotifier.notifyListeners(_scrollController.position.pixels);
     });
-
-    for (var part in partShowMap.keys) {
-      partsShown[part] = false;
-    }
   }
 
   @override
@@ -67,11 +58,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Not to show animation again if once shown
-    partShowMap.forEach((key, value) {
-      if (currentPixels >= value) partsShown[key] = true;
-    });
-
     return Scaffold(
       backgroundColor: NyxsColors.navy,
       appBar: AppBar(
@@ -89,25 +75,18 @@ class _HomePageState extends State<HomePage> {
       body: SizedBox(
         height: 5144.0,
         width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
+        child: ListView(
+          addAutomaticKeepAlives: true,
           controller: _scrollController,
-          child: Column(
-            children: [
-              const WeMakeStars(),
-              WhatIsNyxs(currentPixels, isAnimated: partsShown['whatIsNyxs']!),
-              HowToPlay(currentPixels, partsShown),
-              WhatIsMission(
-                currentPixels,
-                isAnimated: partsShown['whatIsMission']!,
-              ),
-              SpecialExperience(
-                currentPixels,
-                isAnimated: partsShown['specialExperience']!,
-              ),
-              const FAQ(),
-              const Footer(),
-            ],
-          ),
+          children: [
+            const WeMakeStars(),
+            WhatIsNyxs(scrollNotifier: _scrollNotifier),
+            HowToPlay(scrollNotifier: _scrollNotifier),
+            WhatIsMission(scrollNotifier: _scrollNotifier),
+            SpecialExperience(scrollNotifier: _scrollNotifier),
+            const FAQ(),
+            const Footer(),
+          ],
         ),
       ),
     );
