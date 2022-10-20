@@ -30,7 +30,8 @@ class _SpecialExperienceState extends State<SpecialExperience>
           my.AnimatedWidget(
             scrollNotifier: widget.scrollNotifier,
             position: widget.logoTop,
-            startingPoint: 3447.0,
+            // TODO: revert to 3447.0
+            startingPoint: 3117.0,
             child: Image.asset(
               'images/large_logo.png',
               width: 156.0,
