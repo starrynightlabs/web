@@ -38,7 +38,7 @@ class _WhatIsMissionState extends State<WhatIsMission>
     return Container(
       color: Colors.black.withOpacity(0.8),
       // TODO: revert to 702.0
-      height: 430.0,
+      height: 425.0,
       width: MediaQuery.of(context).size.width,
       child: Stack(
         alignment: Alignment.topCenter,

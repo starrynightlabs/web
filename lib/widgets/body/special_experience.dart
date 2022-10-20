@@ -31,7 +31,7 @@ class _SpecialExperienceState extends State<SpecialExperience>
             scrollNotifier: widget.scrollNotifier,
             position: widget.logoTop,
             // TODO: revert to 3447.0
-            startingPoint: 3175.0,
+            startingPoint: 3170.0,
             child: Image.asset(
               'images/large_logo.png',
               width: 156.0,
