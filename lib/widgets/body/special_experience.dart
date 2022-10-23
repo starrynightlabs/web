@@ -18,6 +18,8 @@ class SpecialExperience extends StatefulWidget {
 
 class _SpecialExperienceState extends State<SpecialExperience>
     with AutomaticKeepAliveClientMixin {
+  //TODO: This is temporary value for assigning offset of animation trigger position.
+  double tempOffsetForScrollTrigger = 277;
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -30,8 +32,8 @@ class _SpecialExperienceState extends State<SpecialExperience>
           my.AnimatedWidget(
             scrollNotifier: widget.scrollNotifier,
             position: widget.logoTop,
-            // TODO: revert to 3447.0
-            startingPoint: 3170.0,
+            // TODO: revert later
+            startingPoint: 3447 - tempOffsetForScrollTrigger,
             child: Image.asset(
               'images/large_logo.png',
               width: 156.0,
@@ -42,7 +44,8 @@ class _SpecialExperienceState extends State<SpecialExperience>
           my.AnimatedWidget(
             scrollNotifier: widget.scrollNotifier,
             position: widget.imageTop,
-            startingPoint: 3718.0,
+            // TODO: revert later
+            startingPoint: 3718.0 - tempOffsetForScrollTrigger,
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
@@ -83,7 +86,8 @@ class _SpecialExperienceState extends State<SpecialExperience>
           my.AnimatedWidget(
             scrollNotifier: widget.scrollNotifier,
             position: widget.titleTop,
-            startingPoint: 3477.0,
+            // TODO: revert later
+            startingPoint: 3477.0 - tempOffsetForScrollTrigger,
             child: const Text(
               'Make a special experience\nwith your athletes!',
               textAlign: TextAlign.center,
@@ -98,7 +102,8 @@ class _SpecialExperienceState extends State<SpecialExperience>
           my.AnimatedWidget(
             scrollNotifier: widget.scrollNotifier,
             position: widget.tagTop,
-            startingPoint: 3642.0,
+            // TODO: revert later
+            startingPoint: 3642.0 - tempOffsetForScrollTrigger,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
