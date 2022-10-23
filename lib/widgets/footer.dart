@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:web/utils/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
+
+  static void openUrl(String targetUrl) async {
+    final Uri uri = Uri.parse(targetUrl);
+    if (!await launchUrl(uri)) throw 'Could not launch $uri';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +30,9 @@ class Footer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    'images/large_logo_white.png',
-                    width: 127.0,
-                    height: 43.0,
+                    'images/footer_logo_white.png',
+                    width: 70.88,
+                    height: 24.0,
                     filterQuality: FilterQuality.high,
                   ),
                   const SizedBox(height: 16.0),
@@ -71,11 +77,13 @@ class Footer extends StatelessWidget {
                       ),
                       SizedBox(width: 16.0),
                       SocialMediaButton(
-                        imagePath: 'images/mail.png',
-                        targetUrl: 'mailto:contact@snlabs.io',
+                        imagePath: 'images/instagram.png',
+                        targetUrl: 'https://www.instagram.com/nyxs.io/',
                       )
                     ],
                   ),
+                  const SizedBox(height: 32.0),
+                  const EmailContact(),
                   const SizedBox(height: 32.0),
                   Text(
                     // TODO: create hyperlink to Privacy Policy, Terms Of Use.
@@ -113,10 +121,7 @@ class SocialMediaButton extends StatelessWidget {
         padding: const EdgeInsets.all(0.0),
         icon: Image.asset(imagePath),
         onPressed: () async {
-          if (targetUrl != null) {
-            final Uri uri = Uri.parse(targetUrl!);
-            if (!await launchUrl(uri)) throw 'Could not launch $uri';
-          }
+          if (targetUrl != null) Footer.openUrl(targetUrl!);
         },
       ),
     );
@@ -142,6 +147,28 @@ class LaunchingMessage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class EmailContact extends StatelessWidget {
+  const EmailContact({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Linkify(
+      text: "contact@snlabs.io",
+      linkStyle: const TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 12.0,
+        height: 1.83,
+        color: Colors.white,
+        decoration: TextDecoration.underline,
+      ),
+      //  link.url cannot be null
+      onOpen: (link) async {
+        Footer.openUrl(link.url);
+      },
     );
   }
 }

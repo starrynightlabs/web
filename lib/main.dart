@@ -53,6 +53,8 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
+  EdgeInsets get appBarLeadingPadding => const EdgeInsets.only(left: 16.0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,11 +62,11 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: NyxsColors.navy,
         toolbarHeight: 72.0,
-        leadingWidth: 86.0,
+        leadingWidth: appBarLeadingPadding.left + 77.0, // padding + logo width
         leading: Padding(
-          padding: const EdgeInsets.only(left: 16.0),
+          padding: appBarLeadingPadding,
           child: Image.asset(
-            'images/logo.png',
+            'images/header_logo.png',
             filterQuality: FilterQuality.high,
           ),
         ),

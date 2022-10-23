@@ -37,7 +37,8 @@ class _WhatIsMissionState extends State<WhatIsMission>
     super.build(context);
     return Container(
       color: Colors.black.withOpacity(0.8),
-      height: 702.0,
+      // TODO: revert to 702.0
+      height: 425.0,
       width: MediaQuery.of(context).size.width,
       child: Stack(
         alignment: Alignment.topCenter,
@@ -56,6 +57,7 @@ class _WhatIsMissionState extends State<WhatIsMission>
               text: widget.missionDescription,
             ),
           ),
+          /*
           my.AnimatedWidget(
             scrollNotifier: widget.scrollNotifier,
             position: widget.titleTwoTop,
@@ -79,6 +81,7 @@ class _WhatIsMissionState extends State<WhatIsMission>
               filterQuality: FilterQuality.high,
             ),
           ),
+          */
         ],
       ),
     );
