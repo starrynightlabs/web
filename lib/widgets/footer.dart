@@ -3,13 +3,13 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:web/utils/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+void openUrl(String targetUrl) async {
+  final Uri uri = Uri.parse(targetUrl);
+  if (!await launchUrl(uri)) throw 'Could not launch $uri';
+}
+
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
-
-  static void openUrl(String targetUrl) async {
-    final Uri uri = Uri.parse(targetUrl);
-    if (!await launchUrl(uri)) throw 'Could not launch $uri';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class SocialMediaButton extends StatelessWidget {
         padding: const EdgeInsets.all(0.0),
         icon: Image.asset(imagePath),
         onPressed: () async {
-          if (targetUrl != null) Footer.openUrl(targetUrl!);
+          if (targetUrl != null) openUrl(targetUrl!);
         },
       ),
     );
@@ -167,7 +167,7 @@ class EmailContact extends StatelessWidget {
       ),
       //  link.url cannot be null
       onOpen: (link) async {
-        Footer.openUrl(link.url);
+        openUrl(link.url);
       },
     );
   }

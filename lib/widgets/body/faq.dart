@@ -41,10 +41,10 @@ class _FAQState extends State<FAQ> {
 
   @override
   Widget build(BuildContext context) {
-    List<FAQItem> fAQItems = [];
+    List<FAQItem> faqItems = [];
     var i = 0;
     for (MapEntry e in widget.items.entries) {
-      fAQItems.add(
+      faqItems.add(
         FAQItem(
           id: i,
           question: e.key,
@@ -75,7 +75,7 @@ class _FAQState extends State<FAQ> {
             ),
           ),
           const SizedBox(height: 56.0),
-          ...fAQItems,
+          ...faqItems,
         ],
       ),
     );
