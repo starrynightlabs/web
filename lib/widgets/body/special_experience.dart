@@ -19,7 +19,7 @@ class SpecialExperience extends StatefulWidget {
 class _SpecialExperienceState extends State<SpecialExperience>
     with AutomaticKeepAliveClientMixin {
   //TODO: This is temporary value for assigning offset of animation trigger position.
-  double tempOffsetForScrollTrigger = 277;
+  double tempOffsetForScrollTrigger = 277.0;
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -33,7 +33,7 @@ class _SpecialExperienceState extends State<SpecialExperience>
             scrollNotifier: widget.scrollNotifier,
             position: widget.logoTop,
             // TODO: revert later
-            startingPoint: 3447 - tempOffsetForScrollTrigger,
+            startingPoint: 3447.0 - tempOffsetForScrollTrigger,
             child: Image.asset(
               'images/large_logo.png',
               width: 156.0,
