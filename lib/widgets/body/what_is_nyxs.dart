@@ -12,9 +12,9 @@ connecting fans with their
 favorite athletes.''';
 
 class WhatIsNyxs extends StatefulWidget {
-  final ScrollNotifier scrollNotifier;
   const WhatIsNyxs({Key? key, required this.scrollNotifier}) : super(key: key);
 
+  final ScrollNotifier scrollNotifier;
   static const double titleTop = 120.0;
   static const double descriptionTop = 166.0;
 
@@ -27,7 +27,6 @@ class _WhatIsNyxsState extends State<WhatIsNyxs>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
     return Container(
       height: 360.0,
       width: MediaQuery.of(context).size.width,

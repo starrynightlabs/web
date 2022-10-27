@@ -7,15 +7,14 @@ import 'package:web/utils/styles.dart';
 import 'package:web/widgets/body/how_to_play/text_highlighter.dart';
 
 class HowToPlayPartOne extends StatelessWidget {
-  final ScrollNotifier scrollNotifier;
   const HowToPlayPartOne({Key? key, required this.scrollNotifier})
       : super(key: key);
 
+  final ScrollNotifier scrollNotifier;
   final String howToPlayDescription = '''
 Your own athletes from all over
 the world and missions given to
 the athletes every season.''';
-
   final double titleTop = 208.0;
   final double descriptionTop = 312.0;
   final double imageTop = 444.0;

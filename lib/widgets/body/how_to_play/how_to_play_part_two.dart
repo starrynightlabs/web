@@ -7,10 +7,10 @@ import 'package:web/widgets/body/how_to_play/text_highlighter.dart';
 import 'package:web/widgets/common/animated_widget.dart' as my;
 
 class HowToPlayPartTwo extends StatefulWidget {
-  final ScrollNotifier scrollNotifier;
   const HowToPlayPartTwo({Key? key, required this.scrollNotifier})
       : super(key: key);
 
+  final ScrollNotifier scrollNotifier;
   final double titleTop = 788.0;
   final double descriptionTop = 892.0;
   final double imageTop = 1024.0;

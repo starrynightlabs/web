@@ -7,9 +7,9 @@ import 'package:web/widgets/body/how_to_play/how_to_play_part_two.dart';
 import 'package:web/widgets/common/animated_widget.dart' as my;
 
 class HowToPlay extends StatefulWidget {
-  final ScrollNotifier scrollNotifier;
-
   const HowToPlay({super.key, required this.scrollNotifier});
+
+  final ScrollNotifier scrollNotifier;
 
   @override
   State<HowToPlay> createState() => _HowToPlayState();

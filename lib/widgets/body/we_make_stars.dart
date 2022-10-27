@@ -8,6 +8,7 @@ import 'package:web/widgets/common/title_text.dart';
 
 class WeMakeStars extends StatefulWidget {
   const WeMakeStars({super.key});
+
   static const double overallHeight = 715.0;
   static const double titleTop = 72.0;
   static const double imageTop = 160.0;
@@ -49,16 +50,16 @@ class _WeMakeStarsState extends State<WeMakeStars>
         children: [
           Positioned(
             top: WeMakeStars.imageTop,
-            child: animateWeMakeStars(
-              Image.asset(
+            child: IntervalAnimatedWidet(
+              controller: _animationController,
+              beginOffset: const Offset(0.0, 0.1),
+              interval: const Interval(0.66, 1),
+              child: Image.asset(
                 'images/we_make_stars.png',
                 height: 555.0,
                 fit: BoxFit.fitHeight,
                 filterQuality: FilterQuality.high,
               ),
-              _animationController,
-              beginOffset: const Offset(0.0, 0.1),
-              const Interval(0.66, 1),
             ),
           ),
           Column(
@@ -68,8 +69,10 @@ class _WeMakeStarsState extends State<WeMakeStars>
               const SizedBox(
                 height: WeMakeStars.titleTop,
               ),
-              animateWeMakeStars(
-                Row(
+              IntervalAnimatedWidet(
+                controller: _animationController,
+                interval: const Interval(0.0, 0.33),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TitleText(
@@ -93,30 +96,28 @@ class _WeMakeStarsState extends State<WeMakeStars>
                     ),
                   ],
                 ),
-                _animationController,
-                const Interval(0.0, 0.33),
               ),
               const SizedBox(
                 height: 24,
               ),
-              animateWeMakeStars(
-                DescriptionText(
+              IntervalAnimatedWidet(
+                controller: _animationController,
+                interval: const Interval(0.33, 0.66),
+                child: DescriptionText(
                   text: 'Support your athletes\nEnjoy the missions together.',
                   style: getDescriptionStyle(
                     color: Colors.white.withOpacity(0.8),
                   ),
                 ),
-                _animationController,
-                const Interval(0.33, 0.66),
               ),
               const SizedBox(
                 height: 24,
               ),
-              animateWeMakeStars(
-                const TagWidget(tag: 'BETA'),
-                _animationController,
+              IntervalAnimatedWidet(
+                controller: _animationController,
                 beginOffset: const Offset(0.0, 0.6),
-                const Interval(0.66, 1),
+                interval: const Interval(0.66, 1),
+                child: const TagWidget(tag: 'BETA'),
               ),
             ],
           ),
@@ -125,16 +126,30 @@ class _WeMakeStarsState extends State<WeMakeStars>
     );
   }
 
-  Widget animateWeMakeStars(
-    widget,
-    controller,
-    Interval interval, {
-    Offset beginOffset = const Offset(0.0, 0.4),
-  }) {
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class IntervalAnimatedWidet extends StatelessWidget {
+  const IntervalAnimatedWidet({
+    super.key,
+    required this.child,
+    required this.controller,
+    required this.interval,
+    this.beginOffset = const Offset(0.0, 0.4),
+  });
+
+  final Widget child;
+  final AnimationController controller;
+  final Interval interval;
+  final Offset beginOffset;
+
+  @override
+  Widget build(BuildContext context) {
     return FadeTransition(
       opacity: Tween(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
-          parent: _animationController,
+          parent: controller,
           curve: interval,
         ),
       ),
@@ -144,15 +159,12 @@ class _WeMakeStarsState extends State<WeMakeStars>
           end: Offset.zero,
         ).animate(
           CurvedAnimation(
-            parent: _animationController,
+            parent: controller,
             curve: interval,
           ),
         ),
-        child: widget,
+        child: child,
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

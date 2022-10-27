@@ -5,12 +5,12 @@ import 'package:web/widgets/common/title_text.dart';
 import 'package:web/widgets/common/animated_widget.dart' as my;
 
 class WhatIsMission extends StatefulWidget {
-  final ScrollNotifier scrollNotifier;
   const WhatIsMission({
     Key? key,
     required this.scrollNotifier,
   }) : super(key: key);
 
+  final ScrollNotifier scrollNotifier;
   final double titleTop = 120.0;
   final double descriptionTop = 166.0;
   final double titleTwoTop = 402.0;

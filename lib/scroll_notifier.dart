@@ -3,6 +3,7 @@ import 'package:web/utils/observer_interface/subject.dart';
 
 class ScrollNotifier implements Subject<double> {
   final List<Listener> scrollListener = [];
+
   @override
   void addListener(Listener<double> listener) {
     scrollListener.add(listener);

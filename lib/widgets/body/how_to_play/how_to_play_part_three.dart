@@ -6,15 +6,14 @@ import 'package:web/widgets/body/how_to_play/text_highlighter.dart';
 import 'package:web/widgets/common/animated_widget.dart' as my;
 
 class HowToPlayPartThree extends StatelessWidget {
-  final ScrollNotifier scrollNotifier;
   const HowToPlayPartThree({Key? key, required this.scrollNotifier})
       : super(key: key);
 
+  final ScrollNotifier scrollNotifier;
   final double titleTop = 1341.0;
   final double descriptionTop = 1445.0;
   final double imageTop = 1577.0;
   final double decorationTop = 1513.0;
-
   final String howToPlayDescription = '''
 Together when your athletes
 complete the missions and
