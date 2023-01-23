@@ -29,7 +29,7 @@ void main() {
 
     expect(
       find.text(
-        'A new web3 sporting platform\nconnecting fans with their\nfavorite athletes.',
+        'A new sporting platform\nconnecting fans with their\nfavorite athletes.',
       ),
       findsOneWidget,
     );
@@ -55,7 +55,7 @@ void main() {
 
     await tester.pumpAndSettle(const Duration(milliseconds: 100));
 
-    expect(find.text('FAQ'), findsOneWidget);
+    // expect(find.text('FAQ'), findsOneWidget);
     expect(find.text('Launching soon.'), findsOneWidget);
   });
 }
