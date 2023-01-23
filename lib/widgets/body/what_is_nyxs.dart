@@ -7,7 +7,7 @@ import 'package:web/widgets/common/description_text.dart';
 import 'package:web/widgets/common/title_text.dart';
 
 const String nyxsDescription = '''
-A new web3 sporting platform
+A new sporting platform
 connecting fans with their
 favorite athletes.''';
 

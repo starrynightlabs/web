@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
             HowToPlay(scrollNotifier: _scrollNotifier),
             WhatIsMission(scrollNotifier: _scrollNotifier),
             SpecialExperience(scrollNotifier: _scrollNotifier),
-            FAQ(),
+            // FAQ(),
             const Footer(),
           ],
         ),
