@@ -110,8 +110,10 @@ class _SpecialExperienceState extends State<SpecialExperience>
                 TagWidget(tag: 'VIDEO'),
                 SizedBox(width: 8.0),
                 TagWidget(tag: 'MESSAGE'),
+                /* TODO: uncomment
                 SizedBox(width: 8.0),
                 TagWidget(tag: 'NFT')
+                */
               ],
             ),
           ),
